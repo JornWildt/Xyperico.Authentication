@@ -2,23 +2,20 @@
 using DotNetOpenAuth.AspNet;
 using Microsoft.Web.WebPages.OAuth;
 using Xyperico.Authentication.Web.Areas.Login.Models;
+using WebMatrix.WebData;
 
 
 namespace Xyperico.Authentication.Web.Areas.Login.Controllers
 {
   public class LoginController : Xyperico.Web.Mvc.Controller
   {
-    #region Dependencies
-
-    public IAuthenticationService AuthenticationService { get; set; }
-
-    #endregion
+    #region Standard login
 
     [HttpGet]
     public ActionResult Show(string returnUrl)
     {
       ViewBag.ReturnUrl = returnUrl;
-      return View(new LoginModel());
+      return View();
     }
 
 
@@ -26,7 +23,7 @@ namespace Xyperico.Authentication.Web.Areas.Login.Controllers
     [ValidateAntiForgeryToken]
     public ActionResult Show(LoginModel model, string returnUrl)
     {
-      if (ModelState.IsValid && AuthenticationService.LoginUsernamePassword(model.UserName, model.Password, persistCookie: model.RememberMe))
+      if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
       {
         return RedirectToLocal(returnUrl);
       }
@@ -37,8 +34,14 @@ namespace Xyperico.Authentication.Web.Areas.Login.Controllers
     }
 
 
-    #region Standard login
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public ActionResult Logout()
+    {
+      WebSecurity.Logout();
 
+      return RedirectToHome();
+    }
 
     #endregion
 

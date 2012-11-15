@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System;
 using DotNetOpenAuth.AspNet;
 using Xyperico.Base;
+using WebMatrix.WebData;
 
 
 namespace Xyperico.Authentication.Web.Areas.Login
@@ -45,6 +46,9 @@ namespace Xyperico.Authentication.Web.Areas.Login
 
     private void ConfigureAuthentication()
     {
+      //System.Web.Security.Membership.Provider = new SimpleMembershipProvider();
+      //WebSecurity.InitializeDatabaseConnection("x", "u", "ui", "un", false);
+
       if (Configuration.Settings == null || Configuration.Settings.ExternalProviders == null)
         return;
 

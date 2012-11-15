@@ -9,6 +9,15 @@
 </hgroup>
 
 <section id="loginForm">
+<h2>You are: @this.User.Identity.Name</h2>
+
+<h2>Logout</h2>
+@using (Html.BeginForm("Logout", "Login"))
+{
+    @Html.AntiForgeryToken()
+    <input type="submit" value="Log out" />
+}
+
 <h2>Use a local account to log in.</h2>
 @using (Html.BeginForm(new { returnUrl = ViewBag.ReturnUrl }))
 {
