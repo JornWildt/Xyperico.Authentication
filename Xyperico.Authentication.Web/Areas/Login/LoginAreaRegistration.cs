@@ -62,7 +62,7 @@ namespace Xyperico.Authentication.Web.Areas.Login
             providerCfg.ClientId,
             providerCfg.ClientSecret
           };
-          IAuthenticationProvider provider = (IAuthenticationProvider)Activator.CreateInstance(providerType, args);
+          IExternalAuthenticationProvider provider = (IExternalAuthenticationProvider)Activator.CreateInstance(providerType, args);
 
           OAuthWebSecurity.RegisterClient(provider.AuthenticationClient, providerCfg.DisplayName, new Dictionary<string, object>());
         }

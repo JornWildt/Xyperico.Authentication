@@ -2,9 +2,9 @@
 using DotNetOpenAuth.AspNet.Clients;
 
 
-namespace Xyperico.Authentication.Providers
+namespace Xyperico.Authentication.Web.ExternalAuthenticationProviders
 {
-  public class Yahoo : IAuthenticationProvider
+  public class Yahoo : IExternalAuthenticationProvider
   {
     public IAuthenticationClient AuthenticationClient
     {

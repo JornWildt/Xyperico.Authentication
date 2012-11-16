@@ -1,0 +1,16 @@
+﻿@using Xyperico.Web.Mvc
+<div id="account-box">
+@if (User.Identity.IsAuthenticated)
+{
+  using (Html.BeginForm("Logout", "Login", new { area = "Login" }))
+  {
+    <span>@Html.Localize(_.Account.Welcome_p0, User.Identity.Name)</span>
+    @Html.AntiForgeryToken()
+    <input type="submit" value="@Html.Localize(_.Account.Log_out)" />
+  }
+}
+else
+{
+  @Html.ActionLink(Html.Localize(_.Account.Log_in), "Show", "Login", new { area = "Login" }, null)
+}
+</div>

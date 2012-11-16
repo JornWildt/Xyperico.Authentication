@@ -3,7 +3,7 @@
 
 namespace Xyperico.Authentication
 {
-  public interface IAuthenticationProvider
+  public interface IExternalAuthenticationProvider
   {
     IAuthenticationClient AuthenticationClient { get; }
   }

@@ -20,6 +20,7 @@ namespace Xyperico.Authentication.Web.Areas.Login.Controllers
 
 
     [HttpPost]
+    [AllowAnonymous]
     [ValidateAntiForgeryToken]
     public ActionResult Show(LoginModel model, string returnUrl)
     {
@@ -35,6 +36,7 @@ namespace Xyperico.Authentication.Web.Areas.Login.Controllers
 
 
     [HttpPost]
+    [AllowAnonymous]
     [ValidateAntiForgeryToken]
     public ActionResult Logout()
     {
@@ -49,6 +51,7 @@ namespace Xyperico.Authentication.Web.Areas.Login.Controllers
     #region External logins (OpenID, Facebook etc.)
 
     [HttpPost]
+    [AllowAnonymous]
     [ValidateAntiForgeryToken]
     public ActionResult ExternalLogin(string provider, string returnUrl)
     {
@@ -57,6 +60,7 @@ namespace Xyperico.Authentication.Web.Areas.Login.Controllers
 
 
     [HttpGet]
+    [AllowAnonymous]
     public ActionResult ExternalLoginCallback(string returnUrl)
     {
       AuthenticationResult result = OAuthWebSecurity.VerifyAuthentication(Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl }));

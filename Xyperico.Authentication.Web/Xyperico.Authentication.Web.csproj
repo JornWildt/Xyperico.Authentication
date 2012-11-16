@@ -134,12 +134,31 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\Account\AccountAreaRegistration.cs" />
+    <Compile Include="Areas\Account\Controllers\InfoController.cs" />
     <Compile Include="Areas\Login\Models\ExternalLoginResult.cs" />
     <Compile Include="Areas\Login\Controllers\LoginController.cs" />
     <Compile Include="Areas\Login\LoginAreaRegistration.cs" />
     <Compile Include="Areas\Login\Models\LoginModel.cs" />
     <Compile Include="Areas\Login\Models\RegisterExternalLoginModel.cs" />
+    <Compile Include="IExternalAuthenticationProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ExternalAuthenticationProviders\Facebook.cs" />
+    <Compile Include="ExternalAuthenticationProviders\Google.cs" />
+    <Compile Include="ExternalAuthenticationProviders\LinkedIn.cs" />
+    <Compile Include="ExternalAuthenticationProviders\Microsoft.cs" />
+    <Compile Include="ExternalAuthenticationProviders\Twitter.cs" />
+    <Compile Include="ExternalAuthenticationProviders\Yahoo.cs" />
+    <Compile Include="Resources\Account.da.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Account.da.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Account.Designer.cs">
+      <DependentUpon>Account.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Include="SimpleMembershipProvider.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -151,7 +170,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Areas\Account\Models\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
@@ -175,7 +196,20 @@
   <ItemGroup>
     <Content Include="Areas\Login\Views\login\show.cshtml" />
     <Content Include="Areas\Login\Views\login\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Areas\Account\Views\Web.config" />
+    <Content Include="Areas\Account\Views\Info\_AccountBox.cshtml" />
     <None Include="copyfiles.bat" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Account.da.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Account.da.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Account.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Account.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>_</CustomToolNamespace>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
