@@ -3,49 +3,15 @@
   ViewBag.Title = @Html.Encode(_.Account.Log_in);
 }
 
-<hgroup class="title">
-    <h1>@ViewBag.Title</h1>
-</hgroup>
+<h1>@ViewBag.Title</h1>
 
-<section id="loginForm">
+@Html.Partial("_UsernamePasswordLogin")
+@Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
 
-@using (Html.BeginForm(new { returnUrl = ViewBag.ReturnUrl }))
-{
-  @Html.AntiForgeryToken()
-  @Html.ValidationSummary(true)
-
-  <fieldset>
-  <ol class="form inputs">
-    <li>
-      @Html.LabelFor(m => m.UserName)
-      @Html.TextBoxFor(m => m.UserName)
-      @Html.ValidationMessageFor(m => m.UserName)
-    </li>
-    <li>
-      @Html.LabelFor(m => m.Password)
-      @Html.PasswordFor(m => m.Password)
-      @Html.ValidationMessageFor(m => m.Password)
-    </li>
-    <li>
-      @Html.CheckBoxFor(m => m.RememberMe)
-      @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
-      | @Html.ActionLink(@Html.Encode(_.Account.Forgot_password), "ForgotPassword") 
-    </li>
-  </ol>
-  </fieldset>
-  <ol class="form buttons">
-    <li><input type="submit" value="@Html.Encode(_.Account.Log_in)" /></li>
-  </ol>
-  <p>
-    @Html.ActionLink("Register", "Register") if you don't have an account.
-  </p>
+@section styles {
+  @Html.Stylesheet("Account")
 }
-</section>
 
-<section id="socialLoginForm">
-    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
-</section>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+@section scripts {
+  @Scripts.Render("~/bundles/jqueryval")
 }

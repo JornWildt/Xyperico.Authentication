@@ -79,6 +79,15 @@ namespace _ {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to if you do not have an account yet.
+        /// </summary>
+        public static string IfNoAccountYet {
+            get {
+                return ResourceManager.GetString("IfNoAccountYet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Log in.
         /// </summary>
         public static string Log_in {
@@ -124,6 +133,15 @@ namespace _ {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} is required.
+        /// </summary>
+        public static string Required_p0 {
+            get {
+                return ResourceManager.GetString("Required_p0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User name.
         /// </summary>
         public static string User_name {
@@ -138,6 +156,15 @@ namespace _ {
         public static string Welcome_p0 {
             get {
                 return ResourceManager.GetString("Welcome_p0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The user name or password provided is incorrect.
+        /// </summary>
+        public static string WrongPassword {
+            get {
+                return ResourceManager.GetString("WrongPassword", resourceCulture);
             }
         }
     }

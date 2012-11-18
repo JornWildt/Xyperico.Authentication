@@ -30,7 +30,7 @@ namespace Xyperico.Authentication.Web.Areas.Account.Controllers
       }
 
       // If we got this far, something failed, redisplay form
-      ModelState.AddModelError("", "The user name or password provided is incorrect.");
+      ModelState.AddModelError("", _.Account.WrongPassword);
       return View(model);
     }
 
@@ -96,7 +96,7 @@ namespace Xyperico.Authentication.Web.Areas.Account.Controllers
     public ActionResult ExternalLoginsList(string returnUrl)
     {
       ViewBag.ReturnUrl = returnUrl;
-      return PartialView("_ExternalLoginsListPartial", OAuthWebSecurity.RegisteredClientData);
+      return PartialView("_ExternalLoginsList", OAuthWebSecurity.RegisteredClientData);
     }
 
     #endregion

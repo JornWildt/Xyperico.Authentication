@@ -67,6 +67,9 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -161,6 +164,7 @@
     <Compile Include="SimpleMembershipProvider.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Account\Styles\Account.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -189,9 +193,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Account\Views\Login\show.cshtml" />
-    <Content Include="Areas\Account\Views\Login\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Areas\Account\Views\Login\_ExternalLoginsList.cshtml" />
     <Content Include="Areas\Account\Views\Web.config" />
     <Content Include="Areas\Account\Views\Info\_AccountBox.cshtml" />
+    <Content Include="Areas\Account\Views\Login\_UsernamePasswordLogin.cshtml" />
+    <Content Include="Areas\Account\Styles\Web.config" />
     <None Include="copyfiles.bat" />
   </ItemGroup>
   <ItemGroup>

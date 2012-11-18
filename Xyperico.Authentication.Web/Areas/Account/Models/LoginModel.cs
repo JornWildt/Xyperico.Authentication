@@ -6,11 +6,11 @@ namespace Xyperico.Authentication.Web.Areas.Account.Models
 {
   public class LoginModel
   {
-    [Required]
+    [Required(ErrorMessageResourceName = "Required_p0", ErrorMessageResourceType = typeof(_.Account))]
     [LocalizedDisplayName("User_name", NameResourceType = typeof(_.Account))]
     public string UserName { get; set; }
 
-    [Required]
+    [Required(ErrorMessageResourceName = "Required_p0", ErrorMessageResourceType = typeof(_.Account))]
     [DataType(DataType.Password)]
     [LocalizedDisplayName("Password", NameResourceType = typeof(_.Account))]
     public string Password { get; set; }

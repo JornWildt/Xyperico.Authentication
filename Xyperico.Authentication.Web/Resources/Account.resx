@@ -123,6 +123,9 @@
   <data name="Forgot_password" xml:space="preserve">
     <value>Forgot password?</value>
   </data>
+  <data name="IfNoAccountYet" xml:space="preserve">
+    <value>if you do not have an account yet</value>
+  </data>
   <data name="Log_in" xml:space="preserve">
     <value>Log in</value>
   </data>
@@ -138,10 +141,16 @@
   <data name="Remember_me" xml:space="preserve">
     <value>Remember me</value>
   </data>
+  <data name="Required_p0" xml:space="preserve">
+    <value>{0} is required</value>
+  </data>
   <data name="User_name" xml:space="preserve">
     <value>User name</value>
   </data>
   <data name="Welcome_p0" xml:space="preserve">
     <value>Welcome {0}</value>
+  </data>
+  <data name="WrongPassword" xml:space="preserve">
+    <value>The user name or password provided is incorrect</value>
   </data>
 </root>
