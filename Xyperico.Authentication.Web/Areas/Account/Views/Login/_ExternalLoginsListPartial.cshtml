@@ -9,11 +9,11 @@
 }
 else
 {
-  using (Html.BeginForm("ExternalLogin", "login", new { ReturnUrl = ViewBag.ReturnUrl }))
+  using (Html.BeginForm("ExternalLogin", "Login", new { ReturnUrl = ViewBag.ReturnUrl }))
   {
   @Html.AntiForgeryToken()
   <fieldset id="socialLoginList">
-      <legend>Log in using another service</legend>
+      <legend>@Html.Encode(_.Account.External_log_in)</legend>
       <p>
       @foreach (AuthenticationClientData p in Model)
       {

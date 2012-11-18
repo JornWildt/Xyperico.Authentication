@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 
-namespace Xyperico.Authentication.Web.Areas.Login.Models
+namespace Xyperico.Authentication.Web.Areas.Account.Models
 {
   public class RegisterExternalLoginModel
   {

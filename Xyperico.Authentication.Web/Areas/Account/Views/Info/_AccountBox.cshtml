@@ -2,15 +2,15 @@
 <div id="account-box">
 @if (User.Identity.IsAuthenticated)
 {
-  using (Html.BeginForm("Logout", "Login", new { area = "Login" }))
+  using (Html.BeginForm("Logout", "Login", new { area = "Account" }))
   {
-    <span>@Html.Localize(_.Account.Welcome_p0, User.Identity.Name)</span>
+    <span>@Html.Encode(_.Account.Welcome_p0, User.Identity.Name)</span>
     @Html.AntiForgeryToken()
-    <input type="submit" value="@Html.Localize(_.Account.Log_out)" />
+    <input type="submit" value="@Html.Encode(_.Account.Log_out)" />
   }
 }
 else
 {
-  @Html.ActionLink(Html.Localize(_.Account.Log_in), "Show", "Login", new { area = "Login" }, null)
+  @Html.ActionLink(Html.Encode(_.Account.Log_in), "Show", "Login", new { area = "Account" }, null)
 }
 </div>

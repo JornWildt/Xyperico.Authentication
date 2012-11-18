@@ -2,7 +2,7 @@
 using Microsoft.Web.WebPages.OAuth;
 
 
-namespace Xyperico.Authentication.Web.Areas.Login.Models
+namespace Xyperico.Authentication.Web.Areas.Account.Models
 {
   internal class ExternalLoginResult : ActionResult
   {

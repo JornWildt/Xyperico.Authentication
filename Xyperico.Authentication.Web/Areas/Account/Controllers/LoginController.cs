@@ -1,11 +1,11 @@
 ﻿using System.Web.Mvc;
 using DotNetOpenAuth.AspNet;
 using Microsoft.Web.WebPages.OAuth;
-using Xyperico.Authentication.Web.Areas.Login.Models;
+using Xyperico.Authentication.Web.Areas.Account.Models;
 using WebMatrix.WebData;
 
 
-namespace Xyperico.Authentication.Web.Areas.Login.Controllers
+namespace Xyperico.Authentication.Web.Areas.Account.Controllers
 {
   public class LoginController : Xyperico.Web.Mvc.Controller
   {

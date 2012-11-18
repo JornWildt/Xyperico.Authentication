@@ -117,11 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="External_log_in" xml:space="preserve">
+    <value>Login med ekstern konto</value>
+  </data>
+  <data name="Forgot_password" xml:space="preserve">
+    <value>Glemt adgangskoden?</value>
+  </data>
   <data name="Log_in" xml:space="preserve">
     <value>Log ind</value>
   </data>
   <data name="Log_out" xml:space="preserve">
     <value>Log ud</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Adgangskode</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Tilmeld</value>
+  </data>
+  <data name="Remember_me" xml:space="preserve">
+    <value>Husk mig</value>
+  </data>
+  <data name="User_name" xml:space="preserve">
+    <value>Brugernavn</value>
   </data>
   <data name="Welcome_p0" xml:space="preserve">
     <value>Velkommen {0} (igen)</value>
