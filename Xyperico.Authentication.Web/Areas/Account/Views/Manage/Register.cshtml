@@ -1,4 +1,5 @@
 ﻿@model Xyperico.Authentication.Web.Areas.Account.Models.RegisterModel
+@using Xyperico.Web.Mvc.Html
 @{
   ViewBag.Title = Html.Encode(_.Account.Registration);
 }
@@ -40,3 +41,4 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+@Html.AutoFocusFor(m => m.UserName)

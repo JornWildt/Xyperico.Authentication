@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using Xyperico.Authentication.Web.Areas.Account.Models;
-using WebMatrix.WebData;
 using System.Web.Security;
+using WebMatrix.WebData;
+using Xyperico.Authentication.Web.Areas.Account.Models;
+using Xyperico.Web.Mvc;
 
 namespace Xyperico.Authentication.Web.Areas.Account.Controllers
 {
@@ -14,6 +12,7 @@ namespace Xyperico.Authentication.Web.Areas.Account.Controllers
     #region Registration
 
     [AllowAnonymous]
+    [PageLayout("Simple")]
     public ActionResult Register()
     {
       return View();
@@ -23,6 +22,7 @@ namespace Xyperico.Authentication.Web.Areas.Account.Controllers
     [HttpPost]
     [AllowAnonymous]
     [ValidateAntiForgeryToken]
+    [PageLayout("Simple")]
     public ActionResult Register(RegisterModel model)
     {
       if (ModelState.IsValid)

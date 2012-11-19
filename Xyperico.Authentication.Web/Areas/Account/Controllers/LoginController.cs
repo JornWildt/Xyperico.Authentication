@@ -3,6 +3,7 @@ using DotNetOpenAuth.AspNet;
 using Microsoft.Web.WebPages.OAuth;
 using Xyperico.Authentication.Web.Areas.Account.Models;
 using WebMatrix.WebData;
+using Xyperico.Web.Mvc;
 
 
 namespace Xyperico.Authentication.Web.Areas.Account.Controllers
@@ -12,6 +13,7 @@ namespace Xyperico.Authentication.Web.Areas.Account.Controllers
     #region Standard login
 
     [HttpGet]
+    [PageLayout("Simple")]
     public ActionResult show(string returnUrl)
     {
       ViewBag.ReturnUrl = returnUrl;
@@ -22,6 +24,7 @@ namespace Xyperico.Authentication.Web.Areas.Account.Controllers
     [HttpPost]
     [AllowAnonymous]
     [ValidateAntiForgeryToken]
+    [PageLayout("Simple")]
     public ActionResult show(LoginModel model, string returnUrl)
     {
       if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
