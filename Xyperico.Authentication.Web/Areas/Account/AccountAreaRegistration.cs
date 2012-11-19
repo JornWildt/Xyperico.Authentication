@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using log4net;
 using Microsoft.Web.WebPages.OAuth;
 using Xyperico.Base;
+using BaseConfiguration = Xyperico.Authentication.Configuration;
 
 
 namespace Xyperico.Authentication.Web.Areas.Account
@@ -26,13 +27,7 @@ namespace Xyperico.Authentication.Web.Areas.Account
 
       context.MapRoute(
           "Account_default",
-          "app/account/{controller}/{action}",
-          new { controller = "home", action = "show" }
-      );
-
-      context.MapRoute(
-          "Login_default",
-          "app/login/{controller}/{action}",
+          "app/account/{action}/{controller}",
           new { controller = "login", action = "show" }
       );
 
@@ -52,10 +47,10 @@ namespace Xyperico.Authentication.Web.Areas.Account
       //System.Web.Security.Membership.Provider = new SimpleMembershipProvider();
       //WebSecurity.InitializeDatabaseConnection("x", "u", "ui", "un", false);
 
-      if (Configuration.Settings == null || Configuration.Settings.ExternalProviders == null)
+      if (BaseConfiguration.Settings == null || BaseConfiguration.Settings.ExternalProviders == null)
         return;
 
-      foreach (Configuration.AuthenticationProvider providerCfg in Configuration.Settings.ExternalProviders)
+      foreach (BaseConfiguration.AuthenticationProvider providerCfg in BaseConfiguration.Settings.ExternalProviders)
       {
         if (providerCfg.Active)
         {

@@ -12,7 +12,7 @@ namespace Xyperico.Authentication.Web.Areas.Account.Controllers
     #region Standard login
 
     [HttpGet]
-    public ActionResult Show(string returnUrl)
+    public ActionResult show(string returnUrl)
     {
       ViewBag.ReturnUrl = returnUrl;
       return View();
@@ -22,11 +22,11 @@ namespace Xyperico.Authentication.Web.Areas.Account.Controllers
     [HttpPost]
     [AllowAnonymous]
     [ValidateAntiForgeryToken]
-    public ActionResult Show(LoginModel model, string returnUrl)
+    public ActionResult show(LoginModel model, string returnUrl)
     {
       if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
       {
-        return RedirectToLocal(returnUrl);
+        return Configuration.Settings.LoginSuccessUrl.Redirect();
       }
 
       // If we got this far, something failed, redisplay form
@@ -38,7 +38,7 @@ namespace Xyperico.Authentication.Web.Areas.Account.Controllers
     [HttpPost]
     [AllowAnonymous]
     [ValidateAntiForgeryToken]
-    public ActionResult Logout()
+    public ActionResult logout()
     {
       WebSecurity.Logout();
 

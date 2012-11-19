@@ -8,10 +8,6 @@
 @Html.Partial("_UsernamePasswordLogin")
 @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
 
-@section styles {
-  @Html.Stylesheet("Account")
-}
-
 @section scripts {
   @Scripts.Render("~/bundles/jqueryval")
 }

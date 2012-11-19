@@ -61,6 +61,33 @@ namespace _ {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirm password.
+        /// </summary>
+        public static string Confirm_Password {
+            get {
+                return ResourceManager.GetString("Confirm_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create new account.
+        /// </summary>
+        public static string CreateNewAccount {
+            get {
+                return ResourceManager.GetString("CreateNewAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E-mail.
+        /// </summary>
+        public static string EMail {
+            get {
+                return ResourceManager.GetString("EMail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Log in using external account.
         /// </summary>
         public static string External_log_in {
@@ -106,6 +133,15 @@ namespace _ {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} must be at least {2} characters long.
+        /// </summary>
+        public static string p0_MustBe_p2_CharsLong {
+            get {
+                return ResourceManager.GetString("p0_MustBe_p2_CharsLong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Adgangskode.
         /// </summary>
         public static string Password {
@@ -115,11 +151,29 @@ namespace _ {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The password and confirmation password do not match.
+        /// </summary>
+        public static string PasswordAndConfirmationDoesNotMatch {
+            get {
+                return ResourceManager.GetString("PasswordAndConfirmationDoesNotMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Register.
         /// </summary>
         public static string Register {
             get {
                 return ResourceManager.GetString("Register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registration.
+        /// </summary>
+        public static string Registration {
+            get {
+                return ResourceManager.GetString("Registration", resourceCulture);
             }
         }
         

@@ -22,6 +22,11 @@ namespace Xyperico.Authentication.Web
     }
 
 
+    public override string CreateUserAndAccount(string userName, string password, bool requireConfirmation, IDictionary<string, object> values)
+    {
+      return null; // Return what? A token? Username?
+    }
+
     #endregion
 
     public override bool ConfirmAccount(string accountConfirmationToken)
@@ -35,11 +40,6 @@ namespace Xyperico.Authentication.Web
     }
 
     public override string CreateAccount(string userName, string password, bool requireConfirmationToken)
-    {
-      throw new NotImplementedException();
-    }
-
-    public override string CreateUserAndAccount(string userName, string password, bool requireConfirmation, IDictionary<string, object> values)
     {
       throw new NotImplementedException();
     }

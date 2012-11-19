@@ -2,7 +2,7 @@
 <div id="account-box">
 @if (User.Identity.IsAuthenticated)
 {
-  using (Html.BeginForm("Logout", "Login", new { area = "Account" }))
+  using (Html.BeginForm("logout", "login", new { area = "account" }))
   {
     <span>@Html.Encode(_.Account.Welcome_p0, User.Identity.Name)</span>
     @Html.AntiForgeryToken()
@@ -11,6 +11,6 @@
 }
 else
 {
-  @Html.ActionLink(Html.Encode(_.Account.Log_in), "Show", "Login", new { area = "Account" }, null)
+  @Html.ActionLink(_.Account.Log_in, "show", "login", new { area = "account" }, null)
 }
 </div>
