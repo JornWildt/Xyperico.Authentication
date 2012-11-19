@@ -1,1 +1,6 @@
-﻿
+﻿#social-login-list .form.inputs li
+{
+  float: left;
+  width: 30%;
+  margin: 0 10px 10px 0;
+}
