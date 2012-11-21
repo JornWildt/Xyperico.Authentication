@@ -2,6 +2,6 @@
 {
   public interface IAuthenticationService
   {
-    bool LoginUsernamePassword(string userName, string password, bool persistCookie = false);
+    bool LoginUsernamePassword(string userName, string password);
   }
 }

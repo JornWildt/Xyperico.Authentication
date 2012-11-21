@@ -15,6 +15,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcApplication1", "MvcAppli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xyperico.Authentication", "Xyperico.Authentication\Xyperico.Authentication.csproj", "{50FC2DD4-89E2-4AB3-856F-98F66EC175C8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xyperico.Authentication.Tests", "Xyperico.Authentication.Tests\Xyperico.Authentication.Tests.csproj", "{7D55C6F1-2C85-4C00-BB28-654A9E9B4767}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xyperico.Base.Testing", "..\Xyperico\Source\Xyperico.Base\Xyperico.Base.Testing\Xyperico.Base.Testing.csproj", "{0A6B133C-2DAD-49D9-9686-AF4E2021ACA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xyperico.Base.MongoDB", "..\Xyperico\Source\Xyperico.Base\Xyperico.Base.MongoDB\Xyperico.Base.MongoDB\Xyperico.Base.MongoDB.csproj", "{DF1A3B54-FD53-414F-8C54-0D9F6EDEB2C9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{1073B0C8-279C-4183-AF28-2E33A22F184D}"
+	ProjectSection(SolutionItems) = preProject
+		Xyperico.Authentication.Tests.config = Xyperico.Authentication.Tests.config
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xyperico.Authentication.MongoDB", "Xyperico.Authentication.MongoDB\Xyperico.Authentication.MongoDB.csproj", "{0E51F3F5-048C-44D6-83FF-22F143EDF592}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +54,22 @@ Global
 		{50FC2DD4-89E2-4AB3-856F-98F66EC175C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50FC2DD4-89E2-4AB3-856F-98F66EC175C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50FC2DD4-89E2-4AB3-856F-98F66EC175C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D55C6F1-2C85-4C00-BB28-654A9E9B4767}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D55C6F1-2C85-4C00-BB28-654A9E9B4767}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D55C6F1-2C85-4C00-BB28-654A9E9B4767}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D55C6F1-2C85-4C00-BB28-654A9E9B4767}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A6B133C-2DAD-49D9-9686-AF4E2021ACA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A6B133C-2DAD-49D9-9686-AF4E2021ACA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A6B133C-2DAD-49D9-9686-AF4E2021ACA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A6B133C-2DAD-49D9-9686-AF4E2021ACA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF1A3B54-FD53-414F-8C54-0D9F6EDEB2C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF1A3B54-FD53-414F-8C54-0D9F6EDEB2C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF1A3B54-FD53-414F-8C54-0D9F6EDEB2C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF1A3B54-FD53-414F-8C54-0D9F6EDEB2C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E51F3F5-048C-44D6-83FF-22F143EDF592}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E51F3F5-048C-44D6-83FF-22F143EDF592}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E51F3F5-048C-44D6-83FF-22F143EDF592}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E51F3F5-048C-44D6-83FF-22F143EDF592}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +77,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{054A30BA-B232-4FF1-9F23-1040D075764A} = {2423D79C-6D26-4E16-8F9B-5B491BD24463}
 		{5BAC1705-410B-4B27-AA97-03C1EF567E1A} = {2423D79C-6D26-4E16-8F9B-5B491BD24463}
+		{0A6B133C-2DAD-49D9-9686-AF4E2021ACA7} = {2423D79C-6D26-4E16-8F9B-5B491BD24463}
+		{DF1A3B54-FD53-414F-8C54-0D9F6EDEB2C9} = {2423D79C-6D26-4E16-8F9B-5B491BD24463}
 		{246DC217-E6D2-423F-ACD0-1193F5A6DEF7} = {A57ACE6F-EA6C-4C22-ABB5-FC62E80626A4}
 	EndGlobalSection
 EndGlobal

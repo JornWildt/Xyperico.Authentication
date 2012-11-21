@@ -18,7 +18,7 @@ namespace Xyperico.Authentication.Web
 
     public override bool ValidateUser(string username, string password)
     {
-      return username == "1" && password == "1";
+      return AuthenticationService.LoginUsernamePassword(username, password);
     }
 
 
