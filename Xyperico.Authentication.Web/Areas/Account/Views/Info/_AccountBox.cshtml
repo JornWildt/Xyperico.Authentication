@@ -4,13 +4,16 @@
 {
   using (Html.BeginForm("logout", "login", new { area = "account" }))
   {
-    <span>@Html.Encode(_.Account.Welcome_p0, User.Identity.Name)</span>
+    <span>@Html.Format(_.Account.Welcome_p0, User.Identity.Name)</span>
     @Html.AntiForgeryToken()
-    <input type="submit" value="@Html.Encode(_.Account.Log_out)" />
+    <input type="submit" value="@_.Account.Log_out" />
   }
 }
 else
 {
+  <text>
   @Html.ActionLink(_.Account.Log_in, "show", "login", new { area = "account" }, null)
+  | @Html.ActionLink(_.Account.Register, "register", "manage")
+  </text>
 }
 </div>

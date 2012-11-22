@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using WebMatrix.WebData;
+using Xyperico.Base;
+using Xyperico.Base.Exceptions;
+using System.Web.Security;
+using CuttingEdge.Conditions;
 
 
 namespace Xyperico.Authentication.Web
@@ -9,7 +13,36 @@ namespace Xyperico.Authentication.Web
   {
     #region Dependencies
 
-    public IAuthenticationService AuthenticationService { get; set; }
+    private IUserRepository _userRepository;
+    public IUserRepository UserRepository
+    {
+      get
+      {
+        if (_userRepository == null)
+          _userRepository = ObjectContainer.Container.Resolve<IUserRepository>();
+        return _userRepository;
+      }
+      set
+      {
+        _userRepository = value;
+      }
+    }
+
+
+    private IUserAuthRelationRepository _userAuthRelationRepository;
+    public IUserAuthRelationRepository UserAuthRelationRepository
+    {
+      get
+      {
+        if (_userAuthRelationRepository == null)
+          _userAuthRelationRepository = ObjectContainer.Container.Resolve<IUserAuthRelationRepository>();
+        return _userAuthRelationRepository;
+      }
+      set
+      {
+        _userAuthRelationRepository = value;
+      }
+    }
 
     #endregion
 
@@ -18,13 +51,79 @@ namespace Xyperico.Authentication.Web
 
     public override bool ValidateUser(string username, string password)
     {
-      return AuthenticationService.LoginUsernamePassword(username, password);
+      try
+      {
+        User u = UserRepository.GetUserByUserName(username);
+        return u.PasswordMatches(password);
+      }
+      catch (MissingResourceException)
+      {
+        return false;
+      }
     }
 
 
     public override string CreateUserAndAccount(string userName, string password, bool requireConfirmation, IDictionary<string, object> values)
     {
-      return null; // Return what? A token? Username?
+      try
+      {
+        Condition.Requires(values, "values").IsNotNull();
+        string email = values["EMail"] as string;
+        Condition.Requires(email, "values[EMail]").IsNotNullOrEmpty();
+        User user = new User(userName, password, email);
+        UserRepository.Add(user);
+      }
+      catch (DuplicateKeyException)
+      {
+        throw new MembershipCreateUserException(MembershipCreateStatus.DuplicateUserName);
+      }
+      return null; // Return what? "A token that can be sent to the user to confirm the user account."
+    }
+
+
+    public override int GetUserIdFromOAuth(string provider, string providerUserId)
+    {
+      try
+      {
+        UserAuthRelation rel = UserAuthRelationRepository.GetByExternalCredentials(provider, providerUserId);
+        return rel.Id;
+      }
+      catch (MissingResourceException)
+      {
+        return -1;
+      }
+    }
+
+
+    public override string GetUserNameFromId(int userId)
+    {
+      try
+      {
+        UserAuthRelation rel = UserAuthRelationRepository.Get(userId);
+        User user = UserRepository.Get(rel.User_Id);
+        return user.UserName;
+      }
+      catch (MissingResourceException)
+      {
+        return null;
+      }
+    }
+
+
+    public override void CreateOrUpdateOAuthAccount(string provider, string providerUserId, string userName)
+    {
+      try
+      {
+        User user = new User(userName, null, null);
+        UserRepository.Add(user);
+
+        UserAuthRelation rel = new UserAuthRelation(user.Id, provider, providerUserId);
+        UserAuthRelationRepository.Add(rel);
+      }
+      catch (DuplicateKeyException)
+      {
+        throw new MembershipCreateUserException(MembershipCreateStatus.DuplicateUserName);
+      }
     }
 
     #endregion

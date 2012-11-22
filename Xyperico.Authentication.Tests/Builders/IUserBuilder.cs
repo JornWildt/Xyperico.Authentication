@@ -5,6 +5,6 @@ namespace Xyperico.Authentication.Tests.Builders
 {
   public interface IUserBuilder : IDisposingBuilder<User>
   {
-    User BuildUser();
+    User BuildUser(string userName = null, string email = null);
   }
 }

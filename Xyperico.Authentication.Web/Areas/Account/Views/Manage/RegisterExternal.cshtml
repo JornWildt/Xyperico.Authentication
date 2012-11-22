@@ -1,4 +1,4 @@
-﻿@model Xyperico.Authentication.Web.Areas.Account.Models.RegisterModel
+﻿@model Xyperico.Authentication.Web.Areas.Account.Models.RegisterExternalModel
 @using Xyperico.Web.Mvc.Html
 @{
   ViewBag.Title = _.Account.Registration;
@@ -9,11 +9,19 @@
     <h2>@_.Account.CreateNewAccount</h2>
 </hgroup>
 
-@using (Html.BeginForm("Register", "Manage")) {
+@using (Html.BeginForm("RegisterExternal", "Manage")) {
   @Html.AntiForgeryToken()
   @Html.ValidationSummary()
+  <input type="hidden" name="ProviderName" value="@Model.ProviderName" />
+  <input type="hidden" name="ProviderUserName" value="@Model.ProviderUserName" />
+  <input type="hidden" name="ExternalLoginData" value="@Model.ExternalLoginData" />
+  <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl" />
 
   <fieldset>
+    @if (Model.ExternalLoginData != null)
+    {
+      <p>@Html.Format(_.Account.SuccessfullExternalAuthentication_p2, @Model.ProviderName, @Model.ProviderUserName)</p>
+    }
     <ol class="form inputs">
       <li>
         @Html.LabelFor(m => m.UserName)
@@ -22,14 +30,6 @@
       <li>
         @Html.LabelFor(m => m.EMail)
         @Html.TextBoxFor(m => m.EMail)
-      </li>
-      <li>
-        @Html.LabelFor(m => m.Password)
-        @Html.PasswordFor(m => m.Password)
-      </li>
-      <li>
-        @Html.LabelFor(m => m.ConfirmPassword)
-        @Html.PasswordFor(m => m.ConfirmPassword)
       </li>
     </ol>
     <ol class="form buttons">

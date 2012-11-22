@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using Xyperico.Authentication.Tests.Builders;
 using Xyperico.Base;
+using Xyperico.Base.Collections;
 
 
 namespace Xyperico.Authentication.Tests
@@ -12,7 +13,9 @@ namespace Xyperico.Authentication.Tests
     {
       Xyperico.Authentication.MongoDB.Utility.Initialize(container);
 
+      container.AddComponent<INameValueContextCollection, CallContextNamedValueCollection>();
       container.AddComponent<IUserBuilder, UserBuilder>();
+      container.AddComponent<IUserAuthRelationBuilder, UserAuthRelationBuilder>();
     }
 
 

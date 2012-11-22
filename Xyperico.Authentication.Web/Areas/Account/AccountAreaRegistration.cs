@@ -38,15 +38,13 @@ namespace Xyperico.Authentication.Web.Areas.Account
 
     private void ConfigureDependencies(IObjectContainer container)
     {
+      Xyperico.Authentication.MongoDB.Utility.Initialize(container);
       container.AddComponent<IAuthenticationService, AuthenticationService>();
     }
 
 
     private void ConfigureAuthentication()
     {
-      //System.Web.Security.Membership.Provider = new SimpleMembershipProvider();
-      //WebSecurity.InitializeDatabaseConnection("x", "u", "ui", "un", false);
-
       if (BaseConfiguration.Settings == null || BaseConfiguration.Settings.ExternalProviders == null)
         return;
 

@@ -1,6 +1,5 @@
 ﻿using MongoDB.Bson.Serialization;
 using Xyperico.Base;
-using Xyperico.Base.Collections;
 
 
 namespace Xyperico.Authentication.MongoDB
@@ -19,8 +18,8 @@ namespace Xyperico.Authentication.MongoDB
 
     private static void ConfigureDependencies(IObjectContainer container)
     {
-      container.AddComponent<INameValueContextCollection, CallContextNamedValueCollection>();
       container.AddComponent<IUserRepository, UserRepository>();
+      container.AddComponent<IUserAuthRelationRepository, UserAuthRelationRepository>();
     }
   }
 }

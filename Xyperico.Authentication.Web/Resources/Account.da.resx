@@ -171,4 +171,7 @@
   <data name="WrongPassword" xml:space="preserve">
     <value>Forkert adgangskode eller ukendt brugernavn</value>
   </data>
+  <data name="SuccessfullExternalAuthentication_p2" xml:space="preserve">
+    <value>Du har identificeret dig selv som &lt;strong&gt;{1}&lt;/strong&gt; fra &lt;strong&gt;{0}&lt;/strong&gt; og kan nu registrere dig selv som ny bruger på systemet</value>
+  </data>
 </root>

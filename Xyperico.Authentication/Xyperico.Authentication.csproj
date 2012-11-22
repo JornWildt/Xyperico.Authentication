@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IUserAuthRelationRepository.cs" />
+    <Compile Include="UserAuthRelation.cs" />
     <Compile Include="AuthenticationService.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="IAuthenticationService.cs" />

@@ -14,9 +14,9 @@ namespace Xyperico.Authentication.Tests.Builders
 
     #region IUserBuilder Members
 
-    public User BuildUser()
+    public User BuildUser(string userName = null, string email = null)
     {
-      User u = new User("Berndt", "123456", "xx@xyz.dk");
+      User u = new User(userName ?? "Berndt", "123456", email ?? "xx@xyz.dk");
       RegisterInstance(u);
       UserRepository.Add(u);
       return u;

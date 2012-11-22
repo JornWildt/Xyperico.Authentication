@@ -196,6 +196,15 @@ namespace _ {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You have successfully authenticated with &lt;strong&gt;{0}&lt;/strong&gt; as &lt;strong&gt;{1}&lt;/strong&gt; and may now register as a new user.
+        /// </summary>
+        public static string SuccessfullExternalAuthentication_p2 {
+            get {
+                return ResourceManager.GetString("SuccessfullExternalAuthentication_p2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User name.
         /// </summary>
         public static string User_name {

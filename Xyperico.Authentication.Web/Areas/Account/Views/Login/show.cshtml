@@ -1,6 +1,6 @@
 ﻿@model Xyperico.Authentication.Web.Areas.Account.Models.LoginModel
 @{
-  ViewBag.Title = @Html.Encode(_.Account.Log_in);
+  ViewBag.Title = @_.Account.Log_in;
 }
 
 <h1>@ViewBag.Title</h1>
@@ -13,6 +13,5 @@
 }
 
 @section styles {
-HELLO
   @Html.Stylesheet("Account")
 }

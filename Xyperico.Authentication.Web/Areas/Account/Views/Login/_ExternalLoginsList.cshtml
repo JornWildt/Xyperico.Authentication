@@ -14,7 +14,7 @@ else
   {
   @Html.AntiForgeryToken()
   <fieldset id="social-login-list">
-      <legend>@Html.Encode(_.Account.External_log_in)</legend>
+      <legend>@_.Account.External_log_in</legend>
       <ol class="form inputs">
       @foreach (AuthenticationClientData p in Model)
       {

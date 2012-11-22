@@ -85,12 +85,62 @@ namespace Xyperico.Authentication.Web.Areas.Account.Controllers
       }
       else
       {
-        // User is new, ask for their desired membership name
+        // User is new, redirect to registration page
         string loginData = OAuthWebSecurity.SerializeProviderUserId(result.Provider, result.ProviderUserId);
-        ViewBag.ProviderDisplayName = OAuthWebSecurity.GetOAuthClientData(result.Provider).DisplayName;
-        ViewBag.ReturnUrl = returnUrl;
-        return View("ExternalLoginConfirmation", new RegisterExternalLoginModel { UserName = result.UserName, ExternalLoginData = loginData });
+        RegisterExternalModel model = new RegisterExternalModel
+        {
+          ProviderName = OAuthWebSecurity.GetOAuthClientData(result.Provider).DisplayName,
+          ExternalLoginData = loginData,
+          ProviderUserName = result.UserName,
+          EMail = result.UserName,
+          ReturnUrl = returnUrl
+        };
+        return View("../Manage/RegisterExternal", model);
       }
+    }
+
+
+    [HttpPost]
+    [AllowAnonymous]
+    [ValidateAntiForgeryToken]
+    public ActionResult FIXME_UNUSED_ExternalLoginConfirmation(RegisterExternalModel model, string returnUrl)
+    {
+      string provider = null;
+      string providerUserId = null;
+
+      if (User.Identity.IsAuthenticated || !OAuthWebSecurity.TryDeserializeProviderUserId(model.ExternalLoginData, out provider, out providerUserId))
+      {
+        return RedirectToAction("Manage");
+      }
+
+      if (ModelState.IsValid)
+      {
+        // Insert a new user into the database
+        //using (UsersContext db = new UsersContext())
+        {
+          //UserProfile user = db.UserProfiles.FirstOrDefault(u => u.UserName.ToLower() == model.UserName.ToLower());
+          // Check if user already exists
+          //if (user == null)
+          {
+            // Insert name into the profile table
+            //db.UserProfiles.Add(new UserProfile { UserName = model.UserName });
+            //db.SaveChanges();
+
+            OAuthWebSecurity.CreateOrUpdateAccount(provider, providerUserId, model.UserName);
+            OAuthWebSecurity.Login(provider, providerUserId, createPersistentCookie: false);
+
+            return RedirectToLocal(returnUrl);
+          }
+          //else
+          //{
+          //  ModelState.AddModelError("UserName", "User name already exists. Please enter a different user name.");
+          //}
+        }
+      }
+
+      ViewBag.ProviderDisplayName = OAuthWebSecurity.GetOAuthClientData(provider).DisplayName;
+      ViewBag.ReturnUrl = returnUrl;
+      return View(model);
     }
 
 

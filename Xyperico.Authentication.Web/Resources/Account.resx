@@ -171,4 +171,7 @@
   <data name="WrongPassword" xml:space="preserve">
     <value>The user name or password provided is incorrect</value>
   </data>
+  <data name="SuccessfullExternalAuthentication_p2" xml:space="preserve">
+    <value>You have successfully authenticated with &lt;strong&gt;{0}&lt;/strong&gt; as &lt;strong&gt;{1}&lt;/strong&gt; and may now register as a new user</value>
+  </data>
 </root>

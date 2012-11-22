@@ -4,6 +4,7 @@ using System.Web.Security;
 using WebMatrix.WebData;
 using Xyperico.Authentication.Web.Areas.Account.Models;
 using Xyperico.Web.Mvc;
+using Microsoft.Web.WebPages.OAuth;
 
 namespace Xyperico.Authentication.Web.Areas.Account.Controllers
 {
@@ -25,15 +26,48 @@ namespace Xyperico.Authentication.Web.Areas.Account.Controllers
     [PageLayout("Simple")]
     public ActionResult Register(RegisterModel model)
     {
+      if (User.Identity.IsAuthenticated)
+        return RedirectToHome();
+
       if (ModelState.IsValid)
       {
         // Attempt to register the user
         try
         {
-          Dictionary<string, object> props = new Dictionary<string, object>();
-          props["EMail"] = model.EMail;
-          WebSecurity.CreateUserAndAccount(model.UserName, model.Password, props);
+          WebSecurity.CreateUserAndAccount(model.UserName, model.Password, new { EMail = model.EMail });
           WebSecurity.Login(model.UserName, model.Password);
+          return Configuration.Settings.RegisterSuccessUrl.Redirect();
+        }
+        catch (MembershipCreateUserException e)
+        {
+          ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
+        }
+      }
+
+      // If we got this far, something failed, redisplay form
+      return View(model);
+    }
+
+
+    [HttpPost]
+    [AllowAnonymous]
+    [ValidateAntiForgeryToken]
+    [PageLayout("Simple")]
+    public ActionResult RegisterExternal(RegisterExternalModel model)
+    {
+      string provider = null;
+      string providerUserId = null;
+
+      if (User.Identity.IsAuthenticated || !OAuthWebSecurity.TryDeserializeProviderUserId(model.ExternalLoginData, out provider, out providerUserId))
+        return RedirectToHome();
+
+      if (ModelState.IsValid)
+      {
+        // Attempt to register the user
+        try
+        {
+          OAuthWebSecurity.CreateOrUpdateAccount(provider, providerUserId, model.UserName);
+          OAuthWebSecurity.Login(provider, providerUserId, createPersistentCookie: false);
           return Configuration.Settings.RegisterSuccessUrl.Redirect();
         }
         catch (MembershipCreateUserException e)

@@ -37,24 +37,33 @@ namespace Xyperico.Authentication
     public User(string userName, string password, string email)
     {
       Condition.Requires(userName, "userName").IsNotNullOrEmpty();
-      Condition.Requires(password, "password").IsNotNullOrEmpty();
-      Condition.Requires(email, "email").IsNotNull();
+      //Condition.Requires(password, "password").IsNotNullOrEmpty();
+      //Condition.Requires(email, "email").IsNotNull();
 
       Id = Guid.NewGuid();
       UserName = userName;
       UserNameLowercase = userName.ToLower();
-      EMail = email;
-      EMailLowercase = email.ToLower();
 
-      byte[] salt, hash;
-      GeneratePasswordHash(password, out salt, out hash);
-      PasswordSalt = salt;
-      PasswordHash = hash;
+      if (email != null)
+      {
+        EMail = email;
+        EMailLowercase = email.ToLower();
+      }
+
+      if (password != null)
+      {
+        byte[] salt, hash;
+        GeneratePasswordHash(password, out salt, out hash);
+        PasswordSalt = salt;
+        PasswordHash = hash;
+      }
     }
 
 
     public bool PasswordMatches(string password)
     {
+      if (PasswordSalt == null || PasswordHash == null)
+        return false;
       byte[] hash = GeneratePasswordHash(password, PasswordSalt);
       return hash.SequenceEqual(PasswordHash);
     }
@@ -84,7 +93,7 @@ namespace Xyperico.Authentication
     
     public override string ToString()
     {
-      return UserName + " (" + this.EMail + ")";
+      return UserName + " (" + (this.EMail ?? "unknown e-mail") + ")";
     }
   }
 }
