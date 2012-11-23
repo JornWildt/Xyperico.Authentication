@@ -26,6 +26,8 @@ namespace Xyperico.Authentication
 
     public byte[] PasswordSalt { get; protected set; }
 
+    public string PasswordHashAlgorithm { get; set; }
+
     #endregion
 
 
@@ -37,8 +39,6 @@ namespace Xyperico.Authentication
     public User(string userName, string password, string email)
     {
       Condition.Requires(userName, "userName").IsNotNullOrEmpty();
-      //Condition.Requires(password, "password").IsNotNullOrEmpty();
-      //Condition.Requires(email, "email").IsNotNull();
 
       Id = Guid.NewGuid();
       UserName = userName;
@@ -52,6 +52,7 @@ namespace Xyperico.Authentication
 
       if (password != null)
       {
+        PasswordHashAlgorithm = Configuration.Settings.PasswordHashAlgorithm;
         byte[] salt, hash;
         GeneratePasswordHash(password, out salt, out hash);
         PasswordSalt = salt;
@@ -60,37 +61,22 @@ namespace Xyperico.Authentication
     }
 
 
+    private void GeneratePasswordHash(string password, out byte[] salt, out byte[] hash)
+    {
+      salt = RandomStringGenerator.GenerateRandomBytes(20);
+      hash = PasswordHasher.GeneratePasswordHash(password, salt, PasswordHashAlgorithm);
+    }
+
+
     public bool PasswordMatches(string password)
     {
       if (PasswordSalt == null || PasswordHash == null)
         return false;
-      byte[] hash = GeneratePasswordHash(password, PasswordSalt);
+      byte[] hash = PasswordHasher.GeneratePasswordHash(password, PasswordSalt, PasswordHashAlgorithm);
       return hash.SequenceEqual(PasswordHash);
     }
 
 
-    private void GeneratePasswordHash(string password, out byte[] salt, out byte[] hash)
-    {
-      // FIXME: refactor into separate class/interface
-      salt = RandomStringGenerator.GenerateRandomBytes(20);
-      hash = GeneratePasswordHash(password, salt);
-    }
-
-
-    private byte[] GeneratePasswordHash(string password, byte[] salt)
-    {
-      // FIXME: refactor into separate class/interface
-      byte[] passwordBytes = System.Text.Encoding.Unicode.GetBytes(password);
-
-      var allBytes = new byte[salt.Length + passwordBytes.Length];
-
-      Buffer.BlockCopy(salt, 0, allBytes, 0, salt.Length);
-      Buffer.BlockCopy(passwordBytes, 0, allBytes, salt.Length, passwordBytes.Length);
-
-      return HashAlgorithm.Create("SHA1").ComputeHash(allBytes);
-    }
-
-    
     public override string ToString()
     {
       return UserName + " (" + (this.EMail ?? "unknown e-mail") + ")";

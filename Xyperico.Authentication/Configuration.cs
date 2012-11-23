@@ -9,10 +9,24 @@ namespace Xyperico.Authentication
 {
   public class Configuration : ConfigurationSettingsBase<Configuration>
   {
+    public override bool IsReadOnly()
+    {
+      return false;
+    }
+
+
     [ConfigurationProperty("ExternalProviders")]
     public ConfigurationElementCollection<AuthenticationProvider> ExternalProviders
     {
       get { return (ConfigurationElementCollection<AuthenticationProvider>)this["ExternalProviders"]; }
+    }
+
+
+    [ConfigurationProperty("PasswordHashAlgorithm")]
+    public string PasswordHashAlgorithm
+    {
+      get { return (string)this["PasswordHashAlgorithm"]; }
+      set { this["PasswordHashAlgorithm"] = value; }
     }
 
 

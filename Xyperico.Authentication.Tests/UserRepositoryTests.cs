@@ -49,7 +49,6 @@ namespace Xyperico.Authentication.Tests
       AssertThrows<DuplicateKeyException>(() => UserRepository.Add(u3));
     }
 
-    // FIXME: allow same e-mail? It's not a "key" like the user name
 
     [Test]
     public void WhenAddingSameEMailTwiceItThrowsDuplicateKey()
