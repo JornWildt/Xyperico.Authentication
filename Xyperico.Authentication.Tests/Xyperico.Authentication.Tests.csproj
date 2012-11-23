@@ -44,7 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthenticationServiceTests.cs" />
     <Compile Include="Builders\IUserAuthRelationBuilder.cs" />
     <Compile Include="Builders\UserAuthRelationBuilder.cs" />
     <Compile Include="Builders\IUserBuilder.cs" />

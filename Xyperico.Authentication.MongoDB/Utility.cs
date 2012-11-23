@@ -10,7 +10,11 @@ namespace Xyperico.Authentication.MongoDB
     {
       Xyperico.Base.MongoDB.Utility.Initialize();
 
-      BsonClassMap.RegisterClassMap<User>();
+      BsonClassMap.RegisterClassMap<User>(cm =>
+      {
+        cm.AutoMap();
+        cm.GetMemberMap(c => c.EMailLowercase).SetIgnoreIfNull(true);
+      });
 
       ConfigureDependencies(container);
     }

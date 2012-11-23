@@ -7,7 +7,7 @@ namespace Xyperico.Authentication
   {
     void Add(User user);
     User Get(Guid id);
-    User GetUserByUserName(string username);
+    User GetByUserName(string username);
     void Remove(Guid id);
   }
 }

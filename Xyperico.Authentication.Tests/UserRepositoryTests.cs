@@ -17,7 +17,7 @@ namespace Xyperico.Authentication.Tests
       User u1 = UserBuilder.BuildUser();
 
       // Act
-      User u2 = UserRepository.GetUserByUserName(u1.UserName);
+      User u2 = UserRepository.GetByUserName(u1.UserName);
 
       // Assert
       Assert.IsNotNull(u2);
@@ -29,7 +29,7 @@ namespace Xyperico.Authentication.Tests
     [Test]
     public void WhenGettingUnknownUserItThrowsMissingResource()
     {
-      AssertThrows<MissingResourceException>(() => UserRepository.GetUserByUserName("unknownuser"));
+      AssertThrows<MissingResourceException>(() => UserRepository.GetByUserName("unknownuser"));
     }
 
 
@@ -64,6 +64,29 @@ namespace Xyperico.Authentication.Tests
       // Act + Assert
       AssertThrows<DuplicateKeyException>(() => UserRepository.Add(u2));
       AssertThrows<DuplicateKeyException>(() => UserRepository.Add(u3));
+    }
+
+
+    [Test]
+    public void CanAddTwoUsersWithoutPasswordAndEMail()
+    {
+      // Arrange
+      User u1a = new User("Gert", null, null);
+      User u2a = new User("Pia", null, null);
+
+      UserBuilder.RegisterInstance(u1a);
+      UserBuilder.RegisterInstance(u2a);
+
+      // Act
+      UserRepository.Add(u1a);
+      UserRepository.Add(u2a);
+
+      User u1b = UserRepository.GetByUserName(u1a.UserName);
+      User u2b = UserRepository.GetByUserName(u2a.UserName);
+
+      // Assert
+      Assert.IsNotNull(u1b);
+      Assert.IsNotNull(u2b);
     }
   }
 }

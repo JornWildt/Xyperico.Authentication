@@ -39,7 +39,6 @@ namespace Xyperico.Authentication.Web.Areas.Account
     private void ConfigureDependencies(IObjectContainer container)
     {
       Xyperico.Authentication.MongoDB.Utility.Initialize(container);
-      container.AddComponent<IAuthenticationService, AuthenticationService>();
     }
 
 

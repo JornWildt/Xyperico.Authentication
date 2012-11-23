@@ -53,7 +53,7 @@ namespace Xyperico.Authentication.Web
     {
       try
       {
-        User u = UserRepository.GetUserByUserName(username);
+        User u = UserRepository.GetByUserName(username);
         return u.PasswordMatches(password);
       }
       catch (MissingResourceException)

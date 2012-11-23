@@ -1,6 +1,7 @@
 ﻿using System;
 using CuttingEdge.Conditions;
 using MongoDB.Driver.Builders;
+using MongoDB.Bson.Serialization;
 
 
 namespace Xyperico.Authentication.MongoDB
@@ -10,14 +11,14 @@ namespace Xyperico.Authentication.MongoDB
     public override void Setup()
     {
       base.Setup();
-      Collection.EnsureIndex(new IndexKeysBuilder().Ascending("EMailLowercase"), IndexOptions.SetUnique(true));
+      Collection.EnsureIndex(new IndexKeysBuilder().Ascending("EMailLowercase"), IndexOptions.SetSparse(true).SetUnique(true));
       Collection.EnsureIndex(new IndexKeysBuilder().Ascending("UserNameLowercase"), IndexOptions.SetUnique(true));
     }
 
     
     #region IUserRepository Members
 
-    public User GetUserByUserName(string username)
+    public User GetByUserName(string username)
     {
       Condition.Requires(username, "username").IsNotNull();
 
