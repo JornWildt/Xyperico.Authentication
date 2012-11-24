@@ -88,5 +88,22 @@ namespace Xyperico.Authentication.Tests
       Assert.IsNotNull(u1b);
       Assert.IsNotNull(u2b);
     }
+
+
+    [Test]
+    public void CanUpdateUser()
+    {
+      // Arrange
+      User u1 = UserBuilder.BuildUser();
+
+      // Act
+      u1.ChangePassword("xxxx");
+      UserRepository.Update(u1);
+
+      User u2 = UserRepository.Get(u1.Id);
+
+      // Assert
+      Assert.IsTrue(u2.PasswordMatches("xxxx"));
+    }
   }
 }

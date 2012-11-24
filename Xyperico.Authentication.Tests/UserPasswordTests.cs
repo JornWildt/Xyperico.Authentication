@@ -69,5 +69,35 @@ namespace Xyperico.Authentication.Tests
       Assert.IsTrue(validates2);
       Assert.AreNotEqual(u1.PasswordHashAlgorithm, u2.PasswordHashAlgorithm);
     }
+
+
+    [Test]
+    public void CanChangePassword()
+    {
+      // Arrange
+      User u = new User("Adam", "123", "lkl@mlml.dl");
+
+      // Act
+      u.ChangePassword("456");
+
+      // Assert
+      Assert.IsFalse(u.PasswordMatches("123"));
+      Assert.IsTrue(u.PasswordMatches("456"));
+    }
+
+
+    [Test]
+    public void CanChangePasswordToNull()
+    {
+      // Arrange
+      User u = new User("Adam", "123", "lkl@mlml.dl");
+
+      // Act
+      u.ChangePassword(null);
+
+      // Assert
+      Assert.IsFalse(u.PasswordMatches("123"));
+      Assert.IsFalse(u.PasswordMatches(null));
+    }
   }
 }

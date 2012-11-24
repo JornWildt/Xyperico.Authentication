@@ -1,15 +1,22 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Security;
+using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using Xyperico.Authentication.Web.Areas.Account.Models;
 using Xyperico.Web.Mvc;
-using Microsoft.Web.WebPages.OAuth;
+
 
 namespace Xyperico.Authentication.Web.Areas.Account.Controllers
 {
   public class ManageController : Xyperico.Web.Mvc.Controller
   {
+    #region Dependencies
+
+    public IUserRepository UserRepository { get; set; }
+
+    #endregion
+
+
     #region Registration
 
     [AllowAnonymous]
@@ -67,6 +74,12 @@ namespace Xyperico.Authentication.Web.Areas.Account.Controllers
         try
         {
           OAuthWebSecurity.CreateOrUpdateAccount(provider, providerUserId, model.UserName);
+          if (!string.IsNullOrEmpty(model.Password))
+          {
+            User user = UserRepository.GetByUserName(model.UserName);
+            user.ChangePassword(model.Password);
+            UserRepository.Update(user);
+          }
           OAuthWebSecurity.Login(provider, providerUserId, createPersistentCookie: false);
           return Configuration.Settings.RegisterSuccessUrl.Redirect();
         }

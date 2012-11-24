@@ -52,11 +52,7 @@ namespace Xyperico.Authentication
 
       if (password != null)
       {
-        PasswordHashAlgorithm = Configuration.Settings.PasswordHashAlgorithm;
-        byte[] salt, hash;
-        GeneratePasswordHash(password, out salt, out hash);
-        PasswordSalt = salt;
-        PasswordHash = hash;
+        ChangePassword(password);
       }
     }
 
@@ -74,6 +70,23 @@ namespace Xyperico.Authentication
         return false;
       byte[] hash = PasswordHasher.GeneratePasswordHash(password, PasswordSalt, PasswordHashAlgorithm);
       return hash.SequenceEqual(PasswordHash);
+    }
+
+
+    public void ChangePassword(string newPassword)
+    {
+      if (newPassword != null)
+      {
+        PasswordHashAlgorithm = Configuration.Settings.PasswordHashAlgorithm;
+        byte[] salt, hash;
+        GeneratePasswordHash(newPassword, out salt, out hash);
+        PasswordSalt = salt;
+        PasswordHash = hash;
+      }
+      else
+      {
+        PasswordHash = null;
+      }
     }
 
 

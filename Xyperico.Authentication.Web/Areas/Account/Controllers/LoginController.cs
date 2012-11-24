@@ -64,6 +64,7 @@ namespace Xyperico.Authentication.Web.Areas.Account.Controllers
 
     [HttpGet]
     [AllowAnonymous]
+    [PageLayout("Simple")]
     public ActionResult ExternalLoginCallback(string returnUrl)
     {
       AuthenticationResult result = OAuthWebSecurity.VerifyAuthentication(Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl }));
