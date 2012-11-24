@@ -77,7 +77,7 @@ namespace Xyperico.Authentication.Web
       try
       {
         User user = UserRepository.GetByExternalLogin(provider, providerUserId);
-        return user.Id;
+        return user.UserId;
       }
       catch (MissingResourceException)
       {
@@ -90,7 +90,7 @@ namespace Xyperico.Authentication.Web
     {
       try
       {
-        User user = UserRepository.Get(userId);
+        User user = UserRepository.GetByUserId(userId);
         return user.UserName;
       }
       catch (MissingResourceException)

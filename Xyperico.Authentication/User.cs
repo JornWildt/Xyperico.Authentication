@@ -1,22 +1,23 @@
 ﻿using System;
-using System.Linq;
-using Xyperico.Base;
-using CuttingEdge.Conditions;
-using Xyperico.Base.Crypto;
-using System.Security.Cryptography;
 using System.Collections.Generic;
+using System.Linq;
+using CuttingEdge.Conditions;
+using Xyperico.Base;
+using Xyperico.Base.Crypto;
 
 
 namespace Xyperico.Authentication
 {
-  public class User : IHaveId<int>
+  public class User : IHaveId<Guid>
   {
     #region Persisted properties
 
+    public Guid Id { get; protected set; }
+
     /// <summary>
-    /// Do not change! Required for persistency only.
+    /// Auto incremented by persistence layer - for use with SimpleMembershipProvider.
     /// </summary>
-    public int Id { get; set; }
+    public int UserId { get; set; }
 
     public string UserName { get; protected set; }
 
@@ -65,7 +66,7 @@ namespace Xyperico.Authentication
     {
       Condition.Requires(userName, "userName").IsNotNullOrEmpty();
 
-      Id = -1;
+      UserId = -1;
       UserName = userName;
       UserNameLowercase = userName.ToLower();
 

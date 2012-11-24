@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using Xyperico.Base.Exceptions;
+using System;
 
 
 namespace Xyperico.Authentication.Tests
@@ -11,7 +12,24 @@ namespace Xyperico.Authentication.Tests
 
 
     [Test]
-    public void CanAddAndGetUserByUserName()
+    public void CanAddAndGetUser()
+    {
+      // Arrange
+      User u1 = UserBuilder.BuildUser();
+
+      // Act
+      User u2 = UserRepository.Get(u1.Id);
+
+      // Assert
+      Assert.IsNotNull(u2);
+      Assert.AreEqual(u1.Id, u2.Id);
+      Assert.AreNotEqual(u1.Id, Guid.Empty, "Persistence layer must assign IDs");
+      Assert.AreEqual(u1.UserName, u2.UserName);
+    }
+
+
+    [Test]
+    public void CanGetUserByUserName()
     {
       // Arrange
       User u1 = UserBuilder.BuildUser();
@@ -193,8 +211,8 @@ namespace Xyperico.Authentication.Tests
       User u2 = UserBuilder.BuildUser("lll2", "ll2@ll.dk");
 
       // Assert
-      Assert.Greater(u1.Id, 0);
-      Assert.AreEqual(u1.Id + 1, u2.Id);
+      Assert.Greater(u1.UserId, 0);
+      Assert.AreEqual(u1.UserId + 1, u2.UserId);
     }
   }
 }

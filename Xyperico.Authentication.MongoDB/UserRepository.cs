@@ -7,9 +7,9 @@ using Xyperico.Base.MongoDB;
 
 namespace Xyperico.Authentication.MongoDB
 {
-  public class UserRepository : GenericRepository<User, int>, IUserRepository
+  public class UserRepository : GenericRepository<User, Guid>, IUserRepository
   {
-    // Incremental IDs is not exacly tyhe best choice, but it is unfortunately required by SimpleMembershipProvider
+    // Incremental IDs is unfortunately required by SimpleMembershipProvider
     protected CounterCollection UserIdCounter { get; set; }
 
 
@@ -53,7 +53,7 @@ namespace Xyperico.Authentication.MongoDB
 
     public override void Add(User user)
     {
-      user.Id = (int)UserIdCounter.Next();
+      user.UserId = (int)UserIdCounter.Next();
       base.Add(user);
     }
 
@@ -63,6 +63,12 @@ namespace Xyperico.Authentication.MongoDB
       Condition.Requires(username, "username").IsNotNull();
 
       return FindSingle(new { UserName = username });
+    }
+
+
+    public User GetByUserId(int userId)
+    {
+      return FindSingle(new { UserId = userId });
     }
 
 
