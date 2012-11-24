@@ -62,7 +62,7 @@ namespace Xyperico.Authentication.MongoDB
     {
       Condition.Requires(username, "username").IsNotNull();
 
-      return FindSingle(new { UserName = username });
+      return FindSingle(new { UserNameLowercase = username.ToLower() });
     }
 
 

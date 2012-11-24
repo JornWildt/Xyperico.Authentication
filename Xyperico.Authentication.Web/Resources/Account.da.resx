@@ -166,7 +166,7 @@
     <value>Brugernavn</value>
   </data>
   <data name="Welcome_p0" xml:space="preserve">
-    <value>Velkommen {0} (igen)</value>
+    <value>Velkommen {0}</value>
   </data>
   <data name="WrongPassword" xml:space="preserve">
     <value>Forkert adgangskode eller ukendt brugernavn</value>

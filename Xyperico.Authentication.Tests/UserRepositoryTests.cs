@@ -45,6 +45,26 @@ namespace Xyperico.Authentication.Tests
 
 
     [Test]
+    public void WhenGettingUserByUserNameItIgnoresCasing()
+    {
+      // Arrange
+      User u1 = UserBuilder.BuildUser();
+
+      // Act
+      User u2 = UserRepository.GetByUserName(u1.UserName.ToLower());
+      User u3 = UserRepository.GetByUserName(u1.UserName.ToUpper());
+
+      // Assert
+      Assert.IsNotNull(u2);
+      Assert.AreEqual(u1.Id, u2.Id);
+      Assert.AreEqual(u1.UserName, u2.UserName);
+      Assert.IsNotNull(u3);
+      Assert.AreEqual(u1.Id, u3.Id);
+      Assert.AreEqual(u1.UserName, u3.UserName);
+    }
+
+
+    [Test]
     public void WhenGettingUnknownUserItThrowsMissingResource()
     {
       AssertThrows<MissingResourceException>(() => UserRepository.GetByUserName("unknownuser"));
