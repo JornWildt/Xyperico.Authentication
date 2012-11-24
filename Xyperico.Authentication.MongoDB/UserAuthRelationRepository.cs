@@ -23,6 +23,12 @@ namespace Xyperico.Authentication.MongoDB
     }
 
 
+    protected override string MapDuplicateKeyErrorToKeyName(string error)
+    {
+      return "UserId";
+    }
+
+
     #region IUserAuthRelationRepository Members
 
     public override void Add(UserAuthRelation rel)

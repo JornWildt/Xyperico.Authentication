@@ -60,7 +60,9 @@ namespace Xyperico.Authentication.Tests
       UserAuthRelationBuilder.RegisterInstance(rel2);
 
       // Act + Assert
-      AssertThrows<DuplicateKeyException>(() => UserAuthRelationRepository.Add(rel2));
+      AssertThrows<DuplicateKeyException>(
+        () => UserAuthRelationRepository.Add(rel2),
+        ex => ex.Key == "UserId");
     }
 
 

@@ -15,6 +15,17 @@ namespace Xyperico.Authentication.MongoDB
       Collection.EnsureIndex(new IndexKeysBuilder().Ascending("UserNameLowercase"), IndexOptions.SetUnique(true));
     }
 
+
+    protected override string MapDuplicateKeyErrorToKeyName(string error)
+    {
+      if (error.Contains("$EMailLowercase"))
+        return "EMail";
+      else if (error.Contains("$UserNameLowercase"))
+        return "UserName";
+      else
+        return null;
+    }
+
     
     #region IUserRepository Members
 

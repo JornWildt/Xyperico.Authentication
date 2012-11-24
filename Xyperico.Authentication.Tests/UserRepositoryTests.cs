@@ -45,8 +45,12 @@ namespace Xyperico.Authentication.Tests
       UserBuilder.RegisterInstance(u3);
 
       // Act + Assert
-      AssertThrows<DuplicateKeyException>(() => UserRepository.Add(u2));
-      AssertThrows<DuplicateKeyException>(() => UserRepository.Add(u3));
+      AssertThrows<DuplicateKeyException>(
+        () => UserRepository.Add(u2), 
+        ex => ex.Key == "UserName");
+      AssertThrows<DuplicateKeyException>(
+        () => UserRepository.Add(u3),
+        ex => ex.Key == "UserName");
     }
 
 
@@ -62,8 +66,12 @@ namespace Xyperico.Authentication.Tests
       UserBuilder.RegisterInstance(u3);
 
       // Act + Assert
-      AssertThrows<DuplicateKeyException>(() => UserRepository.Add(u2));
-      AssertThrows<DuplicateKeyException>(() => UserRepository.Add(u3));
+      AssertThrows<DuplicateKeyException>(
+        () => UserRepository.Add(u2),
+        ex => ex.Key == "EMail");
+      AssertThrows<DuplicateKeyException>(
+        () => UserRepository.Add(u3),
+        ex => ex.Key == "EMail");
     }
 
 
