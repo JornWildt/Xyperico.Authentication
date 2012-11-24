@@ -15,7 +15,6 @@ namespace Xyperico.Authentication.Tests
 
       container.AddComponent<INameValueContextCollection, CallContextNamedValueCollection>();
       container.AddComponent<IUserBuilder, UserBuilder>();
-      container.AddComponent<IUserAuthRelationBuilder, UserAuthRelationBuilder>();
     }
 
 

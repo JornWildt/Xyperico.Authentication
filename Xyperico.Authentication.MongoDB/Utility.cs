@@ -14,6 +14,7 @@ namespace Xyperico.Authentication.MongoDB
       {
         cm.AutoMap();
         cm.GetMemberMap(c => c.EMailLowercase).SetIgnoreIfNull(true);
+        cm.GetMemberMap("ExternalLogins").SetIgnoreIfNull(true);
       });
 
       ConfigureDependencies(container);
@@ -23,7 +24,6 @@ namespace Xyperico.Authentication.MongoDB
     private static void ConfigureDependencies(IObjectContainer container)
     {
       container.AddComponent<IUserRepository, UserRepository>();
-      container.AddComponent<IUserAuthRelationRepository, UserAuthRelationRepository>();
     }
   }
 }

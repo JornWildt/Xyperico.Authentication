@@ -6,9 +6,10 @@ namespace Xyperico.Authentication
   public interface IUserRepository
   {
     void Add(User user);
-    User Get(Guid id);
+    User Get(int id);
     User GetByUserName(string username);
+    User GetByExternalLogin(string provider, string providerUserId);
     void Update(User user);
-    void Remove(Guid id);
+    void Remove(int id);
   }
 }

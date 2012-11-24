@@ -44,7 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IUserAuthRelationRepository.cs" />
     <Compile Include="PasswordHasher.cs" />
     <Compile Include="UserAuthRelation.cs" />
     <Compile Include="Configuration.cs" />

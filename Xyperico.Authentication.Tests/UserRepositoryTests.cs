@@ -11,7 +11,7 @@ namespace Xyperico.Authentication.Tests
 
 
     [Test]
-    public void CanAddAndGetUser()
+    public void CanAddAndGetUserByUserName()
     {
       // Arrange
       User u1 = UserBuilder.BuildUser();
@@ -112,6 +112,89 @@ namespace Xyperico.Authentication.Tests
 
       // Assert
       Assert.IsTrue(u2.PasswordMatches("xxxx"));
+    }
+
+
+    [Test]
+    public void CanGetUserByExternalLogin()
+    {
+      // Arrange - two users with different external logins
+      User u1a = UserBuilder.BuildUser();
+      u1a.AddExternalLogin("Google", "abc");
+      UserRepository.Update(u1a);
+
+      User u2a = UserBuilder.BuildUser("Kama", "kama@kama.dk");
+      u2a.AddExternalLogin("Google", "123");
+      UserRepository.Update(u2a);
+
+      // Act
+      User u1b = UserRepository.GetByExternalLogin("Google", "abc");
+      User u2b = UserRepository.GetByExternalLogin("Google", "123");
+
+      // Assert
+      Assert.IsNotNull(u1b);
+      Assert.IsNotNull(u2b);
+      Assert.AreEqual(u1a.Id, u1b.Id);
+      Assert.AreEqual(u2a.Id, u2b.Id);
+      Assert.AreNotEqual(u1a.Id, u2a.Id);
+    }
+
+
+    [Test]
+    public void WhenGettingUserByExternalLoginItThrowsMissingResource()
+    {
+      // Act + assert
+      AssertThrows<MissingResourceException>(() => UserRepository.GetByExternalLogin("Google", "abc111"));
+    }
+
+
+    [Test]
+    public void WhenAddingSameExternalLoginTwiceItThrowsDuplicateKey()
+    {
+      // Arrange
+      User u1 = UserBuilder.BuildUser();
+      u1.AddExternalLogin("Google", "abc");
+      UserRepository.Update(u1);
+
+      User u2 = new User("kima", "123", "lkj@lkj.dl");
+      u2.AddExternalLogin("Google", "abc");
+      UserBuilder.RegisterInstance(u2);
+
+      // Act + Assert
+      AssertThrows<DuplicateKeyException>(
+        () => UserRepository.Add(u2),
+        ex => ex.Key == "ExternalLogin");
+    }
+
+
+    [Test]
+    public void WhenUpdatingToExistingExternalLoginItThrowsDuplicateKey()
+    {
+      // Arrange
+      User u1 = UserBuilder.BuildUser();
+      u1.AddExternalLogin("Google", "abc");
+      UserRepository.Update(u1);
+
+      User u2 = UserBuilder.BuildUser("Kimmy", "lkj@lkj.do");
+      u2.AddExternalLogin("Google", "abc");
+
+      // Act + Assert
+      AssertThrows<DuplicateKeyException>(
+        () => UserRepository.Update(u2),
+        ex => ex.Key == "ExternalLogin");
+    }
+
+
+    [Test]
+    public void WhenAddingTwiceItGivesNewUserIdNumbers()
+    {
+      // Act
+      User u1 = UserBuilder.BuildUser("lll1", "ll1@ll.dk");
+      User u2 = UserBuilder.BuildUser("lll2", "ll2@ll.dk");
+
+      // Assert
+      Assert.Greater(u1.Id, 0);
+      Assert.AreEqual(u1.Id + 1, u2.Id);
     }
   }
 }

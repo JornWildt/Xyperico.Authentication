@@ -32,22 +32,6 @@ namespace Xyperico.Authentication.Web
       }
     }
 
-
-    private IUserAuthRelationRepository _userAuthRelationRepository;
-    public IUserAuthRelationRepository UserAuthRelationRepository
-    {
-      get
-      {
-        if (_userAuthRelationRepository == null)
-          _userAuthRelationRepository = ObjectContainer.Container.Resolve<IUserAuthRelationRepository>();
-        return _userAuthRelationRepository;
-      }
-      set
-      {
-        _userAuthRelationRepository = value;
-      }
-    }
-
     #endregion
 
 
@@ -92,8 +76,8 @@ namespace Xyperico.Authentication.Web
     {
       try
       {
-        UserAuthRelation rel = UserAuthRelationRepository.GetByExternalCredentials(provider, providerUserId);
-        return rel.Id;
+        User user = UserRepository.GetByExternalLogin(provider, providerUserId);
+        return user.Id;
       }
       catch (MissingResourceException)
       {
@@ -106,8 +90,7 @@ namespace Xyperico.Authentication.Web
     {
       try
       {
-        UserAuthRelation rel = UserAuthRelationRepository.Get(userId);
-        User user = UserRepository.Get(rel.User_Id);
+        User user = UserRepository.Get(userId);
         return user.UserName;
       }
       catch (MissingResourceException)
@@ -123,10 +106,8 @@ namespace Xyperico.Authentication.Web
       {
         Logger.DebugFormat("CreateOrUpdateOAuthAccount provider = {0}, providerUserId = {1}, userName = {2}", provider, providerUserId, userName);
         User user = new User(userName, null, null);
+        user.AddExternalLogin(provider, providerUserId);
         UserRepository.Add(user);
-
-        UserAuthRelation rel = new UserAuthRelation(user.Id, provider, providerUserId);
-        UserAuthRelationRepository.Add(rel);
       }
       catch (DuplicateKeyException ex)
       {

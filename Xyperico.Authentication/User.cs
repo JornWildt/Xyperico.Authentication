@@ -4,15 +4,19 @@ using Xyperico.Base;
 using CuttingEdge.Conditions;
 using Xyperico.Base.Crypto;
 using System.Security.Cryptography;
+using System.Collections.Generic;
 
 
 namespace Xyperico.Authentication
 {
-  public class User : IHaveId<Guid>
+  public class User : IHaveId<int>
   {
-    #region Public persisted properties
+    #region Persisted properties
 
-    public Guid Id { get; protected set; }
+    /// <summary>
+    /// Do not change! Required for persistency only.
+    /// </summary>
+    public int Id { get; set; }
 
     public string UserName { get; protected set; }
 
@@ -26,9 +30,30 @@ namespace Xyperico.Authentication
 
     public byte[] PasswordSalt { get; protected set; }
 
-    public string PasswordHashAlgorithm { get; set; }
+    public string PasswordHashAlgorithm { get; protected set; }
+
+    // Whatch out - can be null (otherwise MongDoDB won't ignore it)
+    protected List<ExternalLogin> ExternalLogins { get; set; }
 
     #endregion
+
+
+    public class ExternalLogin
+    {
+      public string Provider { get; protected set; }
+
+      public string ProviderUserId { get; protected set; }
+
+      public ExternalLogin(string provider, string providerUserId)
+      {
+        Condition.Requires(provider, "provider").IsNotNullOrEmpty();
+        Condition.Requires(providerUserId, "providerUserId").IsNotNullOrEmpty();
+
+        Provider = provider;
+        ProviderUserId = providerUserId;
+      }
+    }
+
 
 
     public User()
@@ -40,7 +65,7 @@ namespace Xyperico.Authentication
     {
       Condition.Requires(userName, "userName").IsNotNullOrEmpty();
 
-      Id = Guid.NewGuid();
+      Id = -1;
       UserName = userName;
       UserNameLowercase = userName.ToLower();
 
@@ -56,6 +81,8 @@ namespace Xyperico.Authentication
       }
     }
 
+
+    #region Password
 
     private void GeneratePasswordHash(string password, out byte[] salt, out byte[] hash)
     {
@@ -88,6 +115,34 @@ namespace Xyperico.Authentication
         PasswordHash = null;
       }
     }
+
+    #endregion
+
+
+    #region External logins
+
+    public void AddExternalLogin(string provider, string providerUserId)
+    {
+      if (ExternalLogins == null)
+        ExternalLogins = new List<ExternalLogin>();
+      if (!HasExternalLogin(provider, providerUserId))
+        ExternalLogins.Add(new ExternalLogin(provider, providerUserId));
+    }
+
+
+    public bool HasExternalLogin(string provider, string providerUserId)
+    {
+      return    ExternalLogins != null
+             && ExternalLogins.Any(l => l.Provider == provider && l.ProviderUserId == providerUserId);
+    }
+
+
+    public IEnumerable<ExternalLogin> GetExternalLogins()
+    {
+      return ExternalLogins ?? Enumerable.Empty<ExternalLogin>();
+    }
+
+    #endregion
 
 
     public override string ToString()
