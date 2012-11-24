@@ -5,12 +5,16 @@ using Xyperico.Base;
 using Xyperico.Base.Exceptions;
 using System.Web.Security;
 using CuttingEdge.Conditions;
+using log4net;
 
 
 namespace Xyperico.Authentication.Web
 {
   public class SimpleMembershipProvider : ExtendedMembershipProvider
   {
+    static ILog Logger = LogManager.GetLogger(typeof(SimpleMembershipProvider));
+
+
     #region Dependencies
 
     private IUserRepository _userRepository;
@@ -73,9 +77,12 @@ namespace Xyperico.Authentication.Web
         User user = new User(userName, password, email);
         UserRepository.Add(user);
       }
-      catch (DuplicateKeyException)
+      catch (DuplicateKeyException ex)
       {
-        throw new MembershipCreateUserException(MembershipCreateStatus.DuplicateUserName);
+        if (ex.Key == "UserName")
+          throw new MembershipCreateUserException(MembershipCreateStatus.DuplicateUserName);
+        else
+          throw new MembershipCreateUserException(MembershipCreateStatus.DuplicateEmail);
       }
       return null; // Return what? "A token that can be sent to the user to confirm the user account."
     }
@@ -114,15 +121,22 @@ namespace Xyperico.Authentication.Web
     {
       try
       {
+        Logger.DebugFormat("CreateOrUpdateOAuthAccount provider = {0}, providerUserId = {1}, userName = {2}", provider, providerUserId, userName);
         User user = new User(userName, null, null);
         UserRepository.Add(user);
 
         UserAuthRelation rel = new UserAuthRelation(user.Id, provider, providerUserId);
         UserAuthRelationRepository.Add(rel);
       }
-      catch (DuplicateKeyException)
+      catch (DuplicateKeyException ex)
       {
-        throw new MembershipCreateUserException(MembershipCreateStatus.DuplicateUserName);
+        Logger.Debug(ex);
+        if (ex.Key == "UserName")
+          throw new MembershipCreateUserException(MembershipCreateStatus.DuplicateUserName);
+        else if (ex.Key == "EMail")
+          throw new MembershipCreateUserException(MembershipCreateStatus.DuplicateEmail);
+        else if (ex.Key == "UserId")
+          throw new MembershipCreateUserException(MembershipCreateStatus.DuplicateProviderUserKey);
       }
     }
 
