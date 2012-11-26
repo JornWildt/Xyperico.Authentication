@@ -20,3 +20,18 @@
   float: left;
   text-align: center;
 }
+
+#UserNameStatus .ok
+{
+  color: green;
+}
+
+#UserNameStatus .fail
+{
+  color: red;
+}
+
+#UserNameStatus *
+{
+   vertical-align: middle;
+}
