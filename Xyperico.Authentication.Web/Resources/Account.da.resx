@@ -126,9 +126,6 @@
   <data name="EMail" xml:space="preserve">
     <value>E-mail</value>
   </data>
-  <data name="External_log_in" xml:space="preserve">
-    <value>Login med ekstern konto</value>
-  </data>
   <data name="Forgot_password" xml:space="preserve">
     <value>Glemt adgangskoden?</value>
   </data>
@@ -191,5 +188,11 @@
   </data>
   <data name="Welcome" xml:space="preserve">
     <value>Velkommen</value>
+  </data>
+  <data name="LoginWithExternalService" xml:space="preserve">
+    <value>Du kan også logge ind fra en af nedenstående services</value>
+  </data>
+  <data name="RegisterWithExternalService" xml:space="preserve">
+    <value>Du kan også tilmelde dig med en af nedenstående services</value>
   </data>
 </root>

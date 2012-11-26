@@ -88,15 +88,6 @@ namespace _ {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Log in using external account.
-        /// </summary>
-        public static string External_log_in {
-            get {
-                return ResourceManager.GetString("External_log_in", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Forgot password?.
         /// </summary>
         public static string Forgot_password {
@@ -160,6 +151,15 @@ namespace _ {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can also login from one of these services.
+        /// </summary>
+        public static string LoginWithExternalService {
+            get {
+                return ResourceManager.GetString("LoginWithExternalService", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} must be at least {2} characters long.
         /// </summary>
         public static string p0_MustBe_p2_CharsLong {
@@ -210,6 +210,15 @@ namespace _ {
         public static string RegisterUnknownExternal_p2 {
             get {
                 return ResourceManager.GetString("RegisterUnknownExternal_p2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can also register with one of these services.
+        /// </summary>
+        public static string RegisterWithExternalService {
+            get {
+                return ResourceManager.GetString("RegisterWithExternalService", resourceCulture);
             }
         }
         

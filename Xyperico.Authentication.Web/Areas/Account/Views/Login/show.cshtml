@@ -6,7 +6,8 @@
 <h1>@ViewBag.Title</h1>
 
 @Html.Partial("_UsernamePasswordLogin")
-@Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
+
+@Html.Action("ExternalLoginList", new { returnUrl = ViewBag.ReturnUrl, Header = @_.Account.LoginWithExternalService })
 
 @section scripts {
   @Scripts.Render("~/bundles/jqueryval")

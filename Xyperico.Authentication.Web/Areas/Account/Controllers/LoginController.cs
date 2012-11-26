@@ -166,10 +166,15 @@ namespace Xyperico.Authentication.Web.Areas.Account.Controllers
 
     [ChildActionOnly]
     [AllowAnonymous]
-    public ActionResult ExternalLoginsList(string returnUrl)
+    public ActionResult ExternalLoginList(string returnUrl, string header)
     {
       ViewBag.ReturnUrl = returnUrl;
-      return PartialView("_ExternalLoginsList", OAuthWebSecurity.RegisteredClientData);
+      ExternalLoginListModel model = new ExternalLoginListModel
+      {
+        Header = header,
+        Clients = OAuthWebSecurity.RegisteredClientData
+      };
+      return PartialView("_ExternalLoginList", model);
     }
 
     #endregion

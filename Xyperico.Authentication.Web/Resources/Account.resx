@@ -126,9 +126,6 @@
   <data name="EMail" xml:space="preserve">
     <value>E-mail</value>
   </data>
-  <data name="External_log_in" xml:space="preserve">
-    <value>Log in using external account</value>
-  </data>
   <data name="Forgot_password" xml:space="preserve">
     <value>Forgot password?</value>
   </data>
@@ -191,5 +188,11 @@
   </data>
   <data name="Welcome" xml:space="preserve">
     <value>Welcome</value>
+  </data>
+  <data name="LoginWithExternalService" xml:space="preserve">
+    <value>You can also login from one of these services</value>
+  </data>
+  <data name="RegisterWithExternalService" xml:space="preserve">
+    <value>You can also register with one of these services</value>
   </data>
 </root>

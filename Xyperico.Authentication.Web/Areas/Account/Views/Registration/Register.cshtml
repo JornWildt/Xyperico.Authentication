@@ -38,7 +38,13 @@
   </fieldset>
 }
 
+@Html.Action("ExternalLoginList", "Login", new { Header = @_.Account.RegisterWithExternalService })
+
+@Html.AutoFocusFor(m => m.UserName)
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
-@Html.AutoFocusFor(m => m.UserName)
+@section styles {
+  @Html.Stylesheet("Account")
+}
