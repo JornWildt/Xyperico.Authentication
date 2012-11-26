@@ -5,7 +5,7 @@ using System.Web.Mvc;
 
 namespace Xyperico.Authentication.Web.Areas.Account.Models
 {
-  public class RegisterExternalModel
+  public class RegisterUnknownExternalModel : ExternalLoginBaseData
   {
     [Required(ErrorMessageResourceName = "Required_p0", ErrorMessageResourceType = typeof(_.Account))]
     [LocalizedDisplayName("User_name", NameResourceType = typeof(_.Account))]
@@ -24,13 +24,6 @@ namespace Xyperico.Authentication.Web.Areas.Account.Models
     [LocalizedDisplayName("Confirm_Password", NameResourceType = typeof(_.Account))]
     public string ConfirmPassword { get; set; }
 
-
-    public string ExternalLoginData { get; set; }
-
-    public string ProviderName { get; set; }
-
-    public string ProviderUserName { get; set; }
-
-    public string ReturnUrl { get; set; }
+    public string IsRedirect { get; set; }
   }
 }

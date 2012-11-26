@@ -146,6 +146,17 @@ namespace Xyperico.Authentication
     #endregion
 
 
+    #region EMail
+
+    public void ChangeEMail(string email)
+    {
+      EMail = email;
+      EMailLowercase = (email != null ? email.ToLower() : null);
+    }
+
+    #endregion
+
+
     public override string ToString()
     {
       return UserName + " (" + (this.EMail ?? "unknown e-mail") + ")";

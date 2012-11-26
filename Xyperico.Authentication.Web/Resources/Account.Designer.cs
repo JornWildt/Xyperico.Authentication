@@ -133,6 +133,33 @@ namespace _ {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Login with user name and password in order to connect with &lt;strong&gt;{1}&lt;/strong&gt; at &lt;strong&gt;{0}&lt;/strong&gt;..
+        /// </summary>
+        public static string LoginUnknownExternal_p2 {
+            get {
+                return ResourceManager.GetString("LoginUnknownExternal_p2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log in using existing account.
+        /// </summary>
+        public static string LoginUsingExistingAccount {
+            get {
+                return ResourceManager.GetString("LoginUsingExistingAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log in as existing user and connect with {0}.
+        /// </summary>
+        public static string LoginWithExternalLogin_p1 {
+            get {
+                return ResourceManager.GetString("LoginWithExternalLogin_p1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} must be at least {2} characters long.
         /// </summary>
         public static string p0_MustBe_p2_CharsLong {
@@ -169,6 +196,24 @@ namespace _ {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Register {0} as a new user.
+        /// </summary>
+        public static string RegisterExternalLogin_p1 {
+            get {
+                return ResourceManager.GetString("RegisterExternalLogin_p1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Register as new user and connect with &lt;strong&gt;{1}&lt;/strong&gt; at &lt;strong&gt;{0}&lt;/strong&gt;.
+        /// </summary>
+        public static string RegisterUnknownExternal_p2 {
+            get {
+                return ResourceManager.GetString("RegisterUnknownExternal_p2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Registration.
         /// </summary>
         public static string Registration {
@@ -196,7 +241,7 @@ namespace _ {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have successfully authenticated with &lt;strong&gt;{0}&lt;/strong&gt; as &lt;strong&gt;{1}&lt;/strong&gt; and may now register as a new user.
+        ///   Looks up a localized string similar to You have successfully authenticated with &lt;strong&gt;{0}&lt;/strong&gt; as &lt;strong&gt;{1}&lt;/strong&gt;. We do not know that account - what would you like to do?.
         /// </summary>
         public static string SuccessfullExternalAuthentication_p2 {
             get {
@@ -210,6 +255,15 @@ namespace _ {
         public static string User_name {
             get {
                 return ResourceManager.GetString("User_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome.
+        /// </summary>
+        public static string Welcome {
+            get {
+                return ResourceManager.GetString("Welcome", resourceCulture);
             }
         }
         

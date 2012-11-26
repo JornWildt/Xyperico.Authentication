@@ -52,5 +52,35 @@ namespace Xyperico.Authentication.Tests
       Assert.IsTrue(u.HasExternalLogin("Google", "abc"));
       Assert.AreEqual(2, u.GetExternalLogins().Count());
     }
+
+
+    [Test]
+    public void CanChangeEMail()
+    {
+      // Arrange
+      User u = new User("Bent", null, null);
+
+      // Act
+      u.ChangeEMail("abc@DE.DK");
+
+      // Assert
+      Assert.AreEqual("abc@DE.DK", u.EMail);
+      Assert.AreEqual("abc@de.dk", u.EMailLowercase);
+    }
+
+
+    [Test]
+    public void CanChangeEMailToNull()
+    {
+      // Arrange
+      User u = new User("Bent", null, "mymail@lkj.dk");
+
+      // Act
+      u.ChangeEMail(null);
+
+      // Assert
+      Assert.IsNull(u.EMail);
+      Assert.IsNull(u.EMailLowercase);
+    }
   }
 }

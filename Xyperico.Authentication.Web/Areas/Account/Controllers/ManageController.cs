@@ -4,6 +4,7 @@ using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using Xyperico.Authentication.Web.Areas.Account.Models;
 using Xyperico.Web.Mvc;
+using Xyperico.Base.Exceptions;
 
 
 namespace Xyperico.Authentication.Web.Areas.Account.Controllers
@@ -60,7 +61,7 @@ namespace Xyperico.Authentication.Web.Areas.Account.Controllers
     [AllowAnonymous]
     [ValidateAntiForgeryToken]
     [PageLayout("Simple")]
-    public ActionResult RegisterExternal(RegisterExternalModel model)
+    public ActionResult RegisterUnknownExternal(RegisterUnknownExternalModel model)
     {
       string provider = null;
       string providerUserId = null;
@@ -68,30 +69,76 @@ namespace Xyperico.Authentication.Web.Areas.Account.Controllers
       if (User.Identity.IsAuthenticated || !OAuthWebSecurity.TryDeserializeProviderUserId(model.ExternalLoginData, out provider, out providerUserId))
         return RedirectToHome();
 
+      model.ProviderName = provider;
+      model.ProviderUserName = providerUserId;
+
+      if (!string.IsNullOrEmpty(model.IsRedirect))
+      {
+        ModelState.Clear();
+        return View(model);
+      }
+
       if (ModelState.IsValid)
       {
         // Attempt to register the user
         try
         {
           OAuthWebSecurity.CreateOrUpdateAccount(provider, providerUserId, model.UserName);
+          User user = UserRepository.GetByUserName(model.UserName);
           if (!string.IsNullOrEmpty(model.Password))
-          {
-            User user = UserRepository.GetByUserName(model.UserName);
             user.ChangePassword(model.Password);
-            UserRepository.Update(user);
-          }
+          if (!string.IsNullOrEmpty(model.EMail))
+            user.ChangeEMail(model.EMail);
+          UserRepository.Update(user);
           OAuthWebSecurity.Login(provider, providerUserId, createPersistentCookie: false);
           return Configuration.Settings.RegisterSuccessUrl.Redirect();
         }
-        catch (MembershipCreateUserException e)
+        catch (DuplicateKeyException ex)
         {
-          ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
+          if (ex.Key == "UserName")
+            ModelState.AddModelError("", "User name is already in use");
+          else if (ex.Key == "EMail")
+            ModelState.AddModelError("", "EMail is already in use");
+          else if (ex.Key == "ExternalLogin")
+            ModelState.AddModelError("", "External login is already in use");
+          else
+            ModelState.AddModelError("", "Unknown error");
+        }
+        catch (MembershipCreateUserException ex)
+        {
+          ModelState.AddModelError("", ErrorCodeToString(ex.StatusCode));
         }
       }
 
       // If we got this far, something failed, redisplay form
       return View(model);
     }
+
+
+    //[HttpPost]
+    //[AllowAnonymous]
+    //[ValidateAntiForgeryToken]
+    //[PageLayout("Simple")]
+    //public ActionResult RegisterExternalLogin(LoginUnknownExternalModel model)
+    //{
+    //  string provider = null;
+    //  string providerUserId = null;
+
+    //  if (User.Identity.IsAuthenticated || !OAuthWebSecurity.TryDeserializeProviderUserId(model.ExternalLoginData, out provider, out providerUserId))
+    //    return RedirectToHome();
+
+    //  if (ModelState.IsValid)
+    //  {
+    //    if (WebSecurity.Login(model.UserName, model.Password))
+    //    {
+    //      OAuthWebSecurity.CreateOrUpdateAccount(provider, providerUserId, model.UserName);
+    //      return Configuration.Settings.RegisterSuccessUrl.Redirect();
+    //    }
+    //  }
+
+    //  // If we got this far, something failed, redisplay form
+    //  return View("RegisterExternal", model);
+    //}
 
 
     #endregion

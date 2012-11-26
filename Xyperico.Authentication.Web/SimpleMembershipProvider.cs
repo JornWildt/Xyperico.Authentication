@@ -105,9 +105,19 @@ namespace Xyperico.Authentication.Web
       try
       {
         Logger.DebugFormat("CreateOrUpdateOAuthAccount provider = {0}, providerUserId = {1}, userName = {2}", provider, providerUserId, userName);
-        User user = new User(userName, null, null);
-        user.AddExternalLogin(provider, providerUserId);
-        UserRepository.Add(user);
+        try
+        {
+          User user = UserRepository.GetByUserName(userName);
+          user.AddExternalLogin(provider, providerUserId);
+          UserRepository.Update(user);
+        }
+        catch (MissingResourceException)
+        {
+          // User did not exists - create
+          User user = new User(userName, null, null);
+          user.AddExternalLogin(provider, providerUserId);
+          UserRepository.Add(user);
+        }
       }
       catch (DuplicateKeyException ex)
       {

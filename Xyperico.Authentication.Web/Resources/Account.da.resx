@@ -172,6 +172,24 @@
     <value>Forkert adgangskode eller ukendt brugernavn</value>
   </data>
   <data name="SuccessfullExternalAuthentication_p2" xml:space="preserve">
-    <value>Du har identificeret dig selv som &lt;strong&gt;{1}&lt;/strong&gt; fra &lt;strong&gt;{0}&lt;/strong&gt; og kan nu registrere dig selv som ny bruger på systemet</value>
+    <value>Du har identificeret dig selv med kontoen &lt;strong&gt;{1}&lt;/strong&gt; fra &lt;strong&gt;{0}&lt;/strong&gt;. Den kender vi ikke og du har derfor følgende muligheder:</value>
+  </data>
+  <data name="LoginUnknownExternal_p2" xml:space="preserve">
+    <value>Log in med brugernavn og adgangskode for at forbinde med &lt;strong&gt;{1}&lt;/strong&gt; hos &lt;strong&gt;{0}&lt;/strong&gt;.</value>
+  </data>
+  <data name="LoginUsingExistingAccount" xml:space="preserve">
+    <value>Log ind som kendt bruger</value>
+  </data>
+  <data name="LoginWithExternalLogin_p1" xml:space="preserve">
+    <value>Login som eksisterende bruger og forbind med den nye konto.</value>
+  </data>
+  <data name="RegisterExternalLogin_p1" xml:space="preserve">
+    <value>Tilmeld dig som ny bruger på systemet.</value>
+  </data>
+  <data name="RegisterUnknownExternal_p2" xml:space="preserve">
+    <value>Tilmeld dig som ny bruger og forbind med &lt;strong&gt;{1}&lt;/strong&gt; hos &lt;strong&gt;{0}&lt;/strong&gt;</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Velkommen</value>
   </data>
 </root>

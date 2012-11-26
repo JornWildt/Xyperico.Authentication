@@ -4,12 +4,21 @@ using Microsoft.Web.WebPages.OAuth;
 using Xyperico.Authentication.Web.Areas.Account.Models;
 using WebMatrix.WebData;
 using Xyperico.Web.Mvc;
+using Xyperico.Base.Exceptions;
+using System.Web.Security;
 
 
 namespace Xyperico.Authentication.Web.Areas.Account.Controllers
 {
   public class LoginController : Xyperico.Web.Mvc.Controller
   {
+    #region Dependencies
+
+    public IUserRepository UserRepository { get; set; }
+
+    #endregion
+
+
     #region Standard login
 
     [HttpGet]
@@ -86,61 +95,70 @@ namespace Xyperico.Authentication.Web.Areas.Account.Controllers
       }
       else
       {
-        // User is new, redirect to registration page
+        // User is new, redirect to external registration chooser (login-existing or register)
         string loginData = OAuthWebSecurity.SerializeProviderUserId(result.Provider, result.ProviderUserId);
-        RegisterExternalModel model = new RegisterExternalModel
+        ExternalLoginCallbackModel model = new ExternalLoginCallbackModel
         {
           ProviderName = OAuthWebSecurity.GetOAuthClientData(result.Provider).DisplayName,
           ExternalLoginData = loginData,
           ProviderUserName = result.UserName,
-          EMail = result.UserName,
+          ProviderEMail = result.UserName,
           ReturnUrl = returnUrl
         };
-        return View("../Manage/RegisterExternal", model);
+        return View(model);
       }
     }
 
 
     [HttpPost]
     [AllowAnonymous]
-    [ValidateAntiForgeryToken]
-    public ActionResult FIXME_UNUSED_ExternalLoginConfirmation(RegisterExternalModel model, string returnUrl)
+    [PageLayout("Simple")]
+    public ActionResult LoginUnknownExternal(LoginUnknownExternalModel model)
     {
       string provider = null;
       string providerUserId = null;
 
       if (User.Identity.IsAuthenticated || !OAuthWebSecurity.TryDeserializeProviderUserId(model.ExternalLoginData, out provider, out providerUserId))
+        return RedirectToHome();
+
+      model.ProviderName = provider;
+      model.ProviderUserName = providerUserId;
+
+      if (!string.IsNullOrEmpty(model.IsRedirect))
       {
-        return RedirectToAction("Manage");
+        ModelState.Clear();
+        return View(model);
       }
 
       if (ModelState.IsValid)
       {
-        // Insert a new user into the database
-        //using (UsersContext db = new UsersContext())
+        if (WebSecurity.Login(model.UserName, model.Password))
         {
-          //UserProfile user = db.UserProfiles.FirstOrDefault(u => u.UserName.ToLower() == model.UserName.ToLower());
-          // Check if user already exists
-          //if (user == null)
+          try
           {
-            // Insert name into the profile table
-            //db.UserProfiles.Add(new UserProfile { UserName = model.UserName });
-            //db.SaveChanges();
-
             OAuthWebSecurity.CreateOrUpdateAccount(provider, providerUserId, model.UserName);
-            OAuthWebSecurity.Login(provider, providerUserId, createPersistentCookie: false);
-
-            return RedirectToLocal(returnUrl);
+            return Configuration.Settings.RegisterSuccessUrl.Redirect();
           }
-          //else
-          //{
-          //  ModelState.AddModelError("UserName", "User name already exists. Please enter a different user name.");
-          //}
+          catch (DuplicateKeyException ex)
+          {
+            if (ex.Key == "UserName")
+              ModelState.AddModelError("", "User name is already in use");
+            else if (ex.Key == "EMail")
+              ModelState.AddModelError("", "EMail is already in use");
+            else if (ex.Key == "ExternalLogin")
+              ModelState.AddModelError("", "External login is already in use");
+            else
+              ModelState.AddModelError("", "Unknown error");
+          }
+          catch (MembershipCreateUserException ex)
+          {
+            ModelState.AddModelError("", ex.Message);
+          }
         }
+        else
+          ModelState.AddModelError("", _.Account.WrongPassword);
       }
 
-      ViewBag.ProviderDisplayName = OAuthWebSecurity.GetOAuthClientData(provider).DisplayName;
-      ViewBag.ReturnUrl = returnUrl;
       return View(model);
     }
 
