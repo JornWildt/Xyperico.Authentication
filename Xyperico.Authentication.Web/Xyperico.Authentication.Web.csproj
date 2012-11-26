@@ -141,6 +141,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\Account\AccountAreaRegistration.cs" />
+    <Compile Include="Areas\Account\Controllers\RegistrationController.cs" />
     <Compile Include="Areas\Account\Models\ExternalLoginCallbackModel.cs" />
     <Compile Include="Areas\Account\Models\ExternalLoginBaseData.cs" />
     <Compile Include="Areas\Account\Models\LoginUnknownExternalModel.cs" />
@@ -182,7 +183,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Areas\Account\Views\Manage\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
@@ -211,8 +214,8 @@
     <Content Include="Areas\Account\Views\Info\_AccountBox.cshtml" />
     <Content Include="Areas\Account\Views\Login\_UsernamePasswordLogin.cshtml" />
     <Content Include="Areas\Account\Styles\Web.config" />
-    <Content Include="Areas\Account\Views\Manage\Register.cshtml" />
-    <Content Include="Areas\Account\Views\Manage\RegisterUnknownExternal.cshtml" />
+    <Content Include="Areas\Account\Views\Registration\Register.cshtml" />
+    <Content Include="Areas\Account\Views\Registration\RegisterUnknownExternal.cshtml" />
     <Content Include="Areas\Account\Views\Login\ExternalLoginCallback.cshtml" />
     <Content Include="Areas\Account\Views\Login\LoginUnknownExternal.cshtml" />
     <None Include="copyfiles.bat" />

@@ -181,13 +181,13 @@
     <value>Log ind som kendt bruger</value>
   </data>
   <data name="LoginWithExternalLogin_p1" xml:space="preserve">
-    <value>Login som eksisterende bruger og forbind med den nye konto.</value>
+    <value>Log ind som eksisterende bruger og forbind med den nye konto.</value>
   </data>
   <data name="RegisterExternalLogin_p1" xml:space="preserve">
     <value>Tilmeld dig som ny bruger på systemet.</value>
   </data>
   <data name="RegisterUnknownExternal_p2" xml:space="preserve">
-    <value>Tilmeld dig som ny bruger og forbind med &lt;strong&gt;{1}&lt;/strong&gt; hos &lt;strong&gt;{0}&lt;/strong&gt;</value>
+    <value>Tilmeld dig som ny bruger og forbind med &lt;strong&gt;{1}&lt;/strong&gt; hos &lt;strong&gt;{0}&lt;/strong&gt;</value>
   </data>
   <data name="Welcome" xml:space="preserve">
     <value>Velkommen</value>

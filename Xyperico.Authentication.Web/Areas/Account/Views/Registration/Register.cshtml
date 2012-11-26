@@ -9,7 +9,7 @@
     <h2>@_.Account.CreateNewAccount</h2>
 </hgroup>
 
-@using (Html.BeginForm("Register", "Manage")) {
+@using (Html.BeginForm()) {
   @Html.AntiForgeryToken()
   @Html.ValidationSummary()
 

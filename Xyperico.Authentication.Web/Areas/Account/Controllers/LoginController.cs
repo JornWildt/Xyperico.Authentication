@@ -101,6 +101,7 @@ namespace Xyperico.Authentication.Web.Areas.Account.Controllers
         {
           ProviderName = OAuthWebSecurity.GetOAuthClientData(result.Provider).DisplayName,
           ExternalLoginData = loginData,
+          ProviderUserId = result.ProviderUserId,
           ProviderUserName = result.UserName,
           ProviderEMail = result.UserName,
           ReturnUrl = returnUrl
@@ -122,7 +123,7 @@ namespace Xyperico.Authentication.Web.Areas.Account.Controllers
         return RedirectToHome();
 
       model.ProviderName = provider;
-      model.ProviderUserName = providerUserId;
+      model.ProviderUserId = providerUserId;
 
       if (!string.IsNullOrEmpty(model.IsRedirect))
       {

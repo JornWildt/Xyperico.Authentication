@@ -27,7 +27,7 @@ namespace Xyperico.Authentication.Web.Areas.Account
 
       context.MapRoute(
           "Account_default",
-          "app/account/{action}/{controller}",
+          "app/account/{controller}/{action}",
           new { controller = "login", action = "show" }
       );
 

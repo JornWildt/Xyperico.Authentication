@@ -10,11 +10,12 @@
   
 <div class="external-login-chooser">
   <div class="register">
-    @using (Html.BeginForm("RegisterUnknownExternal", "Manage"))
+    @using (Html.BeginForm("registerunknownexternal", "registration"))
     {
       @Html.AntiForgeryToken()
       <input type="hidden" name="ExternalLoginData" value="@Model.ExternalLoginData" />
       <input type="hidden" name="ProviderEMail" value="@Model.ProviderEMail" />
+      <input type="hidden" name="ProviderUserName" value="@Model.ProviderUserName" />
       <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl" />
       <input type="hidden" name="IsRedirect" value="1" />
   
@@ -26,11 +27,12 @@
 
 <div class="external-login-chooser">
   <div class="login">
-    @using (Html.BeginForm("LoginUnknownExternal", "Login"))
+    @using (Html.BeginForm("loginunknownexternal", "login"))
     {
       @Html.AntiForgeryToken()
       <input type="hidden" name="ExternalLoginData" value="@Model.ExternalLoginData" />
       <input type="hidden" name="ProviderEMail" value="@Model.ProviderEMail" />
+      <input type="hidden" name="ProviderUserName" value="@Model.ProviderUserName" />
       <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl" />
       <input type="hidden" name="IsRedirect" value="1" />
   
