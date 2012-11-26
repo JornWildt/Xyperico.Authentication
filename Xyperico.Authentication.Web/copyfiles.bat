@@ -7,3 +7,9 @@ xcopy Areas\Account\Views\*.* ..\..\Xyperico.Website\Xyperico.Website.Host\Areas
 
 mkdir ..\..\Xyperico.Website\Xyperico.Website.Host\Areas\Account\Styles
 xcopy Areas\Account\Styles\*.* ..\..\Xyperico.Website\Xyperico.Website.Host\Areas\Account\Styles\ /I /Y /S /D
+
+mkdir ..\..\Xyperico.Website\Xyperico.Website.Host\Areas\Account\Scripts
+xcopy Areas\Account\Scripts\*.* ..\..\Xyperico.Website\Xyperico.Website.Host\Areas\Account\Scripts\ /I /Y /S /D
+
+rem AARRRGGG
+xcopy Areas\Account\Scripts\*.* ..\..\Xyperico.Website\Xyperico.Website.Host\Areas\Account\Styles\ /I /Y /S /D

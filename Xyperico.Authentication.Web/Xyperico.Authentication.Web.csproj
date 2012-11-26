@@ -175,6 +175,7 @@
     <Compile Include="SimpleMembershipProvider.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Account\Scripts\account.js" />
     <Content Include="Areas\Account\Styles\Account.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -217,6 +218,7 @@
     <Content Include="Areas\Account\Views\Registration\RegisterUnknownExternal.cshtml" />
     <Content Include="Areas\Account\Views\Login\ExternalLoginCallback.cshtml" />
     <Content Include="Areas\Account\Views\Login\LoginUnknownExternal.cshtml" />
+    <Content Include="Areas\Account\Scripts\Web.config" />
     <None Include="copyfiles.bat" />
   </ItemGroup>
   <ItemGroup>

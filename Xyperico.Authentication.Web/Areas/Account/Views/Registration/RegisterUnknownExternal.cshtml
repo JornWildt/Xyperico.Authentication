@@ -25,6 +25,7 @@
       <li>
         @Html.LabelFor(m => m.UserName)
         @Html.TextBoxFor(m => m.UserName)
+        <span id="UserNameStatus"></span>
       </li>
       <li>
         @Html.LabelFor(m => m.EMail)
@@ -45,36 +46,15 @@
   </fieldset>
 }
 
-@*    
-@using (Html.BeginForm("RegisterExternalLogin", "Manage"))
-{
-  @Html.AntiForgeryToken()
-  @Html.ValidationSummary()
-  <input type="hidden" name="ProviderName" value="@Model.ProviderName" />
-  <input type="hidden" name="ProviderUserName" value="@Model.ProviderUserName" />
-  <input type="hidden" name="ExternalLoginData" value="@Model.ExternalLoginData" />
-  <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl" />
-  
-  <fieldset>
-    <legend>@_.Account.LoginUsingExistingAccount</legend>
-    <ol class="form inputs">
-      <li>
-        @Html.LabelFor(m => m.UserName)
-        @Html.TextBoxFor(m => m.UserName)
-      </li>
-      <li>
-        @Html.LabelFor(m => m.Password)
-        @Html.PasswordFor(m => m.Password)
-      </li>
-    </ol>
-    <ol class="form buttons">
-      <li><input type="submit" name="IsLogin" value="@_.Account.Log_in" /></li>
-    </ol>
-  </fieldset>
-}
-*@
-
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+  @Scripts.Render("~/bundles/jqueryval")
+  @Scripts.Render("~/Areas/Account/Styles/account.js")
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      UserNameChecker.Initialize("#UserName", "#UserNameStatus");
+      UserNameChecker.CheckUserName();
+    });
+  </script>
 }
 @Html.AutoFocusFor(m => m.UserName)

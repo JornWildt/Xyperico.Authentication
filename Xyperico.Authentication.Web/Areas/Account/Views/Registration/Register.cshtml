@@ -44,44 +44,17 @@
 @Html.AutoFocusFor(m => m.UserName)
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+  @Scripts.Render("~/bundles/jqueryval")
+  @Scripts.Render("~/Areas/Account/Styles/account.js")
 
-<script type="text/javascript">
-  var userNameTimer;
-  $(document).ready(function () {
-    $('#UserName').blur(function () {
-      CheckUserName();
+  <script type="text/javascript">
+    $(document).ready(function () {
+      UserNameChecker.Initialize("#UserName", "#UserNameStatus");
+      UserNameChecker.CheckUserName();
     });
-    $('#UserName').keyup(function () {
-      if (userNameTimer)
-        clearTimeout(userNameTimer);
-      var statusElement = $('#UserNameStatus');
-      statusElement.html("");
-      userNameTimer = setTimeout(CheckUserName, 1000);
-    })
-  });
-
-  String.prototype.format = function () {
-    var args = arguments;
-    return this.replace(/\{(\d+)\}/g, function (m, n) { return args[n]; });
-  };
-
-  function CheckUserName() {
-    var userName = $('#UserName').val();
-    if (userName == "")
-      return;
-    var statusElement = $('#UserNameStatus');
-    statusElement.html("<img src=\"/Areas/Account/Styles/spinner.gif\" /> Checking ...");
-    $.get("/app/account/registration/checkusername", { userName: userName },
-      function (data) {
-        var statusElement = $('#UserNameStatus');
-        var className = (data.Ok ? "ok" : "fail");
-        var html = "<span class=\"{0}\">{1}</span>".format(className, data.Message);
-        statusElement.html(html);
-      });
-  }
-</script>
+  </script>
 }
+
 @section styles {
   @Html.Stylesheet("Account")
 }
