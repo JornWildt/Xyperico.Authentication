@@ -106,6 +106,15 @@ namespace _ {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid user name - only letters, digits, hyphen, underscore and period is allowed (a-z, 0-9, -, _, .)..
+        /// </summary>
+        public static string InvalidUserName {
+            get {
+                return ResourceManager.GetString("InvalidUserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Log in.
         /// </summary>
         public static string Log_in {
@@ -264,6 +273,24 @@ namespace _ {
         public static string User_name {
             get {
                 return ResourceManager.GetString("User_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The user name is available.
+        /// </summary>
+        public static string UserNameAvailable {
+            get {
+                return ResourceManager.GetString("UserNameAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The user name is not available.
+        /// </summary>
+        public static string UserNameNotAvailable {
+            get {
+                return ResourceManager.GetString("UserNameNotAvailable", resourceCulture);
             }
         }
         

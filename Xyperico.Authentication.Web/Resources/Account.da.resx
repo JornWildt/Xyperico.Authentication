@@ -195,4 +195,13 @@
   <data name="RegisterWithExternalService" xml:space="preserve">
     <value>Du kan også tilmelde dig med en af nedenstående services</value>
   </data>
+  <data name="InvalidUserName" xml:space="preserve">
+    <value>Ugyldigt brugernavn - kun bogstaver, tal, bindestreg, underscore og punktum er tilladt (a-z, 0-9, -, _, .).</value>
+  </data>
+  <data name="UserNameAvailable" xml:space="preserve">
+    <value>Brugernavnet er ledigt</value>
+  </data>
+  <data name="UserNameNotAvailable" xml:space="preserve">
+    <value>Brugernavnet er allerede taget</value>
+  </data>
 </root>

@@ -30,6 +30,14 @@ namespace Xyperico.Authentication
     }
 
 
+    [ConfigurationProperty("InvalidUserNameFile")]
+    public string InvalidUserNameFile
+    {
+      get { return (string)this["InvalidUserNameFile"]; }
+      set { this["InvalidUserNameFile"] = value; }
+    }
+
+
     public class AuthenticationProvider : ConfigurationSection
     {
       [ConfigurationProperty("Active")]

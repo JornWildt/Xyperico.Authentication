@@ -49,6 +49,7 @@
     <Compile Include="SetupFixture.cs" />
     <Compile Include="TestHelper.cs" />
     <Compile Include="Builders\UserBuilder.cs" />
+    <Compile Include="UserNameValidatorTests.cs" />
     <Compile Include="UserPasswordTests.cs" />
     <Compile Include="UserRepositoryTests.cs" />
     <Compile Include="UserTests.cs" />

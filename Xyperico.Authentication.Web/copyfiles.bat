@@ -12,4 +12,4 @@ mkdir ..\..\Xyperico.Website\Xyperico.Website.Host\Areas\Account\Scripts
 xcopy Areas\Account\Scripts\*.* ..\..\Xyperico.Website\Xyperico.Website.Host\Areas\Account\Scripts\ /I /Y /S /D
 
 rem AARRRGGG
-xcopy Areas\Account\Scripts\*.* ..\..\Xyperico.Website\Xyperico.Website.Host\Areas\Account\Styles\ /I /Y /S /D
+rem xcopy Areas\Account\Scripts\*.* ..\..\Xyperico.Website\Xyperico.Website.Host\Areas\Account\Styles\ /I /Y /S /D

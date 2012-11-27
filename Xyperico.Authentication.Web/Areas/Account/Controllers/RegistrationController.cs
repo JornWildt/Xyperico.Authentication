@@ -14,6 +14,7 @@ namespace Xyperico.Authentication.Web.Areas.Account.Controllers
     #region Dependencies
 
     public IUserRepository UserRepository { get; set; }
+    public IUserNameValidator UserNameValidator { get; set; }
 
     #endregion
 
@@ -61,22 +62,19 @@ namespace Xyperico.Authentication.Web.Areas.Account.Controllers
     [AllowAnonymous]
     public ActionResult CheckUserName(string userName)
     {
-      System.Threading.Thread.Sleep(1000);
-      
-      bool userExists = false;
+      if (!UserNameValidator.IsValidUserName(userName))
+        return Json(new { Ok = false, Message = _.Account.InvalidUserName }, JsonRequestBehavior.AllowGet);
+
       try
       {
         UserRepository.GetByUserName(userName);
-        userExists = true;
+        return Json(new { Ok = false, Message = _.Account.UserNameNotAvailable }, JsonRequestBehavior.AllowGet);
       }
       catch (MissingResourceException)
       {
       }
 
-      if (userExists)
-        return Json(new { Ok = false, Message = "User name already exists" }, JsonRequestBehavior.AllowGet);
-      else
-        return Json(new { Ok = true, Message = "Ok" }, JsonRequestBehavior.AllowGet);
+      return Json(new { Ok = true, Message = _.Account.UserNameAvailable }, JsonRequestBehavior.AllowGet);
     }
 
 

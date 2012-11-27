@@ -1,10 +1,12 @@
 ﻿var UserNameChecker = {
   Initialize: function (inputSelector, statusSelector) {
-    this.InputSelector = inputSelector;
-    this.StatusSelector = statusSelector;
+    UserNameChecker.InputSelector = inputSelector;
+    UserNameChecker.StatusSelector = statusSelector;
+
     $(inputSelector).blur(function () {
       UserNameChecker.CheckUserName();
     });
+
     $(inputSelector).keyup(function () {
       if (UserNameChecker.userNameTimer)
         clearTimeout(UserNameChecker.userNameTimer);

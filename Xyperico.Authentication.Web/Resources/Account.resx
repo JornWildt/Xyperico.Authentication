@@ -195,4 +195,13 @@
   <data name="RegisterWithExternalService" xml:space="preserve">
     <value>You can also register with one of these services</value>
   </data>
+  <data name="InvalidUserName" xml:space="preserve">
+    <value>Invalid user name - only letters, digits, hyphen, underscore and period is allowed (a-z, 0-9, -, _, .).</value>
+  </data>
+  <data name="UserNameAvailable" xml:space="preserve">
+    <value>The user name is available</value>
+  </data>
+  <data name="UserNameNotAvailable" xml:space="preserve">
+    <value>The user name is not available</value>
+  </data>
 </root>

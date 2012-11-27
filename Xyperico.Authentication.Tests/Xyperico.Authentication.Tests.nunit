@@ -1,0 +1,7 @@
+﻿<NUnitProject>
+  <Settings activeconfig="Debug" processModel="Default" domainUsage="Default" appbase="C:\Projects\Elfisk\Xyperico.Authentication\Xyperico.Authentication.Tests" />
+  <Config name="Debug" binpathtype="Auto">
+    <assembly path="bin\Debug\Xyperico.Authentication.Tests.dll" />
+  </Config>
+  <Config name="Release" binpathtype="Auto" />
+</NUnitProject>
