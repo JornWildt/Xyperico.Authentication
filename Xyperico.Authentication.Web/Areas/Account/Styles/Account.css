@@ -21,11 +21,11 @@
   text-align: center;
 }
 
-#UserNameStatus
+#UserNameStatus .ok, #UserNameStatus .fail
 {
   display: block;
-  width: 200px;
   float: right;
+  width: 200px;
 }
 
 #UserNameStatus .ok

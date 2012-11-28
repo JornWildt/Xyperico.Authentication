@@ -66,6 +66,7 @@ namespace Xyperico.Authentication.Web.Areas.Account.Controllers
     [AllowAnonymous]
     public ActionResult CheckUserName(string userName)
     {
+      System.Threading.Thread.Sleep(2000);
       if (!UserNameValidator.IsValidUserName(userName))
         return Json(new { Ok = false, Message = _.Account.InvalidUserName }, JsonRequestBehavior.AllowGet);
 

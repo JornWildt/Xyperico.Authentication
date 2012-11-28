@@ -1,7 +1,8 @@
 ﻿var UserNameChecker = {
-  Initialize: function (inputSelector, statusSelector) {
+  Initialize: function (inputSelector, statusSelector, spinnerImageUrl) {
     UserNameChecker.InputSelector = inputSelector;
     UserNameChecker.StatusSelector = statusSelector;
+    UserNameChecker.SpinnerImageUrl = spinnerImageUrl;
     UserNameChecker.LastValue = "";
 
     $(inputSelector).blur(function () {
@@ -29,7 +30,7 @@
       return;
     UserNameChecker.LastValue = userName;
     var statusElement = $(UserNameChecker.StatusSelector);
-    statusElement.html("<img src=\"/Areas/Account/Styles/spinner.gif\" />");
+    statusElement.html("<img src=\"" + UserNameChecker.SpinnerImageUrl + "\" />");
     $.get("/app/account/registration/checkusername", { userName: userName },
       function (data) {
         var statusElement = $(UserNameChecker.StatusSelector);
