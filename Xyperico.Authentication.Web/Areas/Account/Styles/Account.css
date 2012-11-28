@@ -21,6 +21,13 @@
   text-align: center;
 }
 
+#UserNameStatus
+{
+  display: block;
+  width: 200px;
+  float: right;
+}
+
 #UserNameStatus .ok
 {
   color: green;

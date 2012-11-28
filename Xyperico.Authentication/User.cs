@@ -62,9 +62,13 @@ namespace Xyperico.Authentication
     }
 
 
-    public User(string userName, string password, string email)
+    public User(string userName, string password, string email, IUserNameValidator userNameValidator)
     {
       Condition.Requires(userName, "userName").IsNotNullOrEmpty();
+      Condition.Requires(userNameValidator, "userNameValidator").IsNotNull();
+
+      if (!userNameValidator.IsValidUserName(userName))
+        throw new InvalidUserNameException(userName);
 
       UserId = -1;
       UserName = userName;

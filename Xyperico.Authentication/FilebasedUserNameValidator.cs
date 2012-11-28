@@ -9,7 +9,7 @@ namespace Xyperico.Authentication
 {
   public class FilebasedUserNameValidator : IUserNameValidator
   {
-    private readonly Regex ValidUserNamePattern = new Regex("^[a-zA-Z0-9-_.]+$");
+    private readonly Regex ValidUserNamePattern = new Regex("^[a-zA-Z0-9]+[a-zA-Z0-9-_.]*$");
 
     private HashSet<string> InvalidUserNames = new HashSet<string>();
     private DateTime? InvalidUserNamesLastRead;

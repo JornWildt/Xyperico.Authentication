@@ -45,6 +45,7 @@
     </ol>
   </fieldset>
 }
+@Html.AutoFocusFor(m => m.UserName)
 
 @section Scripts {
   @Scripts.Render("~/bundles/jqueryval")
@@ -53,8 +54,9 @@
   <script type="text/javascript">
     $(document).ready(function () {
       UserNameChecker.Initialize("#UserName", "#UserNameStatus");
-      UserNameChecker.CheckUserName();
     });
   </script>
 }
-@Html.AutoFocusFor(m => m.UserName)
+@section styles {
+  @Html.Stylesheet("Account")
+}

@@ -22,6 +22,9 @@ namespace Xyperico.Authentication.Tests
       Assert.IsFalse(UserNameValidator.IsValidUserName("app"));
       Assert.IsFalse(UserNameValidator.IsValidUserName("api"));
       Assert.IsFalse(UserNameValidator.IsValidUserName("css"));
+      Assert.IsFalse(UserNameValidator.IsValidUserName("-"), "Must begin with letter or digit");
+      Assert.IsFalse(UserNameValidator.IsValidUserName("."), "Must begin with letter or digit");
+      Assert.IsFalse(UserNameValidator.IsValidUserName("_"), "Must begin with letter or digit");
       Assert.IsFalse(UserNameValidator.IsValidUserName("abcde123450123456789x"), "user name too long (max. 20 chars)");
     }
 

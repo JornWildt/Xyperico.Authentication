@@ -47,9 +47,13 @@ namespace Xyperico.Authentication.Web.Areas.Account.Controllers
           WebSecurity.Login(model.UserName, model.Password);
           return Configuration.Settings.RegisterSuccessUrl.Redirect();
         }
-        catch (MembershipCreateUserException e)
+        catch (MembershipCreateUserException ex)
         {
-          ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
+          ModelState.AddModelError("", ErrorCodeToString(ex.StatusCode));
+        }
+        catch (InvalidUserNameException)
+        {
+          ModelState.AddModelError("UserName", _.Account.InvalidUserName);
         }
       }
 
@@ -125,6 +129,10 @@ namespace Xyperico.Authentication.Web.Areas.Account.Controllers
             ModelState.AddModelError("", "External login is already in use");
           else
             ModelState.AddModelError("", "Unknown error");
+        }
+        catch (InvalidUserNameException)
+        {
+          ModelState.AddModelError("UserName", _.Account.InvalidUserName);
         }
         catch (MembershipCreateUserException ex)
         {

@@ -11,7 +11,7 @@ namespace Xyperico.Authentication.Tests
     public void CanCreateUserWithoutPasswordAndEMail()
     {
       // Arrange
-      User u = new User("Bent", null, null);
+      User u = new User("Bent", null, null, UserNameValidator);
 
       // Act
       bool matches = u.PasswordMatches("123");
@@ -25,7 +25,7 @@ namespace Xyperico.Authentication.Tests
     public void CanAssociateUserWithExternalLogin()
     {
       // Arrange
-      User u = new User("Bent", null, null);
+      User u = new User("Bent", null, null, UserNameValidator);
 
       // Act
       u.AddExternalLogin("Google", "xyz");
@@ -40,7 +40,7 @@ namespace Xyperico.Authentication.Tests
     public void WhenAddingSameExternalLoginTwiceItIgnoresSecond()
     {
       // Arrange
-      User u = new User("Bent", null, null);
+      User u = new User("Bent", null, null, UserNameValidator);
 
       // Act
       u.AddExternalLogin("Google", "xyz");
@@ -58,7 +58,7 @@ namespace Xyperico.Authentication.Tests
     public void CanChangeEMail()
     {
       // Arrange
-      User u = new User("Bent", null, null);
+      User u = new User("Bent", null, null, UserNameValidator);
 
       // Act
       u.ChangeEMail("abc@DE.DK");
@@ -73,7 +73,7 @@ namespace Xyperico.Authentication.Tests
     public void CanChangeEMailToNull()
     {
       // Arrange
-      User u = new User("Bent", null, "mymail@lkj.dk");
+      User u = new User("Bent", null, "mymail@lkj.dk", UserNameValidator);
 
       // Act
       u.ChangeEMail(null);
@@ -81,6 +81,13 @@ namespace Xyperico.Authentication.Tests
       // Assert
       Assert.IsNull(u.EMail);
       Assert.IsNull(u.EMailLowercase);
+    }
+
+
+    [Test]
+    public void CannotCreateUserWithInvalidUserName()
+    {
+      AssertThrows<InvalidUserNameException>(() => new User("*", "lkj", "lkj@lkj.dk", UserNameValidator));
     }
   }
 }

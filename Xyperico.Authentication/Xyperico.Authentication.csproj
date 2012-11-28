@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InvalidUserNameException.cs" />
     <Compile Include="IUserNameValidator.cs" />
     <Compile Include="PasswordHasher.cs" />
     <Compile Include="Configuration.cs" />

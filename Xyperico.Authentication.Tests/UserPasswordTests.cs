@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using NUnit.Framework;
+
 
 namespace Xyperico.Authentication.Tests
 {
@@ -13,7 +11,7 @@ namespace Xyperico.Authentication.Tests
     public void WhenComparingIdenticalPasswordsItReturnsTrue()
     {
       // Arrange
-      User u = new User("Bent", "123", "q@q.dk");
+      User u = new User("Bent", "123", "q@q.dk", UserNameValidator);
 
       // Act
       bool matches = u.PasswordMatches("123");
@@ -27,7 +25,7 @@ namespace Xyperico.Authentication.Tests
     public void WhenComparingDifferentPasswordsItReturnsFalse()
     {
       // Arrange
-      User u = new User("Bent", "123", "q@q.dk");
+      User u = new User("Bent", "123", "q@q.dk", UserNameValidator);
 
       // Act
       bool matches = u.PasswordMatches("abc");
@@ -41,8 +39,8 @@ namespace Xyperico.Authentication.Tests
     public void TwoUsersWithTheSamePasswordHasDifferentHashes()
     {
       // Arrange
-      User u1 = new User("Bent", "123", "q@q.dk");
-      User u2 = new User("Lisa", "123", "l@q.dk");
+      User u1 = new User("Bent", "123", "q@q.dk", UserNameValidator);
+      User u2 = new User("Lisa", "123", "l@q.dk", UserNameValidator);
 
       // Act
       bool matches = u1.PasswordHash.SequenceEqual(u2.PasswordHash);
@@ -56,9 +54,9 @@ namespace Xyperico.Authentication.Tests
     public void CanChangePasswordHashingAlgorithmAndStillValidateOldPasswords()
     {
       // Arrange
-      User u1 = new User("Bent", "123", "q@q.dk");
+      User u1 = new User("Bent", "123", "q@q.dk", UserNameValidator);
       Configuration.Settings.PasswordHashAlgorithm = "MD5";
-      User u2 = new User("Lisa", "123", "l@q.dk");
+      User u2 = new User("Lisa", "123", "l@q.dk", UserNameValidator);
 
       // Act
       bool validates1 = u1.PasswordMatches("123");
@@ -75,7 +73,7 @@ namespace Xyperico.Authentication.Tests
     public void CanChangePassword()
     {
       // Arrange
-      User u = new User("Adam", "123", "lkl@mlml.dl");
+      User u = new User("Adam", "123", "lkl@mlml.dl", UserNameValidator);
 
       // Act
       u.ChangePassword("456");
@@ -90,7 +88,7 @@ namespace Xyperico.Authentication.Tests
     public void CanChangePasswordToNull()
     {
       // Arrange
-      User u = new User("Adam", "123", "lkl@mlml.dl");
+      User u = new User("Adam", "123", "lkl@mlml.dl", UserNameValidator);
 
       // Act
       u.ChangePassword(null);

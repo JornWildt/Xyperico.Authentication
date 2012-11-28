@@ -17,20 +17,9 @@ namespace Xyperico.Authentication.Web
 
     #region Dependencies
 
-    private IUserRepository _userRepository;
-    public IUserRepository UserRepository
-    {
-      get
-      {
-        if (_userRepository == null)
-          _userRepository = ObjectContainer.Container.Resolve<IUserRepository>();
-        return _userRepository;
-      }
-      set
-      {
-        _userRepository = value;
-      }
-    }
+    public LazyObjectResolver<IUserRepository> UserRepository;
+
+    public LazyObjectResolver<IUserNameValidator> UserNameValidator;
 
     #endregion
 
@@ -41,7 +30,7 @@ namespace Xyperico.Authentication.Web
     {
       try
       {
-        User u = UserRepository.GetByUserName(username);
+        User u = UserRepository.Value.GetByUserName(username);
         return u.PasswordMatches(password);
       }
       catch (MissingResourceException)
@@ -58,8 +47,8 @@ namespace Xyperico.Authentication.Web
         Condition.Requires(values, "values").IsNotNull();
         string email = values["EMail"] as string;
         Condition.Requires(email, "values[EMail]").IsNotNullOrEmpty();
-        User user = new User(userName, password, email);
-        UserRepository.Add(user);
+        User user = new User(userName, password, email, UserNameValidator.Value);
+        UserRepository.Value.Add(user);
       }
       catch (DuplicateKeyException ex)
       {
@@ -76,7 +65,7 @@ namespace Xyperico.Authentication.Web
     {
       try
       {
-        User user = UserRepository.GetByExternalLogin(provider, providerUserId);
+        User user = UserRepository.Value.GetByExternalLogin(provider, providerUserId);
         return user.UserId;
       }
       catch (MissingResourceException)
@@ -90,7 +79,7 @@ namespace Xyperico.Authentication.Web
     {
       try
       {
-        User user = UserRepository.GetByUserId(userId);
+        User user = UserRepository.Value.GetByUserId(userId);
         return user.UserName;
       }
       catch (MissingResourceException)
@@ -107,16 +96,16 @@ namespace Xyperico.Authentication.Web
         Logger.DebugFormat("CreateOrUpdateOAuthAccount provider = {0}, providerUserId = {1}, userName = {2}", provider, providerUserId, userName);
         try
         {
-          User user = UserRepository.GetByUserName(userName);
+          User user = UserRepository.Value.GetByUserName(userName);
           user.AddExternalLogin(provider, providerUserId);
-          UserRepository.Update(user);
+          UserRepository.Value.Update(user);
         }
         catch (MissingResourceException)
         {
           // User did not exists - create
-          User user = new User(userName, null, null);
+          User user = new User(userName, null, null, UserNameValidator.Value);
           user.AddExternalLogin(provider, providerUserId);
-          UserRepository.Add(user);
+          UserRepository.Value.Add(user);
         }
       }
       catch (DuplicateKeyException ex)
