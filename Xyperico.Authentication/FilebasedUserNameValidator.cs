@@ -22,7 +22,7 @@ namespace Xyperico.Authentication
     {
       if (userName == null)
         return false;
-      if (userName.Length > 20)
+      if (userName.Length < Configuration.Settings.UserName.MinLength || userName.Length > Configuration.Settings.UserName.MaxLength)
         return false;
 
       if (!ValidUserNamePattern.IsMatch(userName))

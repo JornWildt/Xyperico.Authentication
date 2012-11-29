@@ -9,16 +9,13 @@ namespace Xyperico.Authentication
 {
   public class Configuration : ConfigurationSettingsBase<Configuration>
   {
-    public override bool IsReadOnly()
-    {
-      return false;
-    }
+    public override bool IsReadOnly() { return false; }
 
 
     [ConfigurationProperty("ExternalProviders")]
-    public ConfigurationElementCollection<AuthenticationProvider> ExternalProviders
+    public ConfigurationElementCollection<AuthenticationProviderSection> ExternalProviders
     {
-      get { return (ConfigurationElementCollection<AuthenticationProvider>)this["ExternalProviders"]; }
+      get { return (ConfigurationElementCollection<AuthenticationProviderSection>)this["ExternalProviders"]; }
     }
 
 
@@ -38,7 +35,15 @@ namespace Xyperico.Authentication
     }
 
 
-    public class AuthenticationProvider : ConfigurationSection
+    [ConfigurationProperty("UserName")]
+    public UserNameSection UserName
+    {
+      get { return (UserNameSection)this["UserName"]; }
+      set { this["UserName"] = value; }
+    }
+
+
+    public class AuthenticationProviderSection : ConfigurationSection
     {
       [ConfigurationProperty("Active")]
       public bool Active
@@ -91,6 +96,27 @@ namespace Xyperico.Authentication
       public override string ToString()
       {
         return Name;
+      }
+    }
+
+
+    public class UserNameSection : ConfigurationElement
+    {
+      public override bool IsReadOnly() { return false; }
+
+      [ConfigurationProperty("MinLength")]
+      public int MinLength
+      {
+        get { return (int)this["MinLength"]; }
+        set { this["MinLength"] = value; }
+      }
+
+
+      [ConfigurationProperty("MaxLength")]
+      public int MaxLength
+      {
+        get { return (int)this["MaxLength"]; }
+        set { this["MaxLength"] = value; }
       }
     }
   }

@@ -6,7 +6,23 @@ namespace Xyperico.Authentication.Tests
   [TestFixture]
   public class UserNameValidatorTests : TestHelper
   {
-    IUserNameValidator UserNameValidator = new FilebasedUserNameValidator();
+    int OldUserNameMinLength;
+    int OldUserNameMaxLength;
+
+    protected override void SetUp()
+    {
+      base.SetUp();
+      OldUserNameMinLength = Configuration.Settings.UserName.MinLength;
+      OldUserNameMaxLength = Configuration.Settings.UserName.MaxLength;
+    }
+
+
+    protected override void TearDown()
+    {
+      Configuration.Settings.UserName.MinLength = OldUserNameMinLength;
+      Configuration.Settings.UserName.MaxLength = OldUserNameMaxLength;
+      base.TearDown();
+    }
 
 
     [Test]
@@ -53,6 +69,18 @@ namespace Xyperico.Authentication.Tests
     public void ItOnlyLoadsTheInvalidUserNameFileOnce()
     {
       Assert.AreEqual(1, Xyperico.Authentication.FilebasedUserNameValidator.FileReloadTimes);
+    }
+
+
+    [Test]
+    public void ItRespectsMinAndMaxUserLengthFromConfiguration()
+    {
+      Configuration.Settings.UserName.MinLength = 10;
+      Configuration.Settings.UserName.MaxLength = 13;
+      Assert.IsTrue(UserNameValidator.IsValidUserName("1234567890123"), "Allow 13 characters for user name");
+      Assert.IsTrue(UserNameValidator.IsValidUserName("1234567890"), "Allow 10 characters for user name");
+      Assert.IsFalse(UserNameValidator.IsValidUserName("123456789"), "Disallow <10 characters for user name");
+      Assert.IsFalse(UserNameValidator.IsValidUserName("12345678901234"), "Disallow >13 characters for user name");
     }
   }
 }

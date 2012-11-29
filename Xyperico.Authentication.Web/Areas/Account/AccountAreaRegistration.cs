@@ -48,7 +48,7 @@ namespace Xyperico.Authentication.Web.Areas.Account
       if (BaseConfiguration.Settings == null || BaseConfiguration.Settings.ExternalProviders == null)
         return;
 
-      foreach (BaseConfiguration.AuthenticationProvider providerCfg in BaseConfiguration.Settings.ExternalProviders)
+      foreach (BaseConfiguration.AuthenticationProviderSection providerCfg in BaseConfiguration.Settings.ExternalProviders)
       {
         if (providerCfg.Active)
         {
