@@ -25,7 +25,8 @@ namespace Xyperico.Authentication.Web.Areas.Account.Controllers
     [PageLayout("Simple")]
     public ActionResult Register()
     {
-      return View();
+      RegisterModel model = new RegisterModel();
+      return View(model);
     }
 
 

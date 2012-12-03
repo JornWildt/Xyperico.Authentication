@@ -204,4 +204,7 @@
   <data name="UserNameNotAvailable" xml:space="preserve">
     <value>Brugernavnet er allerede taget</value>
   </data>
+  <data name="InvalidPassword" xml:space="preserve">
+    <value>Ugyldig adgangskode</value>
+  </data>
 </root>

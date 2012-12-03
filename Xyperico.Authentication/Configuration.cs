@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Configuration;
+using Xyperico.Authentication.ConfigurationElements;
 using Xyperico.Base;
-using System.Configuration;
+
 
 namespace Xyperico.Authentication
 {
@@ -36,88 +34,31 @@ namespace Xyperico.Authentication
 
 
     [ConfigurationProperty("UserName")]
-    public UserNameSection UserName
+    public UserNameElement UserName
     {
-      get { return (UserNameSection)this["UserName"]; }
+      get { return (UserNameElement)this["UserName"]; }
       set { this["UserName"] = value; }
     }
 
 
-    public class AuthenticationProviderSection : ConfigurationSection
+    [ConfigurationProperty("PasswordPolicy")]
+    public PasswordPolicyElement PasswordPolicy
     {
-      [ConfigurationProperty("Active")]
-      public bool Active
-      {
-        get { return (bool)this["Active"]; }
-        set { this["Active"] = value; }
-      }
-
-
-      [ConfigurationProperty("Name", IsKey=true)]
-      public string Name
-      {
-        get { return (string)this["Name"]; }
-        set { this["Name"] = value; }
-      }
-
-
-      [ConfigurationProperty("DisplayName")]
-      public string DisplayName
-      {
-        get { return (string)this["DisplayName"]; }
-        set { this["DisplayName"] = value; }
-      }
-
-
-      [ConfigurationProperty("Type")]
-      public string Type
-      {
-        get { return (string)this["Type"]; }
-        set { this["Type"] = value; }
-      }
-
-
-      [ConfigurationProperty("ClientId")]
-      public string ClientId
-      {
-        get { return (string)this["ClientId"]; }
-        set { this["ClientId"] = value; }
-      }
-
-
-      [ConfigurationProperty("ClientSecret")]
-      public string ClientSecret
-      {
-        get { return (string)this["ClientSecret"]; }
-        set { this["ClientSecret"] = value; }
-      }
-
-
-      public override string ToString()
-      {
-        return Name;
-      }
+      get { return (PasswordPolicyElement)this["PasswordPolicy"]; }
+      set { this["PasswordPolicy"] = value; }
     }
 
 
-    public class UserNameSection : ConfigurationElement
+    public PasswordPolicy GetPasswordPolicy()
     {
-      public override bool IsReadOnly() { return false; }
-
-      [ConfigurationProperty("MinLength")]
-      public int MinLength
+      return new PasswordPolicy
       {
-        get { return (int)this["MinLength"]; }
-        set { this["MinLength"] = value; }
-      }
-
-
-      [ConfigurationProperty("MaxLength")]
-      public int MaxLength
-      {
-        get { return (int)this["MaxLength"]; }
-        set { this["MaxLength"] = value; }
-      }
+        MinPasswordLength = PasswordPolicy.MinPasswordLength,
+        MinNoOfLowerCaseChars = PasswordPolicy.MinNoOfLowerCaseChars,
+        MinNoOfUpperCaseChars = PasswordPolicy.MinNoOfUpperCaseChars,
+        MinNoOfNumbers = PasswordPolicy.MinNoOfNumbers,
+        MaxNoOfAllowedCharacterRepetitions = PasswordPolicy.MaxNoOfAllowedCharacterRepetitions
+      };
     }
   }
 }

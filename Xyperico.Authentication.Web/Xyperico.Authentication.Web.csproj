@@ -156,6 +156,9 @@
     <Compile Include="Areas\Account\Models\RegisterUnknownExternalModel.cs" />
     <Compile Include="Areas\Account\Models\RegisterModel.cs" />
     <Compile Include="IExternalAuthenticationProvider.cs" />
+    <Compile Include="ModelClientPasswordValidationRule.cs" />
+    <Compile Include="PasswordStrengthHtmlHelper.cs" />
+    <Compile Include="PasswordValidationAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ExternalAuthenticationProviders\Facebook.cs" />
     <Compile Include="ExternalAuthenticationProviders\Google.cs" />
@@ -215,11 +218,12 @@
     <Content Include="Areas\Account\Views\Info\_AccountBox.cshtml" />
     <Content Include="Areas\Account\Views\Login\_UsernamePasswordLogin.cshtml" />
     <Content Include="Areas\Account\Styles\Web.config" />
-    <Content Include="Areas\Account\Views\Registration\Register.cshtml" />
+    <Content Include="Areas\Account\Views\Registration\_Register.cshtml" />
     <Content Include="Areas\Account\Views\Registration\RegisterUnknownExternal.cshtml" />
     <Content Include="Areas\Account\Views\Login\ExternalLoginCallback.cshtml" />
     <Content Include="Areas\Account\Views\Login\LoginUnknownExternal.cshtml" />
     <Content Include="Areas\Account\Scripts\Web.config" />
+    <Content Include="Areas\Account\Views\Registration\Register.cshtml" />
     <None Include="copyfiles.bat" />
   </ItemGroup>
   <ItemGroup>

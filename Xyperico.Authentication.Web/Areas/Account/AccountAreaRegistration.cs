@@ -5,6 +5,7 @@ using log4net;
 using Microsoft.Web.WebPages.OAuth;
 using Xyperico.Base;
 using BaseConfiguration = Xyperico.Authentication.Configuration;
+using Xyperico.Authentication.ConfigurationElements;
 
 
 namespace Xyperico.Authentication.Web.Areas.Account
@@ -48,7 +49,7 @@ namespace Xyperico.Authentication.Web.Areas.Account
       if (BaseConfiguration.Settings == null || BaseConfiguration.Settings.ExternalProviders == null)
         return;
 
-      foreach (BaseConfiguration.AuthenticationProviderSection providerCfg in BaseConfiguration.Settings.ExternalProviders)
+      foreach (AuthenticationProviderSection providerCfg in BaseConfiguration.Settings.ExternalProviders)
       {
         if (providerCfg.Active)
         {

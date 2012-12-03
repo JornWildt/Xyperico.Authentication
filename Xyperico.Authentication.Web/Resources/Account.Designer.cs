@@ -106,6 +106,15 @@ namespace _ {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid password.
+        /// </summary>
+        public static string InvalidPassword {
+            get {
+                return ResourceManager.GetString("InvalidPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid user name - only letters, digits, hyphen, underscore and period is allowed (a-z, 0-9, -, _, .)..
         /// </summary>
         public static string InvalidUserName {

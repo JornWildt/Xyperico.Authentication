@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Builders\IUserBuilder.cs" />
+    <Compile Include="PasswordPolicyTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SetupFixture.cs" />
     <Compile Include="TestHelper.cs" />

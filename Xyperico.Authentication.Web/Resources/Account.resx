@@ -204,4 +204,7 @@
   <data name="UserNameNotAvailable" xml:space="preserve">
     <value>The user name is not available</value>
   </data>
+  <data name="InvalidPassword" xml:space="preserve">
+    <value>Invalid password</value>
+  </data>
 </root>
