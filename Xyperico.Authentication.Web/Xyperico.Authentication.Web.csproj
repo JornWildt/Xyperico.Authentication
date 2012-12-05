@@ -156,7 +156,6 @@
     <Compile Include="Areas\Account\Models\RegisterUnknownExternalModel.cs" />
     <Compile Include="Areas\Account\Models\RegisterModel.cs" />
     <Compile Include="IExternalAuthenticationProvider.cs" />
-    <Compile Include="ModelClientPasswordValidationRule.cs" />
     <Compile Include="PasswordStrengthHtmlHelper.cs" />
     <Compile Include="PasswordValidationAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

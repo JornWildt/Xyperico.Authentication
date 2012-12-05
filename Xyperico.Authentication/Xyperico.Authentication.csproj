@@ -58,6 +58,16 @@
     <Compile Include="PasswordPolicy.cs" />
     <Compile Include="PasswordValidationAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Auth.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Auth.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Auth.da.Designer.cs">
+      <DependentUpon>Auth.da.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="User.cs" />
     <Compile Include="FilebasedUserNameValidator.cs" />
   </ItemGroup>
@@ -74,6 +84,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Auth.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Auth.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>_</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Auth.da.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Auth.da.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>_</CustomToolNamespace>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

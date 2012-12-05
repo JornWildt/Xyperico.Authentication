@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System.Globalization;
 
 
 namespace Xyperico.Authentication.Tests
@@ -6,6 +7,24 @@ namespace Xyperico.Authentication.Tests
   [TestFixture]
   public class PasswordPolicyTests : TestHelper
   {
+    CultureInfo OldCulture;
+
+
+    protected override void TestFixtureSetUp()
+    {
+      base.TestFixtureSetUp();
+      OldCulture = System.Threading.Thread.CurrentThread.CurrentUICulture;
+      System.Threading.Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en");
+    }
+
+
+    protected override void TestFixtureTearDown()
+    {
+      System.Threading.Thread.CurrentThread.CurrentUICulture = OldCulture;
+      base.TestFixtureTearDown();
+    }
+
+
     [Test]
     public void CanMatchPasswordLength()
     {
@@ -121,12 +140,25 @@ namespace Xyperico.Authentication.Tests
       PasswordPolicy policy2 = new PasswordPolicy { MinNoOfLowerCaseChars = 2 };
       PasswordPolicy policy3 = new PasswordPolicy { MinNoOfUpperCaseChars = 2 };
       PasswordPolicy policy4 = new PasswordPolicy { MinNoOfNumbers = 2 };
+      PasswordPolicy policy5 = new PasswordPolicy { MaxNoOfAllowedCharacterRepetitions = 3 };
+      PasswordPolicy policy6 = new PasswordPolicy 
+      {
+        MinPasswordLength = 1,
+        MinNoOfLowerCaseChars = 2,
+        MinNoOfUpperCaseChars = 3,
+        MinNoOfNumbers = 4,
+        MaxNoOfAllowedCharacterRepetitions = 5
+      };
+      PasswordPolicy policy7 = new PasswordPolicy();
 
       // Act + Assert
-      Assert.AreEqual("password must be at least 5 characters long", policy1.GetDescription());
-      Assert.AreEqual("password must contain at least 2 lower case characters", policy2.GetDescription());
-      Assert.AreEqual("password must contain at least 2 upper case characters", policy3.GetDescription());
-      Assert.AreEqual("password must contain at least 2 digits", policy4.GetDescription());
+      Assert.AreEqual("password must be at least 5 characters long", policy1.GetDescription("password"));
+      Assert.AreEqual("password must contain at least 2 lower case characters", policy2.GetDescription("password"));
+      Assert.AreEqual("password must contain at least 2 upper case characters", policy3.GetDescription("password"));
+      Assert.AreEqual("password must contain at least 2 numbers", policy4.GetDescription("password"));
+      Assert.AreEqual("password must contain at most 3 character repetitions", policy5.GetDescription("password"));
+      Assert.AreEqual("password must be at least 1 characters long, contain at least 2 lower case characters, contain at least 3 upper case characters, contain at least 4 numbers, contain at most 5 character repetitions", policy6.GetDescription("password"));
+      Assert.IsNull(policy7.GetDescription("password"));
     }
   }
 }

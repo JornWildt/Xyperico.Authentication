@@ -12,9 +12,10 @@ namespace Xyperico.Authentication.Web
     {
       PasswordPolicy policy = Xyperico.Authentication.Configuration.Settings.GetPasswordPolicy();
 
-      var rule = new ModelClientPasswordValidationRule();
+      var rule = new ModelClientValidationRule();
       rule.ValidationType = "passwordpolicy";
       rule.ValidationParameters["policyexpr"] = policy.GetExpression();
+      rule.ErrorMessage = policy.GetDescription(metadata.DisplayName);
       yield return rule;
     }
   }

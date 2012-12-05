@@ -65,10 +65,21 @@ namespace Xyperico.Authentication
     }
 
 
-    public string GetDescription()
+    public string GetDescription(string fieldName)
     {
-      string lengthMsg = (MinPasswordLength > -1 ? string.Format("password must be at least {0} characters long", MinPasswordLength) : null);
-      return lengthMsg;
+      string lengthMsg = (MinPasswordLength > -1 ? string.Format(_.Auth.PwdLengthMsg_p1, MinPasswordLength) : null);
+      string lowerCaseMsg = (MinNoOfLowerCaseChars > -1 ? string.Format(_.Auth.PwdLowerCaseMsg_p1, MinNoOfLowerCaseChars) : null);
+      string upperCaseMsg = (MinNoOfUpperCaseChars > -1 ? string.Format(_.Auth.PwdUpperCaseMsg_p1, MinNoOfUpperCaseChars) : null);
+      string numberMsg = (MinNoOfNumbers > -1 ? string.Format(_.Auth.PwdNumberMsg_p1, MinNoOfNumbers) : null);
+      string repeatMsg = (MaxNoOfAllowedCharacterRepetitions > -1 ? string.Format(_.Auth.PwdRepetitionsMsg_p1, MaxNoOfAllowedCharacterRepetitions) : null);
+
+      string[] messages = new string[] { lengthMsg, lowerCaseMsg, upperCaseMsg, numberMsg, repeatMsg };
+      List<string> nonEmptyMessages = messages.Where(m => m != null).ToList();
+      if (nonEmptyMessages.Count == 0)
+        return null;
+
+      string message = nonEmptyMessages.Aggregate((a, b) => a + ", " + b);
+      return string.Format(_.Auth.PwdMust_p2, fieldName, message);
     }
   }
 
