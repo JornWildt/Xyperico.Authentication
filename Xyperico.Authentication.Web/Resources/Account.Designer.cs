@@ -79,6 +79,24 @@ namespace _ {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to E-mail is already in use.
+        /// </summary>
+        public static string DuplicateEMail {
+            get {
+                return ResourceManager.GetString("DuplicateEMail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The user ID provided by the external service is already in use.
+        /// </summary>
+        public static string DuplicateProviderUserKey {
+            get {
+                return ResourceManager.GetString("DuplicateProviderUserKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to E-mail.
         /// </summary>
         public static string EMail {
@@ -295,7 +313,7 @@ namespace _ {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The user name is not available.
+        ///   Looks up a localized string similar to The user name is already taken by another.
         /// </summary>
         public static string UserNameNotAvailable {
             get {

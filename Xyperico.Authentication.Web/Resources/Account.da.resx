@@ -202,9 +202,15 @@
     <value>Brugernavnet er ledigt</value>
   </data>
   <data name="UserNameNotAvailable" xml:space="preserve">
-    <value>Brugernavnet er allerede taget</value>
+    <value>Brugernavnet er allerede taget af en anden</value>
   </data>
   <data name="InvalidPassword" xml:space="preserve">
     <value>Ugyldig adgangskode</value>
+  </data>
+  <data name="DuplicateEMail" xml:space="preserve">
+    <value>E-mailen er allerede anvendt</value>
+  </data>
+  <data name="DuplicateProviderUserKey" xml:space="preserve">
+    <value>Det anvendte bruger ID fra den eksterne service er allerede anvendt</value>
   </data>
 </root>

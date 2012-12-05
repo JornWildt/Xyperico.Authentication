@@ -157,10 +157,15 @@ namespace Xyperico.Authentication.Web.Areas.Account.Controllers
       switch (createStatus)
       {
         case MembershipCreateStatus.DuplicateUserName:
-          return "User name already exists. Please enter a different user name.";
+          return _.Account.UserNameNotAvailable;
 
         case MembershipCreateStatus.DuplicateEmail:
-          return "A user name for that e-mail address already exists. Please enter a different e-mail address.";
+          return _.Account.DuplicateEMail;
+
+        case MembershipCreateStatus.DuplicateProviderUserKey:
+          return _.Account.DuplicateProviderUserKey;
+
+        // The rest are not used by this SimplerMembershipProvider
 
         case MembershipCreateStatus.InvalidPassword:
           return "The password provided is invalid. Please enter a valid password value.";
