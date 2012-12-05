@@ -114,7 +114,7 @@ namespace Xyperico.Authentication.Web.Areas.Account.Controllers
           OAuthWebSecurity.CreateOrUpdateAccount(provider, providerUserId, model.UserName);
           User user = UserRepository.GetByUserName(model.UserName);
           if (!string.IsNullOrEmpty(model.Password))
-            user.ChangePassword(model.Password);
+            user.ChangePassword(model.Password, Xyperico.Authentication.Configuration.Settings.GetPasswordPolicy());
           if (!string.IsNullOrEmpty(model.EMail))
             user.ChangeEMail(model.EMail);
           UserRepository.Update(user);

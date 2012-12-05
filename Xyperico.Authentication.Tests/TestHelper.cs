@@ -8,6 +8,8 @@ namespace Xyperico.Authentication.Tests
     protected IUserBuilder UserBuilder = ObjectContainer.Resolve<IUserBuilder>();
     protected IUserNameValidator UserNameValidator = new FilebasedUserNameValidator();
 
+    protected PasswordPolicy EmptyPasswordPolicy = new PasswordPolicy();
+
 
     protected override void TearDown()
     {

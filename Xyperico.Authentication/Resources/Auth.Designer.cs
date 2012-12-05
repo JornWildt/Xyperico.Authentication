@@ -61,6 +61,15 @@ namespace _ {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        public static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to be at least {0} characters long.
         /// </summary>
         public static string PwdLengthMsg_p1 {

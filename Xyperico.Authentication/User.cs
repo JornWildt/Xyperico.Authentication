@@ -62,7 +62,7 @@ namespace Xyperico.Authentication
     }
 
 
-    public User(string userName, string password, string email, IUserNameValidator userNameValidator)
+    public User(string userName, string password, string email, IUserNameValidator userNameValidator, PasswordPolicy passwordPolicy)
     {
       Condition.Requires(userName, "userName").IsNotNullOrEmpty();
       Condition.Requires(userNameValidator, "userNameValidator").IsNotNull();
@@ -82,7 +82,7 @@ namespace Xyperico.Authentication
 
       if (password != null)
       {
-        ChangePassword(password);
+        ChangePassword(password, passwordPolicy);
       }
     }
 
@@ -105,10 +105,13 @@ namespace Xyperico.Authentication
     }
 
 
-    public void ChangePassword(string newPassword)
+    public void ChangePassword(string newPassword, PasswordPolicy passwordPolicy)
     {
       if (newPassword != null)
       {
+        if (!passwordPolicy.IsValid(newPassword))
+          throw new InvalidPasswordException(passwordPolicy.GetDescription(_.Auth.Password));
+
         PasswordHashAlgorithm = Configuration.Settings.PasswordHashAlgorithm;
         byte[] salt, hash;
         GeneratePasswordHash(newPassword, out salt, out hash);

@@ -50,6 +50,7 @@
     <Compile Include="ConfigurationElements\AuthenticationProviderSection.cs" />
     <Compile Include="ConfigurationElements\PasswordPolicyElement.cs" />
     <Compile Include="ConfigurationElements\UserNameElement.cs" />
+    <Compile Include="InvalidPasswordException.cs" />
     <Compile Include="InvalidUserNameException.cs" />
     <Compile Include="IUserNameValidator.cs" />
     <Compile Include="PasswordHasher.cs" />

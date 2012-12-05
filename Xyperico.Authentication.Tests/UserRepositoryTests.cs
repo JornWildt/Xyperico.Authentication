@@ -76,8 +76,8 @@ namespace Xyperico.Authentication.Tests
     {
       // Arrange
       User u1 = UserBuilder.BuildUser(userName: "UPPERlower");
-      User u2 = new User(u1.UserName.ToLower(), "123", "ll@ll.ll", UserNameValidator);
-      User u3 = new User(u1.UserName.ToUpper(), "123", "ll@ll.ll", UserNameValidator);
+      User u2 = new User(u1.UserName.ToLower(), "123", "ll@ll.ll", UserNameValidator, EmptyPasswordPolicy);
+      User u3 = new User(u1.UserName.ToUpper(), "123", "ll@ll.ll", UserNameValidator, EmptyPasswordPolicy);
       
       UserBuilder.RegisterInstance(u2);
       UserBuilder.RegisterInstance(u3);
@@ -97,8 +97,8 @@ namespace Xyperico.Authentication.Tests
     {
       // Arrange
       User u1 = UserBuilder.BuildUser(email: "UPPERlower@DK.dk");
-      User u2 = new User(u1.UserName + "2", "123", u1.EMail.ToUpper(), UserNameValidator);
-      User u3 = new User(u1.UserName + "3", "123", u1.EMail.ToLower(), UserNameValidator);
+      User u2 = new User(u1.UserName + "2", "123", u1.EMail.ToUpper(), UserNameValidator, EmptyPasswordPolicy);
+      User u3 = new User(u1.UserName + "3", "123", u1.EMail.ToLower(), UserNameValidator, EmptyPasswordPolicy);
 
       UserBuilder.RegisterInstance(u2);
       UserBuilder.RegisterInstance(u3);
@@ -117,8 +117,8 @@ namespace Xyperico.Authentication.Tests
     public void CanAddTwoUsersWithoutPasswordAndEMail()
     {
       // Arrange
-      User u1a = new User("Gert", null, null, UserNameValidator);
-      User u2a = new User("Pia", null, null, UserNameValidator);
+      User u1a = new User("Gert", null, null, UserNameValidator, EmptyPasswordPolicy);
+      User u2a = new User("Pia", null, null, UserNameValidator, EmptyPasswordPolicy);
 
       UserBuilder.RegisterInstance(u1a);
       UserBuilder.RegisterInstance(u2a);
@@ -143,7 +143,7 @@ namespace Xyperico.Authentication.Tests
       User u1 = UserBuilder.BuildUser();
 
       // Act
-      u1.ChangePassword("xxxx");
+      u1.ChangePassword("xxxx", EmptyPasswordPolicy);
       UserRepository.Update(u1);
 
       User u2 = UserRepository.Get(u1.Id);
@@ -194,7 +194,7 @@ namespace Xyperico.Authentication.Tests
       u1.AddExternalLogin("Google", "abc");
       UserRepository.Update(u1);
 
-      User u2 = new User("kima", "123", "lkj@lkj.dl", UserNameValidator);
+      User u2 = new User("kima", "123", "lkj@lkj.dl", UserNameValidator, EmptyPasswordPolicy);
       u2.AddExternalLogin("Google", "abc");
       UserBuilder.RegisterInstance(u2);
 

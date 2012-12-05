@@ -17,7 +17,7 @@ namespace Xyperico.Authentication.Tests.Builders
 
     public User BuildUser(string userName = null, string email = null)
     {
-      User u = new User(userName ?? "Berndt", "123456", email ?? "xx@xyz.dk", UserNameValidator);
+      User u = new User(userName ?? "Berndt", "123456", email ?? "xx@xyz.dk", UserNameValidator, new PasswordPolicy());
       RegisterInstance(u);
       UserRepository.Add(u);
       return u;

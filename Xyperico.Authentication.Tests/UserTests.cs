@@ -11,7 +11,7 @@ namespace Xyperico.Authentication.Tests
     public void CanCreateUserWithoutPasswordAndEMail()
     {
       // Arrange
-      User u = new User("Bent", null, null, UserNameValidator);
+      User u = new User("Bent", null, null, UserNameValidator, null);
 
       // Act
       bool matches = u.PasswordMatches("123");
@@ -25,7 +25,7 @@ namespace Xyperico.Authentication.Tests
     public void CanAssociateUserWithExternalLogin()
     {
       // Arrange
-      User u = new User("Bent", null, null, UserNameValidator);
+      User u = new User("Bent", null, null, UserNameValidator, EmptyPasswordPolicy);
 
       // Act
       u.AddExternalLogin("Google", "xyz");
@@ -40,7 +40,7 @@ namespace Xyperico.Authentication.Tests
     public void WhenAddingSameExternalLoginTwiceItIgnoresSecond()
     {
       // Arrange
-      User u = new User("Bent", null, null, UserNameValidator);
+      User u = new User("Bent", null, null, UserNameValidator, EmptyPasswordPolicy);
 
       // Act
       u.AddExternalLogin("Google", "xyz");
@@ -58,7 +58,7 @@ namespace Xyperico.Authentication.Tests
     public void CanChangeEMail()
     {
       // Arrange
-      User u = new User("Bent", null, null, UserNameValidator);
+      User u = new User("Bent", null, null, UserNameValidator, EmptyPasswordPolicy);
 
       // Act
       u.ChangeEMail("abc@DE.DK");
@@ -73,7 +73,7 @@ namespace Xyperico.Authentication.Tests
     public void CanChangeEMailToNull()
     {
       // Arrange
-      User u = new User("Bent", null, "mymail@lkj.dk", UserNameValidator);
+      User u = new User("Bent", null, "mymail@lkj.dk", UserNameValidator, null);
 
       // Act
       u.ChangeEMail(null);
@@ -87,7 +87,7 @@ namespace Xyperico.Authentication.Tests
     [Test]
     public void CannotCreateUserWithInvalidUserName()
     {
-      AssertThrows<InvalidUserNameException>(() => new User("*", "lkj", "lkj@lkj.dk", UserNameValidator));
+      AssertThrows<InvalidUserNameException>(() => new User("*", "lkj", "lkj@lkj.dk", UserNameValidator, EmptyPasswordPolicy));
     }
   }
 }

@@ -47,7 +47,8 @@ namespace Xyperico.Authentication.Web
         Condition.Requires(values, "values").IsNotNull();
         string email = values["EMail"] as string;
         Condition.Requires(email, "values[EMail]").IsNotNullOrEmpty();
-        User user = new User(userName, password, email, UserNameValidator.Value);
+        PasswordPolicy passwordPolicy = Xyperico.Authentication.Configuration.Settings.GetPasswordPolicy();
+        User user = new User(userName, password, email, UserNameValidator.Value, passwordPolicy);
         UserRepository.Value.Add(user);
       }
       catch (DuplicateKeyException ex)
@@ -103,7 +104,7 @@ namespace Xyperico.Authentication.Web
         catch (MissingResourceException)
         {
           // User did not exists - create
-          User user = new User(userName, null, null, UserNameValidator.Value);
+          User user = new User(userName, null, null, UserNameValidator.Value, null);
           user.AddExternalLogin(provider, providerUserId);
           UserRepository.Value.Add(user);
         }
