@@ -1,6 +1,6 @@
 ﻿@model Xyperico.Authentication.Web.Areas.Account.Models.RegisterModel
 @using Xyperico.Web.Mvc.Html
-@using Xyperico.Authentication.Web;
+@using Xyperico.Authentication.Web.Html
 @{
   ViewBag.Title = _.Account.Registration;
 }
@@ -20,7 +20,7 @@
       <li>
         @Html.LabelFor(m => m.UserName)
         @Html.TextBoxFor(m => m.UserName)
-        <span id="UserNameStatus"></span>
+        @Html.UserNameValidatorFor(m => m.UserName)
       </li>
       <li>
         @Html.LabelFor(m => m.EMail)
@@ -47,18 +47,8 @@
 @Html.AutoFocusFor(m => m.UserName)
 
 @section Scripts {
-@*<script src="/Scripts/jquery.validate.js"></script>*@
   @Scripts.Render("~/bundles/jqueryval")
   @Scripts.Render("~/Areas/Account/Scripts/account.js")
-
-  <script type="text/javascript">
-
-
-    $(document).ready(function () {
-
-      //      UserNameChecker.Initialize("#UserName", "#UserNameStatus", "@Html.ImageUrl("load-indicator-16x16.gif")");
-    });
-  </script>
 }
 
 @section styles {
