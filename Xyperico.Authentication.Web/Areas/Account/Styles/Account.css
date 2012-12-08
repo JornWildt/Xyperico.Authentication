@@ -21,19 +21,19 @@
   text-align: center;
 }
 
-#UserNameStatus .ok, #UserNameStatus .fail
+.validator-status .ok, .validator-status .fail
 {
   display: block;
   float: right;
   width: 200px;
 }
 
-#UserNameStatus .ok
+.validator-status .ok
 {
   color: green;
 }
 
-#UserNameStatus .fail
+.validator-status .fail
 {
   color: red;
 }

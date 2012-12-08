@@ -65,15 +65,36 @@ namespace Xyperico.Authentication.Web.Areas.Account.Controllers
 
     [HttpGet]
     [AllowAnonymous]
-    public ActionResult CheckUserName(string userName)
+    public ActionResult CheckUserName(string value)
     {
       System.Threading.Thread.Sleep(2000);
-      if (!UserNameValidator.IsValidUserName(userName))
+      if (!UserNameValidator.IsValidUserName(value))
         return Json(new { Ok = false, Message = _.Account.InvalidUserName }, JsonRequestBehavior.AllowGet);
 
       try
       {
-        UserRepository.GetByUserName(userName);
+        UserRepository.GetByUserName(value);
+        return Json(new { Ok = false, Message = _.Account.UserNameNotAvailable }, JsonRequestBehavior.AllowGet);
+      }
+      catch (MissingResourceException)
+      {
+      }
+
+      return Json(new { Ok = true, Message = _.Account.UserNameAvailable }, JsonRequestBehavior.AllowGet);
+    }
+
+
+    [HttpGet]
+    [AllowAnonymous]
+    public ActionResult CheckEMail(string value)
+    {
+      System.Threading.Thread.Sleep(2000);
+      if (!UserNameValidator.IsValidUserName(value))
+        return Json(new { Ok = false, Message = _.Account.InvalidUserName }, JsonRequestBehavior.AllowGet);
+
+      try
+      {
+        UserRepository.GetByUserName(value);
         return Json(new { Ok = false, Message = _.Account.UserNameNotAvailable }, JsonRequestBehavior.AllowGet);
       }
       catch (MissingResourceException)

@@ -155,7 +155,7 @@
     <Compile Include="Areas\Account\Models\LoginModel.cs" />
     <Compile Include="Areas\Account\Models\RegisterUnknownExternalModel.cs" />
     <Compile Include="Areas\Account\Models\RegisterModel.cs" />
-    <Compile Include="Html\UserNameValidatorHtmlHelper.cs" />
+    <Compile Include="Html\InputValidatorHtmlHelper.cs" />
     <Compile Include="IExternalAuthenticationProvider.cs" />
     <Compile Include="Html\PasswordStrengthHtmlHelper.cs" />
     <Compile Include="PasswordValidationAttribute.cs" />
