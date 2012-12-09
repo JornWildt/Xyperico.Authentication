@@ -223,6 +223,7 @@
     <Content Include="Areas\Account\Views\Login\LoginUnknownExternal.cshtml" />
     <Content Include="Areas\Account\Scripts\Web.config" />
     <Content Include="Areas\Account\Views\Registration\Register.cshtml" />
+    <Content Include="Areas\Account\Views\Manage\Show.cshtml" />
     <None Include="copyfiles.bat" />
   </ItemGroup>
   <ItemGroup>

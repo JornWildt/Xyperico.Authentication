@@ -44,7 +44,10 @@ namespace Xyperico.Authentication.Web.Areas.Account.Controllers
 
       if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
       {
-        return Configuration.Settings.LoginSuccessUrl.Redirect();
+        if (string.IsNullOrEmpty(returnUrl))
+          return Configuration.Settings.LoginSuccessUrl.Redirect();
+        else
+          return Redirect(returnUrl);
       }
 
       // If we got this far, something failed, redisplay form

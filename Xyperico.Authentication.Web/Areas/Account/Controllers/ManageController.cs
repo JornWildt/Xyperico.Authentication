@@ -11,5 +11,11 @@ namespace Xyperico.Authentication.Web.Areas.Account.Controllers
 {
   public class ManageController : Xyperico.Web.Mvc.Controller
   {
+    [HttpGet]
+    [Authorize]
+    public ActionResult Show()
+    {
+      return View();
+    }
   }
 }
