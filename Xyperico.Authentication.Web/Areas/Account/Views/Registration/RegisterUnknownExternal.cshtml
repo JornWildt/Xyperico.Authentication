@@ -1,5 +1,6 @@
 ﻿@model Xyperico.Authentication.Web.Areas.Account.Models.RegisterUnknownExternalModel
 @using Xyperico.Web.Mvc.Html
+@using Xyperico.Authentication.Web.Html
 @{
   ViewBag.Title = _.Account.Registration;
 }
@@ -25,15 +26,17 @@
       <li>
         @Html.LabelFor(m => m.UserName)
         @Html.TextBoxFor(m => m.UserName)
-        <span id="UserNameStatus"></span>
+        @Html.UserNameValidatorFor(m => m.UserName)
       </li>
       <li>
         @Html.LabelFor(m => m.EMail)
         @Html.TextBoxFor(m => m.EMail)
+        @Html.EMailValidatorFor(m => m.EMail)
       </li>
       <li>
         @Html.LabelFor(m => m.Password)
         @Html.PasswordFor(m => m.Password)
+        @Html.ValidationMessageFor(m => m.Password)
       </li>
       <li>
         @Html.LabelFor(m => m.ConfirmPassword)
@@ -50,13 +53,8 @@
 @section Scripts {
   @Scripts.Render("~/bundles/jqueryval")
   @Scripts.Render("~/Areas/Account/Scripts/account.js")
-
-  <script type="text/javascript">
-    $(document).ready(function () {
-      UserNameChecker.Initialize("#UserName", "#UserNameStatus", "@Html.ImageUrl("load-indicator-16x16.gif")");
-    });
-  </script>
 }
+
 @section styles {
   @Html.Stylesheet("Account")
 }

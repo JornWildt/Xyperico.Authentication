@@ -25,6 +25,9 @@ namespace Xyperico.Authentication.Web.Areas.Account.Controllers
     [PageLayout("Simple")]
     public ActionResult show(string returnUrl)
     {
+      if (User.Identity.IsAuthenticated)
+        return RedirectToHome();
+
       ViewBag.ReturnUrl = returnUrl;
       return View();
     }
@@ -36,6 +39,9 @@ namespace Xyperico.Authentication.Web.Areas.Account.Controllers
     [PageLayout("Simple")]
     public ActionResult show(LoginModel model, string returnUrl)
     {
+      if (User.Identity.IsAuthenticated)
+        return RedirectToHome();
+
       if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
       {
         return Configuration.Settings.LoginSuccessUrl.Redirect();

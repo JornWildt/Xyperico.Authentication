@@ -1,4 +1,8 @@
-﻿function AjaxInputChecker(inputSelector, statusSelector, checkUrl, spinnerImageUrl) {
+﻿// ========================================================================
+// === Ajax based input checker ===========================================
+// ========================================================================
+
+function AjaxInputChecker(inputSelector, statusSelector, checkUrl, spinnerImageUrl) {
   this.InputSelector = inputSelector;
   this.StatusSelector = statusSelector;
   this.SpinnerImageUrl = spinnerImageUrl;
@@ -49,6 +53,10 @@
   }
 }
 
+
+// ========================================================================
+// === Add password policy validator ======================================
+// ========================================================================
 
 jQuery.validator.unobtrusive.adapters.add("passwordpolicy", ["policyexpr"], function (options) {
   options.rules["passwordpolicy"] = [options.params.policyexpr];

@@ -25,6 +25,9 @@ namespace Xyperico.Authentication.Web.Areas.Account.Controllers
     [PageLayout("Simple")]
     public ActionResult Register()
     {
+      if (User.Identity.IsAuthenticated)
+        return RedirectToHome();
+
       RegisterModel model = new RegisterModel();
       return View(model);
     }
