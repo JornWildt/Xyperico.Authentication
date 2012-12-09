@@ -21,11 +21,11 @@ namespace Xyperico.Authentication
 
     public string UserName { get; protected set; }
 
-    public string UserNameLowercase { get; protected set; }
+    protected string UserNameLowercase { get; set; }
 
     public string EMail { get; protected set; }
 
-    public string EMailLowercase { get; protected set; }
+    protected string EMailLowercase { get; set; }
 
     public byte[] PasswordHash { get; protected set; }
 

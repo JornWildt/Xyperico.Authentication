@@ -65,9 +65,52 @@ namespace Xyperico.Authentication.Tests
 
 
     [Test]
-    public void WhenGettingUnknownUserItThrowsMissingResource()
+    public void WhenGettingUnknownUserByUserNameItThrowsMissingResource()
     {
       AssertThrows<MissingResourceException>(() => UserRepository.GetByUserName("unknownuser"));
+    }
+
+
+    [Test]
+    public void CanGetUserByEMail()
+    {
+      // Arrange
+      User u1 = UserBuilder.BuildUser();
+
+      // Act
+      User u2 = UserRepository.GetByEMail(u1.EMail);
+
+      // Assert
+      Assert.IsNotNull(u2);
+      Assert.AreEqual(u1.Id, u2.Id);
+      Assert.AreEqual(u1.EMail, u2.EMail);
+    }
+
+
+    [Test]
+    public void WhenGettingUserByEMailItIgnoresCasing()
+    {
+      // Arrange
+      User u1 = UserBuilder.BuildUser();
+
+      // Act
+      User u2 = UserRepository.GetByEMail(u1.EMail.ToLower());
+      User u3 = UserRepository.GetByEMail(u1.EMail.ToUpper());
+
+      // Assert
+      Assert.IsNotNull(u2);
+      Assert.AreEqual(u1.Id, u2.Id);
+      Assert.AreEqual(u1.EMail, u2.EMail);
+      Assert.IsNotNull(u3);
+      Assert.AreEqual(u1.Id, u3.Id);
+      Assert.AreEqual(u1.EMail, u3.EMail);
+    }
+
+
+    [Test]
+    public void WhenGettingUnknownUserByEMailItThrowsMissingResource()
+    {
+      AssertThrows<MissingResourceException>(() => UserRepository.GetByEMail("unknownemail"));
     }
 
 

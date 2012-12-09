@@ -213,4 +213,10 @@
   <data name="DuplicateProviderUserKey" xml:space="preserve">
     <value>Det anvendte bruger ID fra den eksterne service er allerede anvendt</value>
   </data>
+  <data name="EMailAlreadyInUse" xml:space="preserve">
+    <value>Denne e-mail er allerede anvendt</value>
+  </data>
+  <data name="EMailNotInUse" xml:space="preserve">
+    <value>Denne e-mail er ledig</value>
+  </data>
 </root>

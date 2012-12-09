@@ -13,7 +13,7 @@ namespace Xyperico.Authentication.MongoDB
       BsonClassMap.RegisterClassMap<User>(cm =>
       {
         cm.AutoMap();
-        cm.GetMemberMap(c => c.EMailLowercase).SetIgnoreIfNull(true);
+        cm.GetMemberMap("EMailLowercase").SetIgnoreIfNull(true);
         cm.GetMemberMap("ExternalLogins").SetIgnoreIfNull(true);
       });
 

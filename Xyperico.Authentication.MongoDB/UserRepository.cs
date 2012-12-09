@@ -66,6 +66,14 @@ namespace Xyperico.Authentication.MongoDB
     }
 
 
+    public User GetByEMail(string email)
+    {
+      Condition.Requires(email, "email").IsNotNull();
+
+      return FindSingle(new { EMailLowercase = email.ToLower() });
+    }
+
+
     public User GetByUserId(int userId)
     {
       return FindSingle(new { UserId = userId });

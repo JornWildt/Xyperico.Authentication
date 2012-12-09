@@ -106,6 +106,24 @@ namespace _ {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to E-mail is already used.
+        /// </summary>
+        public static string EMailAlreadyInUse {
+            get {
+                return ResourceManager.GetString("EMailAlreadyInUse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E-mail is not used.
+        /// </summary>
+        public static string EMailNotInUse {
+            get {
+                return ResourceManager.GetString("EMailNotInUse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Forgot password?.
         /// </summary>
         public static string Forgot_password {

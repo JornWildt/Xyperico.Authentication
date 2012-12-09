@@ -65,7 +65,7 @@ namespace Xyperico.Authentication.Web.Areas.Account.Controllers
 
     [HttpGet]
     [AllowAnonymous]
-    public ActionResult CheckUserName(string value)
+    public ActionResult CheckUserName(string value) // The name "value" is specified by the common AJAX verifier
     {
       System.Threading.Thread.Sleep(2000);
       if (!UserNameValidator.IsValidUserName(value))
@@ -80,28 +80,36 @@ namespace Xyperico.Authentication.Web.Areas.Account.Controllers
       {
       }
 
-      return Json(new { Ok = true, Message = _.Account.UserNameAvailable }, JsonRequestBehavior.AllowGet);
+      return Json(new 
+      { 
+        Ok = true, 
+        Message = _.Account.UserNameAvailable,
+        CheckedValue = value
+      }, JsonRequestBehavior.AllowGet);
     }
 
 
     [HttpGet]
     [AllowAnonymous]
-    public ActionResult CheckEMail(string value)
+    public ActionResult CheckEMail(string value) // The name "value" is specified by the common AJAX verifier
     {
       System.Threading.Thread.Sleep(2000);
-      if (!UserNameValidator.IsValidUserName(value))
-        return Json(new { Ok = false, Message = _.Account.InvalidUserName }, JsonRequestBehavior.AllowGet);
 
       try
       {
-        UserRepository.GetByUserName(value);
-        return Json(new { Ok = false, Message = _.Account.UserNameNotAvailable }, JsonRequestBehavior.AllowGet);
+        UserRepository.GetByEMail(value);
+        return Json(new { Ok = false, Message = _.Account.EMailAlreadyInUse }, JsonRequestBehavior.AllowGet);
       }
       catch (MissingResourceException)
       {
       }
 
-      return Json(new { Ok = true, Message = _.Account.UserNameAvailable }, JsonRequestBehavior.AllowGet);
+      return Json(new 
+      { 
+        Ok = true, 
+        Message = _.Account.EMailNotInUse,
+        CheckedValue = value
+      }, JsonRequestBehavior.AllowGet);
     }
 
 

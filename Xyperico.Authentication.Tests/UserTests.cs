@@ -65,7 +65,6 @@ namespace Xyperico.Authentication.Tests
 
       // Assert
       Assert.AreEqual("abc@DE.DK", u.EMail);
-      Assert.AreEqual("abc@de.dk", u.EMailLowercase);
     }
 
 
@@ -80,7 +79,6 @@ namespace Xyperico.Authentication.Tests
 
       // Assert
       Assert.IsNull(u.EMail);
-      Assert.IsNull(u.EMailLowercase);
     }
 
 
