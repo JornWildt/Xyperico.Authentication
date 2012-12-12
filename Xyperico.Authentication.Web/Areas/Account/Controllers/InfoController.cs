@@ -1,18 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using Xyperico.Base.Exceptions;
+
 
 namespace Xyperico.Authentication.Web.Areas.Account.Controllers
 {
   public class InfoController : Xyperico.Web.Mvc.Controller
   {
+    #region Dependencies
+
+    public IUserRepository UserRepository { get; set; }
+
+    #endregion
+
+
     [ChildActionOnly]
     [AllowAnonymous]
     public ActionResult AccountBox()
     {
-      return PartialView("_AccountBox");
+      try
+      {
+        User u = UserRepository.GetByUserName(User.Identity.Name);
+        return PartialView("_AccountBox", u);
+      }
+      catch (MissingResourceException)
+      {
+        return PartialView("_AccountBox");
+      }
     }
   }
 }

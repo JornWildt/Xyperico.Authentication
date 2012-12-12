@@ -1,10 +1,11 @@
-﻿@using Xyperico.Web.Mvc
+﻿@model Xyperico.Authentication.User
+@using Xyperico.Web.Mvc
 <div id="account-box">
 @if (User.Identity.IsAuthenticated)
 {
   using (Html.BeginForm("logout", "login", new { area = "account" }))
   {
-    <span>@Html.Format(_.Account.Welcome_p0, User.Identity.Name)</span>
+    <span>@Html.Format(_.Account.Welcome_p0, Model.UserName)</span>
     @Html.AntiForgeryToken()
     <input type="submit" value="@_.Account.Log_out" />
   }

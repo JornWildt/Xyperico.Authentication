@@ -12,6 +12,8 @@
     <AssemblyName>Xyperico.Authentication.MongoDB</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,6 +50,12 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Xyperico.Base">
+      <HintPath>..\..\Libraries\Xyperico.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Xyperico.Base.MongoDB">
+      <HintPath>..\..\Libraries\Xyperico.Base.MongoDB.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GenericRepository.cs" />
@@ -56,14 +64,6 @@
     <Compile Include="Utility.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Xyperico\Source\Xyperico.Base\Xyperico.Base.MongoDB\Xyperico.Base.MongoDB\Xyperico.Base.MongoDB.csproj">
-      <Project>{DF1A3B54-FD53-414F-8C54-0D9F6EDEB2C9}</Project>
-      <Name>Xyperico.Base.MongoDB</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Xyperico\Source\Xyperico.Base\Xyperico.Base\Xyperico.Base.csproj">
-      <Project>{054A30BA-B232-4FF1-9F23-1040D075764A}</Project>
-      <Name>Xyperico.Base</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Xyperico.Authentication\Xyperico.Authentication.csproj">
       <Project>{50FC2DD4-89E2-4AB3-856F-98F66EC175C8}</Project>
       <Name>Xyperico.Authentication</Name>
@@ -73,6 +73,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

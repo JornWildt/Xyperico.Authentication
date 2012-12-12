@@ -16,6 +16,8 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>false</UseIISExpress>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -139,6 +141,13 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.2.0.20710.0\lib\net40\WebMatrix.WebData.dll</HintPath>
     </Reference>
+    <Reference Include="Xyperico.Base, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Xyperico.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Xyperico.Web.Mvc">
+      <HintPath>..\..\Libraries\Xyperico.Web.Mvc.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\Account\AccountAreaRegistration.cs" />
@@ -194,14 +203,6 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Xyperico\Source\Xyperico.Base\Xyperico.Base\Xyperico.Base.csproj">
-      <Project>{054A30BA-B232-4FF1-9F23-1040D075764A}</Project>
-      <Name>Xyperico.Base</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Xyperico\Source\Xyperico.Web\Xyperico.Web.Mvc\Xyperico.Web.Mvc.csproj">
-      <Project>{5BAC1705-410B-4B27-AA97-03C1EF567E1A}</Project>
-      <Name>Xyperico.Web.Mvc</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Xyperico.Authentication.MongoDB\Xyperico.Authentication.MongoDB.csproj">
       <Project>{0E51F3F5-048C-44D6-83FF-22F143EDF592}</Project>
       <Name>Xyperico.Authentication.MongoDB</Name>
@@ -275,6 +276,7 @@
 copyfiles.bat
 </PostBuildEvent>
   </PropertyGroup>
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
