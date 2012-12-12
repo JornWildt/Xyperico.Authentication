@@ -46,16 +46,13 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Xyperico.Base">
-      <HintPath>..\..\Libraries\Xyperico.Base.dll</HintPath>
+      <HintPath>..\Libraries\Xyperico.Base.dll</HintPath>
     </Reference>
     <Reference Include="Xyperico.Base.MongoDB">
-      <HintPath>..\..\Libraries\Xyperico.Base.MongoDB.dll</HintPath>
+      <HintPath>..\Libraries\Xyperico.Base.MongoDB.dll</HintPath>
     </Reference>
     <Reference Include="Xyperico.Base.Testing">
-      <HintPath>..\..\Libraries\Xyperico.Base.Testing.dll</HintPath>
-    </Reference>
-    <Reference Include="Xyperico.Web.Mvc">
-      <HintPath>..\..\Libraries\Xyperico.Web.Mvc.dll</HintPath>
+      <HintPath>..\Libraries\Xyperico.Base.Testing.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

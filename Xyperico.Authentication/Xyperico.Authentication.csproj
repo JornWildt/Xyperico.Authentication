@@ -48,7 +48,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Xyperico.Base">
-      <HintPath>..\..\Libraries\Xyperico.Base.dll</HintPath>
+      <HintPath>..\Libraries\Xyperico.Base.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

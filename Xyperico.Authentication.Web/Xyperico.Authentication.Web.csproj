@@ -143,10 +143,17 @@
     </Reference>
     <Reference Include="Xyperico.Base, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Libraries\Xyperico.Base.dll</HintPath>
+      <HintPath>..\Libraries\Xyperico.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Xyperico.Base.MongoDB, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\Xyperico.Base.MongoDB.dll</HintPath>
+    </Reference>
+    <Reference Include="Xyperico.Base.Testing">
+      <HintPath>..\Libraries\Xyperico.Base.Testing.dll</HintPath>
     </Reference>
     <Reference Include="Xyperico.Web.Mvc">
-      <HintPath>..\..\Libraries\Xyperico.Web.Mvc.dll</HintPath>
+      <HintPath>..\Libraries\Xyperico.Web.Mvc.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
