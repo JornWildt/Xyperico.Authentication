@@ -9,6 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xyperico.Authentication.Tes
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{1073B0C8-279C-4183-AF28-2E33A22F184D}"
 	ProjectSection(SolutionItems) = preProject
+		copy-libraries.bat = copy-libraries.bat
 		Xyperico.Authentication.Tests\invalid-user-names-test.txt = Xyperico.Authentication.Tests\invalid-user-names-test.txt
 		Xyperico.Authentication.Tests\Xyperico.Authentication.Tests.config = Xyperico.Authentication.Tests\Xyperico.Authentication.Tests.config
 	EndProjectSection
