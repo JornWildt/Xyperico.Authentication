@@ -1,8 +1,8 @@
-set dest=%1
+set src=%1
+set dest=%2
 
+if "%src%"=="" goto Error
 if "%dest%"=="" goto Error
-
-set src=Xyperico.Authentication.Web
 
 xcopy "%src%\bin\Xyperico.Authentication.*" "%dest%\bin\Areas" /I /Y /D
 xcopy "%src%\bin\da\Xyperico.Authentication.*" "%dest%\bin\Areas\da" /I /Y /D
@@ -13,4 +13,4 @@ xcopy "%src%\Areas\Account\Scripts\*.*" "%dest%\Areas\Account\Scripts\" /I /Y /S
 
 
 :Error
-echo Usage: Deploy.bat dest-folder
+echo Usage: Deploy.bat src-folder dest-folder
