@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Xyperico.Base.DataAnnotations;
-using System.Web.Mvc;
 
 
 namespace Xyperico.Authentication.Web.Areas.Account.Models

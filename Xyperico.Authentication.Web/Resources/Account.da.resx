@@ -145,7 +145,7 @@
     <value>Adgangskode</value>
   </data>
   <data name="PasswordAndConfirmationDoesNotMatch" xml:space="preserve">
-    <value>De to adgangskoder skal være stemme overens</value>
+    <value>De to adgangskoder skal stemme overens</value>
   </data>
   <data name="Register" xml:space="preserve">
     <value>Tilmeld dig</value>

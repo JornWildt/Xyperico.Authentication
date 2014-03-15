@@ -1,11 +1,11 @@
-﻿using System;
+﻿using log4net;
+using Microsoft.Web.WebPages.OAuth;
+using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using log4net;
-using Microsoft.Web.WebPages.OAuth;
+using Xyperico.Authentication.ConfigurationElements;
 using Xyperico.Base;
 using BaseConfiguration = Xyperico.Authentication.Configuration;
-using Xyperico.Authentication.ConfigurationElements;
 
 
 namespace Xyperico.Authentication.Web.Areas.Account

@@ -7,15 +7,19 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7F6A56C4-2F3B-4E10-86C3-E2615A33E510}</ProjectGuid>
+    <ProjectGuid>{95BF8EA9-BADD-43BF-9E69-8AEE1045A5A8}</ProjectGuid>
     <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Xyperico.Authentication.Web</RootNamespace>
     <AssemblyName>Xyperico.Authentication.Web</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
@@ -27,7 +31,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -38,34 +41,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CuttingEdge.Conditions, Version=1.2.0.11174, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+    <Reference Include="CuttingEdge.Conditions">
       <HintPath>..\packages\CuttingEdge.Conditions.1.2.0.0\lib\NET35\CuttingEdge.Conditions.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetOpenAuth.AspNet, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
-      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.1.3.12303\lib\net40-full\DotNetOpenAuth.AspNet.dll</HintPath>
-    </Reference>
-    <Reference Include="DotNetOpenAuth.Core, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
-      <HintPath>..\packages\DotNetOpenAuth.Core.4.1.3.12303\lib\net40-full\DotNetOpenAuth.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="DotNetOpenAuth.OAuth, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
-      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.1.3.12303\lib\net40-full\DotNetOpenAuth.OAuth.dll</HintPath>
-    </Reference>
-    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
-      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.1.3.12303\lib\net40-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
-    </Reference>
-    <Reference Include="DotNetOpenAuth.OpenId, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
-      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.1.3.12303\lib\net40-full\DotNetOpenAuth.OpenId.dll</HintPath>
-    </Reference>
-    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
-      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.1.3.12303\lib\net40-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
-    </Reference>
     <Reference Include="log4net">
-      <HintPath>..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Web.WebPages.OAuth, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -80,25 +65,29 @@
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http.WebRequest">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -114,9 +103,12 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20715.0\lib\net40\System.Web.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -134,20 +126,64 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.2.0.20710.0\lib\net40\WebMatrix.Data.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Web.WebPages.OAuth, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.OAuth.2.0.20710.0\lib\net40\Microsoft.Web.WebPages.OAuth.dll</HintPath>
+    </Reference>
     <Reference Include="WebMatrix.WebData, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.2.0.20710.0\lib\net40\WebMatrix.WebData.dll</HintPath>
     </Reference>
-    <Reference Include="Xyperico.Base, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DotNetOpenAuth.AspNet, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.1.4.12333\lib\net45-full\DotNetOpenAuth.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.1.4.12333\lib\net45-full\DotNetOpenAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OpenId.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.OData, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.OData.4.0.0\lib\net40\System.Web.Http.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Edm, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Data.Edm.5.2.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Data.OData.5.2.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Spatial, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\System.Spatial.5.2.0\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.3.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.3.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Xyperico.Base">
       <HintPath>..\Libraries\Xyperico.Base.dll</HintPath>
-    </Reference>
-    <Reference Include="Xyperico.Base.MongoDB, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libraries\Xyperico.Base.MongoDB.dll</HintPath>
-    </Reference>
-    <Reference Include="Xyperico.Base.Testing">
-      <HintPath>..\Libraries\Xyperico.Base.Testing.dll</HintPath>
     </Reference>
     <Reference Include="Xyperico.Web.Mvc">
       <HintPath>..\Libraries\Xyperico.Web.Mvc.dll</HintPath>
@@ -155,45 +191,46 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\Account\AccountAreaRegistration.cs" />
-    <Compile Include="Areas\Account\Controllers\RegistrationController.cs" />
-    <Compile Include="Areas\Account\Models\ExternalLoginCallbackModel.cs" />
-    <Compile Include="Areas\Account\Models\ExternalLoginBaseData.cs" />
-    <Compile Include="Areas\Account\Models\ExternalLoginListModel.cs" />
-    <Compile Include="Areas\Account\Models\LoginUnknownExternalModel.cs" />
-    <Compile Include="Configuration.cs" />
     <Compile Include="Areas\Account\Controllers\InfoController.cs" />
-    <Compile Include="Areas\Account\Controllers\ManageController.cs" />
-    <Compile Include="Areas\Account\Models\ExternalLoginResult.cs" />
     <Compile Include="Areas\Account\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Account\Controllers\ManageController.cs" />
+    <Compile Include="Areas\Account\Controllers\RegistrationController.cs" />
+    <Compile Include="Areas\Account\Models\ExternalLoginBaseData.cs" />
+    <Compile Include="Areas\Account\Models\ExternalLoginCallbackModel.cs" />
+    <Compile Include="Areas\Account\Models\ExternalLoginListModel.cs" />
+    <Compile Include="Areas\Account\Models\ExternalLoginResult.cs" />
     <Compile Include="Areas\Account\Models\LoginModel.cs" />
-    <Compile Include="Areas\Account\Models\RegisterUnknownExternalModel.cs" />
+    <Compile Include="Areas\Account\Models\LoginUnknownExternalModel.cs" />
     <Compile Include="Areas\Account\Models\RegisterModel.cs" />
-    <Compile Include="Html\InputValidatorHtmlHelper.cs" />
-    <Compile Include="IExternalAuthenticationProvider.cs" />
-    <Compile Include="Html\PasswordStrengthHtmlHelper.cs" />
-    <Compile Include="PasswordValidationAttribute.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Areas\Account\Models\RegisterUnknownExternalModel.cs" />
+    <Compile Include="Configuration.cs" />
     <Compile Include="ExternalAuthenticationProviders\Facebook.cs" />
     <Compile Include="ExternalAuthenticationProviders\Google.cs" />
     <Compile Include="ExternalAuthenticationProviders\LinkedIn.cs" />
     <Compile Include="ExternalAuthenticationProviders\Microsoft.cs" />
     <Compile Include="ExternalAuthenticationProviders\Twitter.cs" />
     <Compile Include="ExternalAuthenticationProviders\Yahoo.cs" />
+    <Compile Include="Html\InputValidatorHtmlHelper.cs" />
+    <Compile Include="Html\PasswordStrengthHtmlHelper.cs" />
+    <Compile Include="IExternalAuthenticationProvider.cs" />
+    <Compile Include="PasswordValidationAttribute.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Account.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Account.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Account.da.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Account.da.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Account.Designer.cs">
-      <DependentUpon>Account.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="SimpleMembershipProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Account\Scripts\account.js" />
     <Content Include="Areas\Account\Styles\Account.css" />
+    <Content Include="Areas\Account\Styles\spinner.gif" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -202,46 +239,48 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="copyfiles.bat" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Account.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Account.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Account.da.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Account.da.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Account\Scripts\Web.config" />
+    <Content Include="Areas\Account\Styles\Web.config" />
+    <Content Include="Areas\Account\Views\Info\_AccountBox.cshtml" />
+    <Content Include="Areas\Account\Views\Login\ExternalLoginCallback.cshtml" />
+    <Content Include="Areas\Account\Views\Login\LoginUnknownExternal.cshtml" />
+    <Content Include="Areas\Account\Views\Login\show.cshtml" />
+    <Content Include="Areas\Account\Views\Login\_ExternalLoginList.cshtml" />
+    <Content Include="Areas\Account\Views\Login\_UsernamePasswordLogin.cshtml" />
+    <Content Include="Areas\Account\Views\Manage\Show.cshtml" />
+    <Content Include="Areas\Account\Views\Registration\Register.cshtml" />
+    <Content Include="Areas\Account\Views\Registration\RegisterUnknownExternal.cshtml" />
+    <Content Include="Areas\Account\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Xyperico.Authentication.MongoDB\Xyperico.Authentication.MongoDB.csproj">
-      <Project>{0E51F3F5-048C-44D6-83FF-22F143EDF592}</Project>
+      <Project>{0e51f3f5-048c-44d6-83ff-22f143edf592}</Project>
       <Name>Xyperico.Authentication.MongoDB</Name>
     </ProjectReference>
     <ProjectReference Include="..\Xyperico.Authentication\Xyperico.Authentication.csproj">
-      <Project>{50FC2DD4-89E2-4AB3-856F-98F66EC175C8}</Project>
+      <Project>{50fc2dd4-89e2-4ab3-856f-98f66ec175c8}</Project>
       <Name>Xyperico.Authentication</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Account\Views\Login\show.cshtml" />
-    <Content Include="Areas\Account\Views\Login\_ExternalLoginList.cshtml" />
-    <Content Include="Areas\Account\Views\Web.config" />
-    <Content Include="Areas\Account\Views\Info\_AccountBox.cshtml" />
-    <Content Include="Areas\Account\Views\Login\_UsernamePasswordLogin.cshtml" />
-    <Content Include="Areas\Account\Styles\Web.config" />
-    <Content Include="Areas\Account\Views\Registration\RegisterUnknownExternal.cshtml" />
-    <Content Include="Areas\Account\Views\Login\ExternalLoginCallback.cshtml" />
-    <Content Include="Areas\Account\Views\Login\LoginUnknownExternal.cshtml" />
-    <Content Include="Areas\Account\Scripts\Web.config" />
-    <Content Include="Areas\Account\Views\Registration\Register.cshtml" />
-    <Content Include="Areas\Account\Views\Manage\Show.cshtml" />
-    <None Include="copyfiles.bat" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\Account.da.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Account.da.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Account.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Account.Designer.cs</LastGenOutput>
-      <CustomToolNamespace>_</CustomToolNamespace>
-    </EmbeddedResource>
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -256,12 +295,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>54228</DevelopmentServerPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>
-          </IISUrl>
+          <IISUrl>http://localhost:61830/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
@@ -271,16 +309,17 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
   <PropertyGroup>
-    <PreBuildEvent>
-    </PreBuildEvent>
+    <PostBuildEvent>cd $(projectDir)
+copyfiles.bat</PostBuildEvent>
   </PropertyGroup>
-  <PropertyGroup>
-    <PostBuildEvent>rem cd $(projectDir)
-rem copyfiles.bat
-</PostBuildEvent>
-  </PropertyGroup>
-  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

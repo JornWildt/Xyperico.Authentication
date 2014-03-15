@@ -70,7 +70,7 @@ namespace Xyperico.Authentication.Web.Areas.Account.Controllers
     [AllowAnonymous]
     public ActionResult CheckUserName(string value) // The name "value" is specified by the common AJAX verifier
     {
-      System.Threading.Thread.Sleep(500);
+      System.Threading.Thread.Sleep(200);
       if (!UserNameValidator.IsValidUserName(value))
         return Json(new { Ok = false, Message = _.Account.InvalidUserName }, JsonRequestBehavior.AllowGet);
 

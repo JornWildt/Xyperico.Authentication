@@ -2,6 +2,7 @@
 using System.Linq.Expressions;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using Xyperico.Web.Mvc;
 
 
@@ -15,7 +16,9 @@ namespace Xyperico.Authentication.Web.Html
     {
       ModelMetadata meta = ModelMetadata.FromLambdaExpression(expression, html.ViewData);
       string inputId = meta.PropertyName;
-      return html.GenerateInputValidator(inputId, "/app/account/registration/checkusername");
+      
+      string actionUrl = UrlHelper.GenerateUrl("Account_default", "checkusername", "registration", new RouteValueDictionary(new { Area="Account" }), html.RouteCollection, html.ViewContext.RequestContext, false);
+      return html.GenerateInputValidator(inputId, actionUrl);
     }
 
 
@@ -25,7 +28,8 @@ namespace Xyperico.Authentication.Web.Html
     {
       ModelMetadata meta = ModelMetadata.FromLambdaExpression(expression, html.ViewData);
       string inputId = meta.PropertyName;
-      return html.GenerateInputValidator(inputId, "/app/account/registration/checkemail");
+      string actionUrl = UrlHelper.GenerateUrl("Account_default", "checkemail", "registration", new RouteValueDictionary(new { Area = "Account" }), html.RouteCollection, html.ViewContext.RequestContext, false);
+      return html.GenerateInputValidator(inputId, actionUrl);
     }
 
 

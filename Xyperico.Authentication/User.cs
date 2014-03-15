@@ -21,11 +21,11 @@ namespace Xyperico.Authentication
 
     public string UserName { get; protected set; }
 
-    protected string UserNameLowercase { get; set; }
+    public string UserNameLowercase { get; protected set; }
 
     public string EMail { get; protected set; }
 
-    protected string EMailLowercase { get; set; }
+    public string EMailLowercase { get; protected set; }
 
     public byte[] PasswordHash { get; protected set; }
 
@@ -34,7 +34,7 @@ namespace Xyperico.Authentication
     public string PasswordHashAlgorithm { get; protected set; }
 
     // Whatch out - can be null (otherwise MongDoDB won't ignore it)
-    protected List<ExternalLogin> ExternalLogins { get; set; }
+    public List<ExternalLogin> ExternalLogins { get; protected set; }
 
     #endregion
 
