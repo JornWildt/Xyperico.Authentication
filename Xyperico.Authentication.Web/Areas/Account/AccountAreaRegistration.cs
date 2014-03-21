@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using Xyperico.Authentication.ConfigurationElements;
+using Xyperico.Authentication.Contract;
 using Xyperico.Base;
 using BaseConfiguration = Xyperico.Authentication.Configuration;
 
@@ -41,6 +42,7 @@ namespace Xyperico.Authentication.Web.Areas.Account
     {
       Xyperico.Authentication.MongoDB.Utility.Initialize(container);
       container.AddComponent<IUserNameValidator, FilebasedUserNameValidator>();
+      container.AddComponent<ICurrentUserService, CurrentUserService>();
     }
 
 

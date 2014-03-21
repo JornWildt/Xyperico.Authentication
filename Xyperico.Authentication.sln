@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xyperico.Authentication.Web
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xyperico.Authentication.Web", "Xyperico.Authentication.Web\Xyperico.Authentication.Web.csproj", "{95BF8EA9-BADD-43BF-9E69-8AEE1045A5A8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xyperico.Authentication.Contract", "Xyperico.Authentication.Contract\Xyperico.Authentication.Contract.csproj", "{CE897E21-21BB-41D2-B2E3-AD6D4CA8EB02}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{95BF8EA9-BADD-43BF-9E69-8AEE1045A5A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95BF8EA9-BADD-43BF-9E69-8AEE1045A5A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95BF8EA9-BADD-43BF-9E69-8AEE1045A5A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE897E21-21BB-41D2-B2E3-AD6D4CA8EB02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE897E21-21BB-41D2-B2E3-AD6D4CA8EB02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE897E21-21BB-41D2-B2E3-AD6D4CA8EB02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE897E21-21BB-41D2-B2E3-AD6D4CA8EB02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

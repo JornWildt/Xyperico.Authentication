@@ -204,6 +204,7 @@
     <Compile Include="Areas\Account\Models\RegisterModel.cs" />
     <Compile Include="Areas\Account\Models\RegisterUnknownExternalModel.cs" />
     <Compile Include="Configuration.cs" />
+    <Compile Include="CurrentUserService.cs" />
     <Compile Include="ExternalAuthenticationProviders\Facebook.cs" />
     <Compile Include="ExternalAuthenticationProviders\Google.cs" />
     <Compile Include="ExternalAuthenticationProviders\LinkedIn.cs" />
@@ -271,6 +272,10 @@
     <Content Include="Areas\Account\Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Xyperico.Authentication.Contract\Xyperico.Authentication.Contract.csproj">
+      <Project>{ce897e21-21bb-41d2-b2e3-ad6d4ca8eb02}</Project>
+      <Name>Xyperico.Authentication.Contract</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Xyperico.Authentication.MongoDB\Xyperico.Authentication.MongoDB.csproj">
       <Project>{0e51f3f5-048c-44d6-83ff-22f143edf592}</Project>
       <Name>Xyperico.Authentication.MongoDB</Name>
